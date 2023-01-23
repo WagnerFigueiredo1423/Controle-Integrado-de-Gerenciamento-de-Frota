@@ -1,0 +1,815 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3533F531-F00E-48F7-B3AD-FC6115B5B2E3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>app</RootNamespace>
+    <AssemblyName>app</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+    <PublishUrl>I:\Meu Drive\SIG %28nova Versão%29\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>61C3D2B10ECD0A6945D20D92C73D32E422D0BE48</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>app_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>app.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>true</DelaySign>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Feriados">
+      <HintPath>..\aplicacao\bin\Debug\Feriados.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.Core">
+      <HintPath>..\aplicacao\bin\Debug\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms">
+      <HintPath>..\aplicacao\bin\Debug\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\aplicacao\bin\Debug\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp">
+      <HintPath>..\aplicacao\bin\Debug\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting">
+      <HintPath>..\aplicacao\bin\Debug\PdfSharp.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CookieAwareWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="formConteiner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formConteiner.designer.cs">
+      <DependentUpon>formConteiner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formTeste.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formTeste.designer.cs">
+      <DependentUpon>formTeste.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controles_programa\formAviso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controles_programa\formAviso.designer.cs">
+      <DependentUpon>formAviso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controles_programa\formConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controles_programa\formConfig.designer.cs">
+      <DependentUpon>formConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controles_programa\formConfiguracoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controles_programa\formConfiguracoes.designer.cs">
+      <DependentUpon>formConfiguracoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controles_programa\formLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controles_programa\formLogin.designer.cs">
+      <DependentUpon>formLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controles_programa\formSenhaAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controles_programa\formSenhaAdmin.designer.cs">
+      <DependentUpon>formSenhaAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controles_programa\formSetBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controles_programa\formSetBase.designer.cs">
+      <DependentUpon>formSetBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controles_programa\formTrocaSenha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controles_programa\formTrocaSenha.designer.cs">
+      <DependentUpon>formTrocaSenha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controles_programa\formUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controles_programa\formUsuarios.designer.cs">
+      <DependentUpon>formUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Combustivel\formCompraCombustivel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Combustivel\formCompraCombustivel.designer.cs">
+      <DependentUpon>formCompraCombustivel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Combustivel\formEstoqueCombustivel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Combustivel\formEstoqueCombustivel.designer.cs">
+      <DependentUpon>formEstoqueCombustivel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\formBoletos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\formBoletos.designer.cs">
+      <DependentUpon>formBoletos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Fornecedores\formFornecedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Fornecedores\formFornecedores.designer.cs">
+      <DependentUpon>formFornecedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Frota\formAbast.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Frota\formAbast.designer.cs">
+      <DependentUpon>formAbast.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Frota\formArla.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Frota\formArla.designer.cs">
+      <DependentUpon>formArla.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Frota\formLavLub.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Frota\formLavLub.designer.cs">
+      <DependentUpon>formLavLub.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Frota\formRelAbast.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Frota\formRelAbast.designer.cs">
+      <DependentUpon>formRelAbast.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Frota\formTrocaOleo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Frota\formTrocaOleo.designer.cs">
+      <DependentUpon>formTrocaOleo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Frota\formVeic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Frota\formVeic.designer.cs">
+      <DependentUpon>formVeic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Pecas\formCatPecas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Pecas\formCatPecas.designer.cs">
+      <DependentUpon>formCatPecas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Pecas\formCompraItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Pecas\formCompraItem.designer.cs">
+      <DependentUpon>formCompraItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Pecas\formCompraPecas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Pecas\formCompraPecas.designer.cs">
+      <DependentUpon>formCompraPecas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Pecas\formPecas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Pecas\formPecas.designer.cs">
+      <DependentUpon>formPecas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Pneus\formCapPneu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Pneus\formCapPneu.designer.cs">
+      <DependentUpon>formCapPneu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Pneus\formCompraPneus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Pneus\formCompraPneus.designer.cs">
+      <DependentUpon>formCompraPneus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Pneus\formEventoPneu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Pneus\formEventoPneu.designer.cs">
+      <DependentUpon>formEventoPneu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Pneus\formPneu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Pneus\formPneu.designer.cs">
+      <DependentUpon>formPneu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Pneus\formPneuVeiculo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Pneus\formPneuVeiculo.designer.cs">
+      <DependentUpon>formPneuVeiculo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Servicos\formRelServ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Servicos\formRelServ.designer.cs">
+      <DependentUpon>formRelServ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Servicos\formServ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Servicos\formServ.designer.cs">
+      <DependentUpon>formServ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Servicos\formServTerc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_controle_de_frota\Servicos\formServTerc.designer.cs">
+      <DependentUpon>formServTerc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_ecoponto\formEcoAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_ecoponto\formEcoAdd.designer.cs">
+      <DependentUpon>formEcoAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_ecoponto\formEcoPonto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_ecoponto\formEcoPonto.designer.cs">
+      <DependentUpon>formEcoPonto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_ecoponto\formEcoRelatorio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_ecoponto\formEcoRelatorio.designer.cs">
+      <DependentUpon>formEcoRelatorio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_ecoponto\formEcoRelDet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_ecoponto\formEcoRelDet.designer.cs">
+      <DependentUpon>formEcoRelDet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_efetividade\formCapatazias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_efetividade\formCapatazias.designer.cs">
+      <DependentUpon>formCapatazias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_efetividade\formEfetiv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_efetividade\formEfetiv.designer.cs">
+      <DependentUpon>formEfetiv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_efetividade\formHorasExtras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_efetividade\formHorasExtras.designer.cs">
+      <DependentUpon>formHorasExtras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_entulho\formBusca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_entulho\formBusca.designer.cs">
+      <DependentUpon>formBusca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_entulho\formClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_entulho\formClientes.designer.cs">
+      <DependentUpon>formClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_entulho\formEndAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_entulho\formEndAdd.designer.cs">
+      <DependentUpon>formEndAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_entulho\formEndMapa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_entulho\formEndMapa.designer.cs">
+      <DependentUpon>formEndMapa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_entulho\formEntulho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_entulho\formEntulho.designer.cs">
+      <DependentUpon>formEntulho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_entulho\formLivCaixa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_entulho\formLivCaixa.designer.cs">
+      <DependentUpon>formLivCaixa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_entulho\formMotVeic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_entulho\formMotVeic.designer.cs">
+      <DependentUpon>formMotVeic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_entulho\formMovDiario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_entulho\formMovDiario.designer.cs">
+      <DependentUpon>formMovDiario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_entulho\formParamEnderClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_entulho\formParamEnderClientes.designer.cs">
+      <DependentUpon>formParamEnderClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_entulho\formRelConteiners.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_entulho\formRelConteiners.designer.cs">
+      <DependentUpon>formRelConteiners.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_entulho\formRelEntulho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_entulho\formRelEntulho.designer.cs">
+      <DependentUpon>formRelEntulho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_entulho\formWhatsApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_entulho\formWhatsApp.designer.cs">
+      <DependentUpon>formWhatsApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_funcionarios\formControlePonto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_funcionarios\formControlePonto.designer.cs">
+      <DependentUpon>formControlePonto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_funcionarios\formDeclaracoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_funcionarios\formDeclaracoes.designer.cs">
+      <DependentUpon>formDeclaracoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_funcionarios\formFuncionarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_funcionarios\formFuncionarios.designer.cs">
+      <DependentUpon>formFuncionarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_funcionarios\formPagFuncionarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_funcionarios\formPagFuncionarios.designer.cs">
+      <DependentUpon>formPagFuncionarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_funcionarios\formValorVtVr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_funcionarios\formValorVtVr.Designer.cs">
+      <DependentUpon>formValorVtVr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_outros\formAgenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_outros\formAgenda.designer.cs">
+      <DependentUpon>formAgenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_outros\formConsultaReceita.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_outros\formConsultaReceita.designer.cs">
+      <DependentUpon>formConsultaReceita.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo_outros\formRastreamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo_outros\formRastreamento.designer.cs">
+      <DependentUpon>formRastreamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ConsultaCNPJReceita.cs" />
+    <Compile Include="Properties\Resources1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WebServiceCEP\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="formConteiner.resx">
+      <DependentUpon>formConteiner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formTeste.resx">
+      <DependentUpon>formTeste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controles_programa\formAviso.resx">
+      <DependentUpon>formAviso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controles_programa\formConfig.resx">
+      <DependentUpon>formConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controles_programa\formConfiguracoes.resx">
+      <DependentUpon>formConfiguracoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controles_programa\formLogin.resx">
+      <DependentUpon>formLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controles_programa\formSenhaAdmin.resx">
+      <DependentUpon>formSenhaAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controles_programa\formSetBase.resx">
+      <DependentUpon>formSetBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controles_programa\formTrocaSenha.resx">
+      <DependentUpon>formTrocaSenha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controles_programa\formUsuarios.resx">
+      <DependentUpon>formUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Combustivel\formCompraCombustivel.resx">
+      <DependentUpon>formCompraCombustivel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Combustivel\formEstoqueCombustivel.resx">
+      <DependentUpon>formEstoqueCombustivel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\formBoletos.resx">
+      <DependentUpon>formBoletos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Fornecedores\formFornecedores.resx">
+      <DependentUpon>formFornecedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Frota\formAbast.resx">
+      <DependentUpon>formAbast.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Frota\formArla.resx">
+      <DependentUpon>formArla.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Frota\formLavLub.resx">
+      <DependentUpon>formLavLub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Frota\formRelAbast.resx">
+      <DependentUpon>formRelAbast.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Frota\formTrocaOleo.resx">
+      <DependentUpon>formTrocaOleo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Frota\formVeic.resx">
+      <DependentUpon>formVeic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Pecas\formCatPecas.resx">
+      <DependentUpon>formCatPecas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Pecas\formCompraItem.resx">
+      <DependentUpon>formCompraItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Pecas\formCompraPecas.resx">
+      <DependentUpon>formCompraPecas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Pecas\formPecas.resx">
+      <DependentUpon>formPecas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Pneus\formCapPneu.resx">
+      <DependentUpon>formCapPneu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Pneus\formCompraPneus.resx">
+      <DependentUpon>formCompraPneus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Pneus\formEventoPneu.resx">
+      <DependentUpon>formEventoPneu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Pneus\formPneu.resx">
+      <DependentUpon>formPneu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Pneus\formPneuVeiculo.resx">
+      <DependentUpon>formPneuVeiculo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Servicos\formRelServ.resx">
+      <DependentUpon>formRelServ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Servicos\formServ.resx">
+      <DependentUpon>formServ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_controle_de_frota\Servicos\formServTerc.resx">
+      <DependentUpon>formServTerc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_ecoponto\formEcoAdd.resx">
+      <DependentUpon>formEcoAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_ecoponto\formEcoPonto.resx">
+      <DependentUpon>formEcoPonto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_ecoponto\formEcoRelatorio.resx">
+      <DependentUpon>formEcoRelatorio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_ecoponto\formEcoRelDet.resx">
+      <DependentUpon>formEcoRelDet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_efetividade\formCapatazias.resx">
+      <DependentUpon>formCapatazias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_efetividade\formEfetiv.resx">
+      <DependentUpon>formEfetiv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_efetividade\formHorasExtras.resx">
+      <DependentUpon>formHorasExtras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_entulho\formBusca.resx">
+      <DependentUpon>formBusca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_entulho\formClientes.resx">
+      <DependentUpon>formClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_entulho\formEndAdd.resx">
+      <DependentUpon>formEndAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_entulho\formEndMapa.resx">
+      <DependentUpon>formEndMapa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_entulho\formEntulho.resx">
+      <DependentUpon>formEntulho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_entulho\formLivCaixa.resx">
+      <DependentUpon>formLivCaixa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_entulho\formMotVeic.resx">
+      <DependentUpon>formMotVeic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_entulho\formMovDiario.resx">
+      <DependentUpon>formMovDiario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_entulho\formParamEnderClientes.resx">
+      <DependentUpon>formParamEnderClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_entulho\formRelConteiners.resx">
+      <DependentUpon>formRelConteiners.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_entulho\formRelEntulho.resx">
+      <DependentUpon>formRelEntulho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_entulho\formWhatsApp.resx">
+      <DependentUpon>formWhatsApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_funcionarios\formControlePonto.resx">
+      <DependentUpon>formControlePonto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_funcionarios\formDeclaracoes.resx">
+      <DependentUpon>formDeclaracoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_funcionarios\formFuncionarios.resx">
+      <DependentUpon>formFuncionarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_funcionarios\formPagFuncionarios.resx">
+      <DependentUpon>formPagFuncionarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_funcionarios\formValorVtVr.resx">
+      <DependentUpon>formValorVtVr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_outros\formAgenda.resx">
+      <DependentUpon>formAgenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_outros\formConsultaReceita.resx">
+      <DependentUpon>formConsultaReceita.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulo_outros\formRastreamento.resx">
+      <DependentUpon>formRastreamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="app_TemporaryKey.pfx" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\WebServiceCEP\app.WebServiceCEP.clienteERP.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceCEP\app.WebServiceCEP.contratoERP.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceCEP\app.WebServiceCEP.embalagemLRSMaster.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceCEP\app.WebServiceCEP.enderecoERP.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceCEP\app.WebServiceCEP.retornoCancelamento.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceCEP\app.WebServiceCEP.servicoAdicionalXML.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceCEP\app.WebServiceCEP.servicoERP.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceCEP\app.WebServiceCEP.statusCartao.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceCEP\app.WebServiceCEP.statusPlp.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceCEP\app.WebServiceCEP.valePostal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceCEP\AtendeClienteService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\WebServiceCEP\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WebServiceCEP\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WebServiceCEP\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WebServiceCEP\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Design sem nome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AjaxControlToolkit">
+      <Version>20.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="EntityFramework">
+      <Version>6.4.4</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.2</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{c44d1e5a-8060-4b9d-8c05-73f1a1dce41a}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FNC\FNC.csproj">
+      <Project>{0309e6a2-2fbf-4ccc-91be-f41491fde330}</Project>
+      <Name>FNC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDL\MDL.csproj">
+      <Project>{ac3e7cd9-ab7c-4ef3-bdac-ee37bbaf6e1e}</Project>
+      <Name>MDL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\f9bb81e576c1a361c61a8c08945b2c48-icone-de-pesquisa.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
