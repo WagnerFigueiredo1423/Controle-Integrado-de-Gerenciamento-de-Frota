@@ -589,20 +589,17 @@ namespace app
                         }
                         else
                         {
-                            //foreach (ClassFeriados.Feriado f in listaFeriados)
-                            //{
-                            //    if (f.Data == mdlLocal.DATA)
-                            //    {
-                            //        mdlLocal.HORA_MADRUGADA_ENTRADA = "00:00";
-                            //        mdlLocal.HORA_MADRUGADA_SAIDA = "00:00";
-                            //        mdlLocal.HORA_MANHA_ENTRADA = "00:00";
-                            //        mdlLocal.HORA_MANHA_SAIDA = "00:00";
-                            //        mdlLocal.HORA_TARDE_ENTRADA = "00:00";
-                            //        mdlLocal.HORA_TARDE_SAIDA = "00:00";
-                            //        mdlLocal.HORA_NOITE_ENTRADA = "00:00";
-                            //        mdlLocal.HORA_NOITE_SAIDA = "00:00";
-                            //    }
-                            //}
+                            if (mdlLocal.DATA.IsHoliday())
+                            {
+                                mdlLocal.HORA_MADRUGADA_ENTRADA = "00:00";
+                                mdlLocal.HORA_MADRUGADA_SAIDA = "00:00";
+                                mdlLocal.HORA_MANHA_ENTRADA = "00:00";
+                                mdlLocal.HORA_MANHA_SAIDA = "00:00";
+                                mdlLocal.HORA_TARDE_ENTRADA = "00:00";
+                                mdlLocal.HORA_TARDE_SAIDA = "00:00";
+                                mdlLocal.HORA_NOITE_ENTRADA = "00:00";
+                                mdlLocal.HORA_NOITE_SAIDA = "00:00";
+                            }
                         }
                         sys_efetividadeBLL.InserirBLL(mdlLocal);
                         atualizaGrid();
@@ -655,20 +652,17 @@ namespace app
                         }
                         else
                         {
-                            //foreach (ClassFeriados.Feriado f in listaFeriados)
-                            //{
-                            //    if (f.Data == mdlLocal.DATA)
-                            //    {
-                            //        mdlLocal.HORA_MADRUGADA_ENTRADA = "00:00";
-                            //        mdlLocal.HORA_MADRUGADA_SAIDA = "00:00";
-                            //        mdlLocal.HORA_MANHA_ENTRADA = "00:00";
-                            //        mdlLocal.HORA_MANHA_SAIDA = "00:00";
-                            //        mdlLocal.HORA_TARDE_ENTRADA = "00:00";
-                            //        mdlLocal.HORA_TARDE_SAIDA = "00:00";
-                            //        mdlLocal.HORA_NOITE_ENTRADA = "00:00";
-                            //        mdlLocal.HORA_NOITE_SAIDA = "00:00";
-                            //    }
-                            //}
+                            if (mdlLocal.DATA.IsHoliday())
+                            {
+                                mdlLocal.HORA_MADRUGADA_ENTRADA = "00:00";
+                                mdlLocal.HORA_MADRUGADA_SAIDA = "00:00";
+                                mdlLocal.HORA_MANHA_ENTRADA = "00:00";
+                                mdlLocal.HORA_MANHA_SAIDA = "00:00";
+                                mdlLocal.HORA_TARDE_ENTRADA = "00:00";
+                                mdlLocal.HORA_TARDE_SAIDA = "00:00";
+                                mdlLocal.HORA_NOITE_ENTRADA = "00:00";
+                                mdlLocal.HORA_NOITE_SAIDA = "00:00";
+                            }
                         }
                         sys_efetividadeBLL.InserirBLL(mdlLocal);
                         atualizaGrid();
@@ -779,12 +773,7 @@ namespace app
         }
         private void dropPlaca_SelectedIndexChanged(object sender, EventArgs e)
         {
-            atualizaGrid();
-            if (txtAno.Text != "")
-            {
-                //ClassFeriados.Feriados fm = new ClassFeriados.Feriados(Convert.ToInt16(txtAno.Text));
-                //listaFeriados = fm._feriados;
-            }
+            atualizaGrid();      
         }
         private void tabEfetividade_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
