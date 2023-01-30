@@ -63,7 +63,7 @@ namespace BLL
             DataTable dtb = new DataTable();
             try
             {
-                dtb = sys_efetividadeDAL.ListarDAL(data,indexPlaca);
+                dtb = sys_efetividadeDAL.ListarDAL(data, indexPlaca);
             }
             catch (Exception erro)
             {

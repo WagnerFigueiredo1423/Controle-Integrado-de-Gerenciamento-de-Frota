@@ -1,5 +1,5 @@
-﻿using MySql.Data.MySqlClient;
-using MDL;
+﻿using MDL;
+using MySql.Data.MySqlClient;
 
 namespace DAL
 {

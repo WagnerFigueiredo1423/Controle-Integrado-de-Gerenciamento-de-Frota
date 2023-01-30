@@ -54,7 +54,7 @@ namespace BLL
             }
             return mdlLocalBLL;
         }
-        public static DataTable ListarBLL(string tipo,string parametro)
+        public static DataTable ListarBLL(string tipo, string parametro)
         {
             DataTable dtb = new DataTable();
             try

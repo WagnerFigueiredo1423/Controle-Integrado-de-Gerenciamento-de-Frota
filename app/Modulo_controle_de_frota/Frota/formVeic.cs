@@ -16,7 +16,7 @@ namespace app
 
         public formVeic(formConteiner _parent)
         {
-            InitializeComponent();            
+            InitializeComponent();
             this.parent = _parent;
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(formVeic_KeyDown);
@@ -43,7 +43,7 @@ namespace app
             tabVeiculos.Columns["tipo"].Width = 150;
             tabVeiculos.Columns["ano"].Width = 50;
             tabVeiculos.Columns["ativo"].Width = 100;
-            
+
         }
 
         private void apagaTela(Control.ControlCollection controles)

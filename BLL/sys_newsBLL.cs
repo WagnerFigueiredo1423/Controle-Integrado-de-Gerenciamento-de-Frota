@@ -1,6 +1,6 @@
-﻿using System;
+﻿using DAL;
 using MDL;
-using DAL;
+using System;
 using System.Data;
 
 namespace Camada_BLL
@@ -45,7 +45,7 @@ namespace Camada_BLL
 
         public static DataTable Mostrar()
         {
-            DataTable dtb = new DataTable();            
+            DataTable dtb = new DataTable();
 
             try
             {

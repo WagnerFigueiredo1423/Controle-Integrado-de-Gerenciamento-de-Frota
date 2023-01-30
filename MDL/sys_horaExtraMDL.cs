@@ -4,8 +4,8 @@ namespace MDL
 {
     public class sys_horaExtraMDL
     {
-        string  horasTotais,horasNormais,horasDomingo,horasFeriado,horasMadrugada;
-        DataTable total,dias,domingos,feriados,madrugadas;
+        string horasTotais, horasNormais, horasDomingo, horasFeriado, horasMadrugada;
+        DataTable total, dias, domingos, feriados, madrugadas;
 
         public DataTable TOTAL { get { return total; } set { total = value; } }
         public string HORASTOTAIS { get { return horasTotais; } set { horasTotais = value; } }                      //horas totais
@@ -20,6 +20,6 @@ namespace MDL
         public string HORASFERIADO { get { return horasFeriado; } set { horasFeriado = value; } }
 
         public DataTable MADRUGADAS { get { return madrugadas; } set { madrugadas = value; } }
-        public string HORASMADRUGADA { get { return horasMadrugada; } set { horasMadrugada = value; } }        
+        public string HORASMADRUGADA { get { return horasMadrugada; } set { horasMadrugada = value; } }
     }
 }

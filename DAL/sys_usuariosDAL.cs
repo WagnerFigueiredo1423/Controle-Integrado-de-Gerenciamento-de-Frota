@@ -1,6 +1,6 @@
-﻿using System;
-using MDL;
+﻿using MDL;
 using MySql.Data.MySqlClient;
+using System;
 using System.Data;
 
 namespace DAL

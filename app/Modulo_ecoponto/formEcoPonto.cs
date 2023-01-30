@@ -211,7 +211,7 @@ namespace app
             {
                 DataView _dtvLocEcoponto = new DataView(dtbLocEcoponto);
                 _dtvLocEcoponto.RowFilter = string.Format(@"numero_os LIKE '" + txtNroOs.Text + "%'");
-                this.BeginInvoke((MethodInvoker)delegate()
+                this.BeginInvoke((MethodInvoker)delegate ()
                 {
                     carregaTabelas(_dtvLocEcoponto.ToTable());
                 });

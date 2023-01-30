@@ -1,9 +1,7 @@
 ﻿using BLL;
-using ClassFeriados;
 using FNC;
 using MDL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -11,8 +9,6 @@ namespace app
 {
     public partial class formHorasExtras : Form
     {
-        List<Feriado> listaFeriados = new List<Feriado>();
-
         public formHorasExtras()
         {
             InitializeComponent();
@@ -53,7 +49,7 @@ namespace app
             sys_horaExtraMDL mdlLocal = new sys_horaExtraMDL();
             if (txtAno.Text != "" || dropMes.SelectedItem != null)
             {
-                data = Convert.ToDateTime(txtAno.Text + "-" + dropMes.SelectedItem.ToString() + "-01");                
+                data = Convert.ToDateTime(txtAno.Text + "-" + dropMes.SelectedItem.ToString() + "-01");
             }
             mdlLocal = sys_funcoesFNC.horasExtras(data, dropMotorista.SelectedValue.ToString());
 
@@ -63,10 +59,10 @@ namespace app
             tabDias.DataSource = mdlLocal.DIAS;
             lblDiasTrab.Text = mdlLocal.DIAS.Rows.Count.ToString();
             lblTotHrDia.Text = mdlLocal.HORASNORMAIS;
-         
+
             tabDomingos.DataSource = mdlLocal.DOMINGOS;
             lblDomTrab.Text = mdlLocal.DOMINGOS.Rows.Count.ToString();
-            lblTotHrDom.Text = mdlLocal.HORASDOMINGO;            
+            lblTotHrDom.Text = mdlLocal.HORASDOMINGO;
 
             tabFeriados.DataSource = mdlLocal.FERIADOS;
             lblFerTrab.Text = mdlLocal.FERIADOS.Rows.Count.ToString();

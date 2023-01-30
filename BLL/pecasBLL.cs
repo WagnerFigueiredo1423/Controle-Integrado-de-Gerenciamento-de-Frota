@@ -59,7 +59,7 @@ namespace BLL
             DataTable dtb = new DataTable();
             try
             {
-                dtb = sys_pecasDAL.ListarDAL(tipo,parametro);
+                dtb = sys_pecasDAL.ListarDAL(tipo, parametro);
             }
             catch (Exception erro)
             {

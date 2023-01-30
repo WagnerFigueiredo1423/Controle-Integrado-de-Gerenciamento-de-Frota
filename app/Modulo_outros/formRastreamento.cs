@@ -2,12 +2,8 @@
 using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
-using GMap.NET.WindowsForms.Markers;
-using GMap.NET.WindowsForms.ToolTips;
 using System;
 using System.Data;
-using System.Drawing;
-using System.Globalization;
 using System.Windows.Forms;
 
 namespace app

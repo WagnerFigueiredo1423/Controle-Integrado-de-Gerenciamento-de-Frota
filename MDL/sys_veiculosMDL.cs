@@ -4,7 +4,7 @@ namespace MDL
 {
     public class sys_veiculosMDL
     {
-        
+
         int id;
         string marca, foto, modelo, tipo, combustivel, placa, faixa_ipva, chassi, renavam, ano, cor, seguradora, apolice_seguro, observacao;
         bool oleo_S10, arla, ativo;

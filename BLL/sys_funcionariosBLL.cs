@@ -54,12 +54,12 @@ namespace BLL
             }
             return mdlLocalBLL;
         }
-        public static DataTable ListarBLL(string tipo_funcionario,bool mot_pole)
+        public static DataTable ListarBLL(string tipo_funcionario, bool mot_pole)
         {
             DataTable dtb = new DataTable();
             try
             {
-                dtb = sys_funcionariosDAL.ListarDAL(tipo_funcionario,mot_pole);
+                dtb = sys_funcionariosDAL.ListarDAL(tipo_funcionario, mot_pole);
             }
             catch (Exception erro)
             {

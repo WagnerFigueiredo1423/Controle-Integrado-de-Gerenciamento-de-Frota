@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace MDL
+﻿namespace MDL
 {
     public class sys_valorValesVtVrMDL
     {

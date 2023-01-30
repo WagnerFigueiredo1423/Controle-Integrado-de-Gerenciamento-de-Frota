@@ -441,7 +441,7 @@ namespace app
 
         private void txtData_ValueChanged(object sender, EventArgs e)
         {
-            
+
             carregaServicos(txtData.Value.Year.ToString());
         }
     }

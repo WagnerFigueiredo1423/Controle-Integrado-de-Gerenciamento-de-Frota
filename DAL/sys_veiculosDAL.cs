@@ -1,9 +1,7 @@
 ﻿using MDL;
 using MySql.Data.MySqlClient;
 using System;
-using System.Globalization;
 using System.Data;
-using System.Threading;
 
 
 namespace DAL
@@ -210,6 +208,6 @@ namespace DAL
                 con.Close();
             }
         }
-        
+
     }
 }

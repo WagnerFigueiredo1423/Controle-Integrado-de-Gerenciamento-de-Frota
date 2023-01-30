@@ -1,5 +1,4 @@
-﻿using BLL;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace app
@@ -13,12 +12,12 @@ namespace app
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void formConfig_FormClosing(object sender, FormClosingEventArgs e)
         {
-           
+
         }
     }
 }

@@ -32,11 +32,11 @@ namespace BLL
             }
         }
 
-        public static void DeletarBLL(int idLavagem,int idPeca)
+        public static void DeletarBLL(int idLavagem, int idPeca)
         {
             try
             {
-                sys_lavagem_lub_has_sys_pecasDAL.DeletarDAL(idLavagem,idPeca);
+                sys_lavagem_lub_has_sys_pecasDAL.DeletarDAL(idLavagem, idPeca);
             }
             catch (Exception erro)
             {

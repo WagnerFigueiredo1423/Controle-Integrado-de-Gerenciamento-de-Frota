@@ -11,7 +11,7 @@ namespace app
         public formEstoqueCombustivel()
         {
             InitializeComponent();
-           // pictureBox1.Image = Properties.Resources.tanque;
+            // pictureBox1.Image = Properties.Resources.tanque;
         }
 
         private void formEstoqueCombustivel_Load(object sender, EventArgs e)

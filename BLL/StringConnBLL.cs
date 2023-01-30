@@ -1,7 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using DAL;
-
-namespace BLL
+﻿namespace BLL
 {
     //public static class StringConnBLL
     //{

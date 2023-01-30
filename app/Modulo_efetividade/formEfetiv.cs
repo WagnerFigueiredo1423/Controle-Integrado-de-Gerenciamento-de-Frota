@@ -1,13 +1,12 @@
 ﻿using BLL;
+using BrazilHolidays.Net;
+using FNC;
 using MDL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.Windows.Forms;
-using FNC;
-using ClassFeriados;
 using System.Globalization;
+using System.Windows.Forms;
 
 namespace app
 {
@@ -19,7 +18,7 @@ namespace app
         protected bool clicado = false;
         protected formConteiner parent;
 
-        List<Feriado> listaFeriados = new List<Feriado>();
+        //List<Feriado> listaFeriados = new List<Feriado>();
 
         public formEfetiv(formConteiner _parent)
         {
@@ -527,19 +526,16 @@ namespace app
                         }
                         else
                         {
-                            foreach (ClassFeriados.Feriado f in listaFeriados)
+                            if (mdlLocal.DATA.IsHoliday())
                             {
-                                if (f.Data == mdlLocal.DATA)
-                                {
-                                    mdlLocal.HORA_MADRUGADA_ENTRADA = "00:00";
-                                    mdlLocal.HORA_MADRUGADA_SAIDA = "00:00";
-                                    mdlLocal.HORA_MANHA_ENTRADA = "00:00";
-                                    mdlLocal.HORA_MANHA_SAIDA = "00:00";
-                                    mdlLocal.HORA_TARDE_ENTRADA = "00:00";
-                                    mdlLocal.HORA_TARDE_SAIDA = "00:00";
-                                    mdlLocal.HORA_NOITE_ENTRADA = "00:00";
-                                    mdlLocal.HORA_NOITE_SAIDA = "00:00";
-                                }
+                                mdlLocal.HORA_MADRUGADA_ENTRADA = "00:00";
+                                mdlLocal.HORA_MADRUGADA_SAIDA = "00:00";
+                                mdlLocal.HORA_MANHA_ENTRADA = "00:00";
+                                mdlLocal.HORA_MANHA_SAIDA = "00:00";
+                                mdlLocal.HORA_TARDE_ENTRADA = "00:00";
+                                mdlLocal.HORA_TARDE_SAIDA = "00:00";
+                                mdlLocal.HORA_NOITE_ENTRADA = "00:00";
+                                mdlLocal.HORA_NOITE_SAIDA = "00:00";
                             }
                         }
                         sys_efetividadeBLL.InserirBLL(mdlLocal);
@@ -593,20 +589,20 @@ namespace app
                         }
                         else
                         {
-                            foreach (ClassFeriados.Feriado f in listaFeriados)
-                            {
-                                if (f.Data == mdlLocal.DATA)
-                                {
-                                    mdlLocal.HORA_MADRUGADA_ENTRADA = "00:00";
-                                    mdlLocal.HORA_MADRUGADA_SAIDA = "00:00";
-                                    mdlLocal.HORA_MANHA_ENTRADA = "00:00";
-                                    mdlLocal.HORA_MANHA_SAIDA = "00:00";
-                                    mdlLocal.HORA_TARDE_ENTRADA = "00:00";
-                                    mdlLocal.HORA_TARDE_SAIDA = "00:00";
-                                    mdlLocal.HORA_NOITE_ENTRADA = "00:00";
-                                    mdlLocal.HORA_NOITE_SAIDA = "00:00";
-                                }
-                            }
+                            //foreach (ClassFeriados.Feriado f in listaFeriados)
+                            //{
+                            //    if (f.Data == mdlLocal.DATA)
+                            //    {
+                            //        mdlLocal.HORA_MADRUGADA_ENTRADA = "00:00";
+                            //        mdlLocal.HORA_MADRUGADA_SAIDA = "00:00";
+                            //        mdlLocal.HORA_MANHA_ENTRADA = "00:00";
+                            //        mdlLocal.HORA_MANHA_SAIDA = "00:00";
+                            //        mdlLocal.HORA_TARDE_ENTRADA = "00:00";
+                            //        mdlLocal.HORA_TARDE_SAIDA = "00:00";
+                            //        mdlLocal.HORA_NOITE_ENTRADA = "00:00";
+                            //        mdlLocal.HORA_NOITE_SAIDA = "00:00";
+                            //    }
+                            //}
                         }
                         sys_efetividadeBLL.InserirBLL(mdlLocal);
                         atualizaGrid();
@@ -659,20 +655,20 @@ namespace app
                         }
                         else
                         {
-                            foreach (ClassFeriados.Feriado f in listaFeriados)
-                            {
-                                if (f.Data == mdlLocal.DATA)
-                                {
-                                    mdlLocal.HORA_MADRUGADA_ENTRADA = "00:00";
-                                    mdlLocal.HORA_MADRUGADA_SAIDA = "00:00";
-                                    mdlLocal.HORA_MANHA_ENTRADA = "00:00";
-                                    mdlLocal.HORA_MANHA_SAIDA = "00:00";
-                                    mdlLocal.HORA_TARDE_ENTRADA = "00:00";
-                                    mdlLocal.HORA_TARDE_SAIDA = "00:00";
-                                    mdlLocal.HORA_NOITE_ENTRADA = "00:00";
-                                    mdlLocal.HORA_NOITE_SAIDA = "00:00";
-                                }
-                            }
+                            //foreach (ClassFeriados.Feriado f in listaFeriados)
+                            //{
+                            //    if (f.Data == mdlLocal.DATA)
+                            //    {
+                            //        mdlLocal.HORA_MADRUGADA_ENTRADA = "00:00";
+                            //        mdlLocal.HORA_MADRUGADA_SAIDA = "00:00";
+                            //        mdlLocal.HORA_MANHA_ENTRADA = "00:00";
+                            //        mdlLocal.HORA_MANHA_SAIDA = "00:00";
+                            //        mdlLocal.HORA_TARDE_ENTRADA = "00:00";
+                            //        mdlLocal.HORA_TARDE_SAIDA = "00:00";
+                            //        mdlLocal.HORA_NOITE_ENTRADA = "00:00";
+                            //        mdlLocal.HORA_NOITE_SAIDA = "00:00";
+                            //    }
+                            //}
                         }
                         sys_efetividadeBLL.InserirBLL(mdlLocal);
                         atualizaGrid();
@@ -786,8 +782,8 @@ namespace app
             atualizaGrid();
             if (txtAno.Text != "")
             {
-                ClassFeriados.Feriados fm = new ClassFeriados.Feriados(Convert.ToInt16(txtAno.Text));
-                listaFeriados = fm._feriados;
+                //ClassFeriados.Feriados fm = new ClassFeriados.Feriados(Convert.ToInt16(txtAno.Text));
+                //listaFeriados = fm._feriados;
             }
         }
         private void tabEfetividade_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -846,13 +842,10 @@ namespace app
             }
             else
             {
-                foreach (ClassFeriados.Feriado f in listaFeriados)
+                if (data.IsHoliday())
                 {
-                    if (f.Data == data)
-                    {
-                        DataGridViewRow row = tabEfetividade.Rows[e.RowIndex];
-                        row.DefaultCellStyle.ForeColor = Color.Green;
-                    }
+                    DataGridViewRow row = tabEfetividade.Rows[e.RowIndex];
+                    row.DefaultCellStyle.ForeColor = Color.Green;
                 }
             }
             if (tabEfetividade.Rows[e.RowIndex].Cells["hora_extra_madrugada"].Value.ToString() == "True" && tabEfetividade.Rows[e.RowIndex].Cells["hora_madrugada_entrada"].Value.ToString() != "00:00" && tabEfetividade.Rows[e.RowIndex].Cells["hora_madrugada_saida"].Value.ToString() != "00:00")

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using DAL;
+using System;
 using System.Data;
 using System.Windows.Forms;
 using System.Xml;
-using DAL;
 
 namespace FNC
 {

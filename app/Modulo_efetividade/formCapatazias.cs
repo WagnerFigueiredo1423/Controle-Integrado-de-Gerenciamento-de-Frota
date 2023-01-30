@@ -41,7 +41,7 @@ namespace app
         {
             atualizaTela();
         }
-               
+
         private void btnGravar_Click(object sender, EventArgs e)
         {
             sys_capataziasMDL mdlLocal = new sys_capataziasMDL();

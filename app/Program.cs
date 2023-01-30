@@ -1,5 +1,4 @@
 ﻿using MDL;
-using BLL;
 using System;
 using System.Windows.Forms;
 
@@ -32,7 +31,7 @@ namespace app
                 //{
                 //    //formLogin _formLogin = new formLogin();
                 //}
-                
+
                 Program.BACKGROUND = Properties.Settings.Default.BackGround;
                 Program.IMAGEM = Properties.Settings.Default.BackGroungPath;
                 Properties.Settings.Default.Save();

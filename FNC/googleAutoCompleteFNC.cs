@@ -46,7 +46,7 @@ namespace FNC
         public static DataTable autoComplete(string parametro)
         {
             DataTable _dtb = new DataTable();
-            _dtb.Columns.Add("Endereço",typeof(string));
+            _dtb.Columns.Add("Endereço", typeof(string));
             _dtb.Columns.Add("Latitude");
             _dtb.Columns.Add("Longitude");
             List<string> ac = new List<string>();
@@ -63,7 +63,7 @@ namespace FNC
             for (int i = 0; i < test.results.Length; i++)
             {
                 _dtb.Rows.Add(test.results[i].formatted_address.ToString(), test.results[i].geometry.location.lat.ToString(), test.results[i].geometry.location.lng.ToString());
-               
+
             }
             return _dtb;
         }

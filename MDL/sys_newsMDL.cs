@@ -13,6 +13,6 @@ namespace MDL
         public String TITULO { get { return titulo; } set { titulo = value; } }
         public String NEWS { get { return noticia; } set { noticia = value; } }
         public bool MOSTRAR { get { return mostrar; } set { mostrar = value; } }
-        public DateTime CRIADO { get { return criado; } set { criado = value; } }        
+        public DateTime CRIADO { get { return criado; } set { criado = value; } }
     }
 }

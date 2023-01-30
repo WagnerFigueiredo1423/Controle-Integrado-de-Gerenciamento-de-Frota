@@ -11,16 +11,16 @@ namespace app
     public partial class formPagFuncionarios : Form
     {
         private string[] headersHorista = { "Piso",
-                                        "Horas", 
-                                        "Horas (acima das 200:00)", 
+                                        "Horas",
+                                        "Horas (acima das 200:00)",
                                         "Horas Madrugada",
                                         "Movimento de Caixas",
                                         "Mov. Caixas Centro",
                                          "Domingos e Feriados",
                                          "Plantões",
-                                         "Vale Transporte", 
-                                         "Vale Refeição", 
-                                         "Insalubridade", 
+                                         "Vale Transporte",
+                                         "Vale Refeição",
+                                         "Insalubridade",
                                          "Adicional Tempo de Serviço",
                                          "Assiduidade",
                                          "Salário Família",
@@ -243,7 +243,7 @@ namespace app
             DataTable dtbBas = new DataTable();
 
             sys_horaExtraMDL hExtraMDL = new sys_horaExtraMDL();
-           
+
             //piso
             TextBox txtQntdPiso = new TextBox();
             TextBox txtVlrUnitPiso = new TextBox();
@@ -434,7 +434,7 @@ namespace app
                     }
                 }
 
-                    if (horasNormais.TotalHours >= 200)
+                if (horasNormais.TotalHours >= 200)
                 {
                     setTextBoxText(txtQntdHora, "200:00");
                     setTextBoxText(txtQntdHoraExt, (formataSomaHora(horasNormais - limiteHoras)).ToString());
@@ -573,7 +573,7 @@ namespace app
 
         private void formPagFuncionarios_FormClosing(object sender, FormClosingEventArgs e)
         {
-           
+
         }
 
         private DataTable geraTransposta(DataTable inputTable)

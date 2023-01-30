@@ -61,12 +61,12 @@ namespace BLL
         ///                     "ativos" - lista os veículos ativos
         ///                     "inativos" - lista os inativos </param>
         /// <returns></returns>
-        public static DataTable ListarBLL(string ativo,string tipo_veiculo)
+        public static DataTable ListarBLL(string ativo, string tipo_veiculo)
         {
             DataTable dtb = new DataTable();
             try
             {
-                dtb = sys_veiculosDAL.ListarDAL(ativo,tipo_veiculo);
+                dtb = sys_veiculosDAL.ListarDAL(ativo, tipo_veiculo);
             }
             catch (Exception erro)
             {

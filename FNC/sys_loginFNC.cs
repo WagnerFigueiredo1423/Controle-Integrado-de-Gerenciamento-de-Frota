@@ -1,5 +1,5 @@
-﻿using MySql.Data.MySqlClient;
-using DAL;
+﻿using DAL;
+using MySql.Data.MySqlClient;
 using MySql.Data.Types;
 
 namespace FNC

@@ -33,7 +33,7 @@ namespace app
 
         private void formEntulho_FormClosing(object sender, FormClosingEventArgs e)
         {
-           
+
         }
 
         private void btnRelatorios_Click(object sender, EventArgs e)

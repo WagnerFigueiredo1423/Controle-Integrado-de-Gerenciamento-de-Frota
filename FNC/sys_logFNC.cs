@@ -15,7 +15,7 @@ namespace FNC
             else if (servidor == "servidor")
             {
                 caminho = @"" + "/";
-            }            
+            }
             string pasta_tabela = caminho + tabela;
             Directory.CreateDirectory(pasta_tabela);
         }

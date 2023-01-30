@@ -13,7 +13,7 @@ namespace MDL
         public int SYS_VEICULOS_ID { get { return sys_veiculos_id; } set { sys_veiculos_id = value; } }
         public int SYS_FUNCIONARIOS_ID { get { return sys_funcionarios_id; } set { sys_funcionarios_id = value; } }
         public int SYS_CAPATAZIAS_ID { get { return sys_capatazias_id; } set { sys_capatazias_id = value; } }
-        public DateTime DATA { get { return data; } set { data = value; } }        
+        public DateTime DATA { get { return data; } set { data = value; } }
         public string HORA_MADRUGADA_ENTRADA { get { return hora_madrugada_entrada; } set { hora_madrugada_entrada = value; } }
         public string HORA_MADRUGADA_SAIDA { get { return hora_madrugada_saida; } set { hora_madrugada_saida = value; } }
         public bool HORA_EXTRA_MADRUGADA { get { return hora_extra_madrugada; } set { hora_extra_madrugada = value; } }

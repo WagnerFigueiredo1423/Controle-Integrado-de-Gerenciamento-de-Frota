@@ -34,7 +34,7 @@ namespace BLL
         {
             try
             {
-                sys_servicos_has_sys_pecasDAL.DeletarDAL(idServico,idPeca);
+                sys_servicos_has_sys_pecasDAL.DeletarDAL(idServico, idPeca);
             }
             catch (Exception erro)
             {

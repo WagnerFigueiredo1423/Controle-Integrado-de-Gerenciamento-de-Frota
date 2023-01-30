@@ -2,7 +2,7 @@
 {
     public static class sys_databaseMDL
     {
-        public static string database,dbhost,dbname,dbuser,dbpass;
+        public static string database, dbhost, dbname, dbuser, dbpass;
 
         public static string DATABASE { get { return database; } set { database = value; } }
         public static string DBHOST { get { return dbhost; } set { dbhost = value; } }

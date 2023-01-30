@@ -20,11 +20,11 @@ namespace app
         private void TrocaSenha_Load(object sender, EventArgs e)
         {
             label6.Text = this.usuario;
-        }        
+        }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-        sys_usuariosMDL mdlLocal = new sys_usuariosMDL();
+            sys_usuariosMDL mdlLocal = new sys_usuariosMDL();
             if (txtNovaSenha.Text == txtConfSenha.Text && txtSenhaAtual.Text == this.senha)
             {
                 mdlLocal = sys_FNCBLL.LoginPams(this.usuario, this.senha);

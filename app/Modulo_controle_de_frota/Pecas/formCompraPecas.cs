@@ -366,7 +366,7 @@ namespace app
                             for (int i = 0; i <= tabPecas.RowCount - 1; i++)
                             {
                                 if (tabPecas.CurrentRow.Cells["valor_unitario"].Value != null)
-                                    valorTotal += float.Parse(tabPecas.Rows[i].Cells["valor_total"].Value.ToString().Replace(".",","));
+                                    valorTotal += float.Parse(tabPecas.Rows[i].Cells["valor_total"].Value.ToString().Replace(".", ","));
                             }
                             if (txtValorFrete.Text != "")
                             {
@@ -425,7 +425,7 @@ namespace app
         private void txtValorFrete_TextChanged(object sender, EventArgs e)
         {
             lblValorCompra.Text = atualizaValorDaCompra().ToString("C");
-        }       
+        }
     }
 }
 

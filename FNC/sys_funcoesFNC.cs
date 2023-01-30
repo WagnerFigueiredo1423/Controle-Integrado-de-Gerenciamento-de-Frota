@@ -1,13 +1,13 @@
-﻿using ClassFeriados;
+﻿using BrazilHolidays.Net;
 using DAL;
 using MDL;
 using System;
-using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Data;
 using System.Windows.Forms;
+
 namespace FNC
 {
     public static class sys_funcoesFNC
@@ -335,9 +335,7 @@ namespace FNC
             TimeSpan totHrsDia = TimeSpan.Zero;
             TimeSpan totHrsMes = TimeSpan.Zero;
 
-            Feriados fm = new Feriados(Convert.ToInt16(data.Year));
-            List<Feriado> listaFeriados = fm._feriados;
-
+            Holiday.GetAllByYear(Convert.ToInt16(data.Year));
 
             dtb = sys_efetividadeDAL.ListarPorMotoristaDAL(data, indexMotorista);
             dtb.Columns.Add("Total", typeof(string));
@@ -382,26 +380,22 @@ namespace FNC
                 horasTarde = new TimeSpan(horaTarSai.Hour - horaTarEnt.Hour, horaTarSai.Minute - horaTarEnt.Minute, 0);
                 horasNoite = new TimeSpan(horaNoiSai.Hour - horaNoiEnt.Hour, horaNoiSai.Minute - horaNoiEnt.Minute, 0);
 
-
-                foreach (ClassFeriados.Feriado f in listaFeriados)
+                if (dia.IsHoliday())
                 {
-                    if (dia == f.Data)
+                    DataRow row = feriados.NewRow();
+                    feriado = true;
+                    row["Data"] = dia.ToShortDateString();
+                    row["placa"] = placa;
+                    row["Horas Madrugada"] = formataSomaHora(horasMadrugada);
+                    row["Horas Manha"] = formataSomaHora(horasManha);
+                    row["Horas Tarde"] = formataSomaHora(horasTarde);
+                    row["Horas Noite"] = formataSomaHora(horasNoite);
+                    row["Total"] = formataSomaHora(totHrsDia);
+                    if (formataSomaHora(horasMadrugada) != "0:00" || formataSomaHora(horasManha) != "0:00" || formataSomaHora(horasTarde) != "0:00" || formataSomaHora(horasNoite) != "0:00")
                     {
-                        DataRow row = feriados.NewRow();
-                        feriado = true;
-                        row["Data"] = dia.ToShortDateString();
-                        row["placa"] = placa;
-                        row["Horas Madrugada"] = formataSomaHora(horasMadrugada);
-                        row["Horas Manha"] = formataSomaHora(horasManha);
-                        row["Horas Tarde"] = formataSomaHora(horasTarde);
-                        row["Horas Noite"] = formataSomaHora(horasNoite);
-                        row["Total"] = formataSomaHora(totHrsDia);
-                        if (formataSomaHora(horasMadrugada) != "0:00" || formataSomaHora(horasManha) != "0:00" || formataSomaHora(horasTarde) != "0:00" || formataSomaHora(horasNoite) != "0:00")
-                        {
-                            feriados.Rows.InsertAt(row, k);
-                            somaHorasFeriado += totHrsDia;
-                            k++;
-                        }
+                        feriados.Rows.InsertAt(row, k);
+                        somaHorasFeriado += totHrsDia;
+                        k++;
                     }
                 }
                 if (dia.DayOfWeek == DayOfWeek.Sunday)

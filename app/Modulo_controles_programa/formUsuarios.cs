@@ -32,7 +32,7 @@ namespace app
             try
             {
                 idUsuario = int.Parse(tabUsusarios.CurrentRow.Cells["id"].Value.ToString());
-                mdlUsuario = sys_usuariosBLL.MostrarBLL(idUsuario,"");
+                mdlUsuario = sys_usuariosBLL.MostrarBLL(idUsuario, "");
                 txtNome.Text = mdlUsuario.NOME;
                 txtLogin.Text = mdlUsuario.LOGIN;
                 checkLogin.Checked = mdlUsuario.LOGININIT;

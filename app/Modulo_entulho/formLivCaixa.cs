@@ -76,7 +76,7 @@ namespace app
         #endregion
 
         private void formLivCaixa_Load(object sender, EventArgs e)
-        {   
+        {
             zeraForm();
         }
 

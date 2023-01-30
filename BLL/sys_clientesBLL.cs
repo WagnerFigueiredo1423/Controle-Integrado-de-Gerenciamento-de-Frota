@@ -1,7 +1,7 @@
-﻿using System;
-using System.Data;
-using DAL;
+﻿using DAL;
 using MDL;
+using System;
+using System.Data;
 
 namespace BLL
 {
@@ -72,7 +72,7 @@ namespace BLL
             return dtb;
         }
 
-        public static DataTable BuscaBLL(string coluna,string parametro)
+        public static DataTable BuscaBLL(string coluna, string parametro)
         {
             DataTable dtb = new DataTable();
             try

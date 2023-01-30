@@ -1,7 +1,7 @@
-﻿using System;
-using DAL;
-using System.Data;
+﻿using DAL;
 using MDL;
+using System;
+using System.Data;
 
 namespace BLL
 {
@@ -44,7 +44,7 @@ namespace BLL
             }
         }
         public static float retornaQuantidadeEstoqueBLL(int idProd)
-        {           
+        {
             try
             {
                 return sys_FNCDAL.retornaQuantidadeEstoqueDAL(idProd);
@@ -52,7 +52,7 @@ namespace BLL
             catch (Exception erro)
             {
                 throw erro;
-            }            
+            }
         }
         public static int retornaIdItem(string parametro, string nomeColuna, string nomeTabela)
         {

@@ -140,7 +140,7 @@ namespace DAL
             {
                 con.Close();
             }
-        }        
+        }
         public static DataTable ListarDAL(DateTime data, string indexPlaca)
         {
             MySqlConnection con = StringConnDAL.connDAL();

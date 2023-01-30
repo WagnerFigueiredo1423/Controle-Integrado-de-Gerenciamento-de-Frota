@@ -5,7 +5,7 @@ namespace MDL
     public class sys_efetivFNCMDL
     {
         string totHr1, totHr2, totHr3, totHr, totHrNorm, totHrExtra, totKm, totMad, totMan, totTar, totNoi;
-		DataTable data = new DataTable ();
+        DataTable data = new DataTable();
 
         public string TOTHR1 { get { return totHr1; } set { totHr1 = value; } }
         public string TOTHR2 { get { return totHr2; } set { totHr2 = value; } }

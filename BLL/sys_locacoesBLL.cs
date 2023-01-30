@@ -1,6 +1,6 @@
-﻿using System;
+﻿using DAL;
 using MDL;
-using DAL;
+using System;
 using System.Data;
 
 namespace BLL

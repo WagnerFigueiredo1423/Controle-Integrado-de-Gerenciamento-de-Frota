@@ -4,7 +4,7 @@
     {
 
         string razao, nome, endereco, situacao, cep, fone, email, complemento, bairro, cidade, uf;
-       
+
         public string RAZAO { get { return razao; } set { razao = value; } }
         public string NOME { get { return nome; } set { nome = value; } }
         public string ENDERECO { get { return endereco; } set { endereco = value; } }

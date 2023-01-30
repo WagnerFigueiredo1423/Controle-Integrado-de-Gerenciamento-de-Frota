@@ -1,15 +1,12 @@
-﻿using System;
-using System.Data;
-using System.Drawing;
-using System.Windows.Forms;
-using BLL;
-using GMap.NET;
-using GMap.NET.WindowsForms;
-using GMap.NET.WindowsForms.ToolTips;
-using GMap.NET.MapProviders;
-using GMap.NET.WindowsForms.Markers;
-using System.Globalization;
+﻿using BLL;
 using FNC;
+using GMap.NET;
+using GMap.NET.MapProviders;
+using GMap.NET.WindowsForms;
+using System;
+using System.Data;
+using System.Globalization;
+using System.Windows.Forms;
 
 namespace app
 {
@@ -109,7 +106,7 @@ namespace app
             }
             gmap.Overlays.Add(markersOverlay);
         }
-        private void atualizaPosicoes ()
+        private void atualizaPosicoes()
         {
             DataTable dtbVeiculos = simplesGpsLocalizarFNC.retornaPosicoes();
             DataView dv = new DataView(dtbVeiculos);

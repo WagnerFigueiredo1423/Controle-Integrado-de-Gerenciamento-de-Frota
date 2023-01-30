@@ -1,10 +1,9 @@
-﻿using System;
+﻿using BLL;
+using MDL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
-using BLL;
-using MDL;
-using FNC;
 
 
 namespace app
@@ -226,7 +225,7 @@ namespace app
             else if (tabControl1.SelectedTab.Text == "Endereços")
             {
                 sys_enderecosMDL mdlLocal = new sys_enderecosMDL();
-      
+
                 try
                 {
 
@@ -297,7 +296,7 @@ namespace app
             else if (tabControl1.SelectedTab.Text == "Endereços")
             {
                 sys_enderecosMDL mdlLocal = new sys_enderecosMDL();
-                
+
                 try
                 {
                     mdlLocal.ID = idEnd;
@@ -373,7 +372,7 @@ namespace app
             txtFone1.Text = mdlConsulta.FONE.Replace(" ", "");
             txtEmail.Text = mdlConsulta.EMAIL;
             string[] endereco = mdlConsulta.ENDERECO.Split(',');
-            
+
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)

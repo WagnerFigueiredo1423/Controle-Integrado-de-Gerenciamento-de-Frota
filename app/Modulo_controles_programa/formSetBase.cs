@@ -19,7 +19,7 @@ namespace app
                 else if (rdbLocal.Checked) Properties.Settings.Default.DataBase = "LOCAL";
                 Close();
             }
-            catch(Exception er)
+            catch (Exception er)
             {
                 MessageBox.Show(er.Message);
             }

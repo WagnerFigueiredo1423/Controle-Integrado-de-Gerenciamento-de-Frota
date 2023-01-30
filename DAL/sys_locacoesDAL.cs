@@ -1,6 +1,6 @@
-﻿using System;
+﻿using MDL;
 using MySql.Data.MySqlClient;
-using MDL;
+using System;
 using System.Data;
 
 namespace DAL
@@ -465,9 +465,9 @@ namespace DAL
                                                     "(SELECT sys_veiculos.placa FROM " + dbName + ".sys_veiculos WHERE sys_veiculos.id = sys_locacoes.veic_retirada_id) AS veic_retirada, " +
                                                     "(SELECT sys_veiculos.ativo FROM " + dbName + ".sys_veiculos WHERE sys_veiculos.id = sys_locacoes.veic_retirada_id) AS veic_retirada_ativo," +
                                                     "(SELECT sys_veiculos.tipo FROM " + dbName + ".sys_veiculos WHERE sys_veiculos.id = sys_locacoes.veic_retirada_id) AS veic_retirada_tipo" +
-                                            " FROM " + dbName + ".sys_locacoes," 
-                                                    + dbName + ".sys_enderecos," 
-                                                    + dbName + ".sys_clientes," 
+                                            " FROM " + dbName + ".sys_locacoes,"
+                                                    + dbName + ".sys_enderecos,"
+                                                    + dbName + ".sys_clientes,"
                                                     + dbName + ".sys_pagamentos" +
                                             " WHERE(DAY(previsao_entrega) BETWEEN " + dataIni.Day + " AND " + dataFim.Day + ") AND(MONTH(previsao_entrega) BETWEEN " + dataIni.Month + " AND " + dataFim.Month + ") AND(YEAR(previsao_entrega) BETWEEN " + dataIni.Year + " AND " + dataFim.Year + @") AND
                                                     sys_locacoes.sys_endereco_id = sys_enderecos.id AND

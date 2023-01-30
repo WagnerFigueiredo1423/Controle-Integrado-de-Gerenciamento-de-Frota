@@ -128,7 +128,7 @@ namespace app
                     MessageBox.Show("Campo Valor Obrigatório");
                     return;
                 }
-                mdlBoleto.VALOR = float.Parse(txtValor.Text.Replace("R$ ",""));
+                mdlBoleto.VALOR = float.Parse(txtValor.Text.Replace("R$ ", ""));
                 if (rdbSim.Checked == true && rdbNao.Checked == false) mdlBoleto.QUITADO = "Sim";
                 else mdlBoleto.QUITADO = "Não";
                 mdlBoleto.OBSERVACAO = txtObservacao.Text;

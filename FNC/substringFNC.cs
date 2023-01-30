@@ -8,7 +8,7 @@
             int lenght_fullString = fullString.Length;
             int lenght_substring = subsTring.Length;
 
-            retorno = fullString.Substring(0,lenght_fullString - lenght_substring);
+            retorno = fullString.Substring(0, lenght_fullString - lenght_substring);
 
             return retorno;
         }

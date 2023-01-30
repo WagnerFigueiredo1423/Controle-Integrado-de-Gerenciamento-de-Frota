@@ -1,11 +1,9 @@
 ﻿using BLL;
-using ClassFeriados;
-using FNC;
+using BrazilHolidays.Net;
 using PdfSharp.Drawing;
 using PdfSharp.Drawing.Layout;
 using PdfSharp.Pdf;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -19,7 +17,6 @@ namespace app
     {
         DataTable dtbFuncionarios = new DataTable();
         DataSet dtsPonto = new DataSet();
-        List<Feriado> listaFeriados = new List<Feriado>();
         DateTime _hrEntManha1;
         DateTime _hrEntManha2;
         DateTime _hrSaiManha1;
@@ -34,8 +31,6 @@ namespace app
         {
             InitializeComponent();
             dtbFuncionarios = sys_funcionariosBLL.ListarBLL("ativos", false);
-            Feriados fm = new Feriados(txtCompetencia.Value.Year);
-            listaFeriados = fm._feriados;
         }
         private void carregaFuncionarios()
         {
@@ -592,16 +587,12 @@ namespace app
             }
             else
             {
-                foreach (ClassFeriados.Feriado f in listaFeriados)
+                if (data.IsHoliday())
                 {
-                    if (f.Data == data)
-                    {
-                        row.DefaultCellStyle.ForeColor = Color.Green;
-                    }
+                    row.DefaultCellStyle.ForeColor = Color.Green;
                 }
             }
         }
-        
     }
 }
 

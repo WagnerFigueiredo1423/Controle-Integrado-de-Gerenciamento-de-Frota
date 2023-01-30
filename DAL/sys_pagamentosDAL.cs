@@ -199,11 +199,11 @@ namespace DAL
                                            FROM     " + dbName + ".sys_pagamentos,"
                                                     + dbName + ".sys_locacoes,"
                                                     + dbName + ".sys_enderecos,"
-                                                    + dbName + ".sys_clientes"+
-                                           "WHERE  sys_pagamentos.situacao = 'EFETIVO' AND"+
-                                                    "sys_pagamentos.sys_locacoes_id = sys_locacoes.id AND"+
-                                                    "sys_locacoes.sys_endereco_id = sys_enderecos.id AND"+
-                                                    "sys_enderecos.sys_clientes_id = sys_clientes.id AND"+
+                                                    + dbName + ".sys_clientes" +
+                                           "WHERE  sys_pagamentos.situacao = 'EFETIVO' AND" +
+                                                    "sys_pagamentos.sys_locacoes_id = sys_locacoes.id AND" +
+                                                    "sys_locacoes.sys_endereco_id = sys_enderecos.id AND" +
+                                                    "sys_enderecos.sys_clientes_id = sys_clientes.id AND" +
                                                     "(DAY(sys_locacoes.data_entrega) BETWEEN " + dataIni.Day + " AND " + dataFim.Day + @")AND 
                                                     (MONTH(sys_locacoes.data_entrega) BETWEEN " + dataIni.Month + " AND " + dataFim.Month + @") AND 
                                                     (YEAR(sys_locacoes.data_entrega) BETWEEN " + dataIni.Year + " AND " + dataFim.Year + ");", con);

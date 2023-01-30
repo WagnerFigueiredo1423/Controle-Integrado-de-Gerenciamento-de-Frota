@@ -10,7 +10,7 @@ namespace DAL
         static string dbName = sys_databaseMDL.DBNAME;
         public static void InserirDAL(sys_lavagem_lub_has_sys_pecasMDL mdlLocal)
         {
-			int id = 0;
+            int id = 0;
             MySqlConnection con = StringConnDAL.connDAL();
             MySqlCommand sqlCom = null;
             id = sys_FNCDAL.retornaUltimoIdDAL("id", "sys_lavagem_lub_has_sys_pecas") + 1;

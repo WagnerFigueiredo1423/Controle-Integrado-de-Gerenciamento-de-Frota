@@ -1,22 +1,19 @@
 ﻿using BLL;
-using MDL;
+using BrazilHolidays.Net;
 using FNC;
+using MDL;
+using PdfSharp.Drawing;
+using PdfSharp.Drawing.Layout;
+using PdfSharp.Pdf;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Windows.Forms;
-using ClassFeriados;
-using System.Globalization;
-using System.Xml;
 using System.Diagnostics;
-using PdfSharp.Pdf;
-using PdfSharp.Drawing;
-using PdfSharp.Drawing.Layout;
+using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Text.RegularExpressions;
-using System.Web.UI.WebControls;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Windows.Forms;
 
 namespace app
 {
@@ -40,7 +37,6 @@ namespace app
         protected string _vlrAntigo;
         protected string _latitude;
         protected string _longitude;
-        List<Feriado> listaFeriados = new List<Feriado>();
         private formConteiner parent = null;
         protected DataTable dtbClientes;
         protected DataView dtvClientes;
@@ -70,7 +66,6 @@ namespace app
             tabMov.Controls.Add(oDateTimePicker);
             oDateTimePicker.Format = DateTimePickerFormat.Custom;
             oDateTimePicker.Visible = false;
-            Feriados fm = new ClassFeriados.Feriados(Convert.ToInt16(DateTime.Now.Year));
             #region FUNCIONARIOS
             dtbFuncionarios = sys_genericCommandBLL.genericSelectBLL("SELECT * FROM sys_funcionarios WHERE tipo = 'MOTORISTA' OR tipo = 'MECANICO'");
             DataRow rowFuncionario = dtbFuncionarios.NewRow();
@@ -100,7 +95,6 @@ namespace app
             rowVeiculoAtivo["id"] = 0;
             dtbVeiculosAtivos.Rows.InsertAt(rowVeiculoAtivo, 0);
             #endregion
-            listaFeriados = fm._feriados;
             dtbLocacoes = sys_locacoesBLL.ListarTudoBLL(new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1), DateTime.Now.Date, "");
         }
         private void formMovDiario_Load(object sender, EventArgs e)
@@ -460,6 +454,7 @@ namespace app
             zeraEnderecos();
             carregaTabelaClientes();
         }
+        #region CLIENTES
         private void tabClientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             idCli = Convert.ToInt16(tabClientes.SelectedRows[0].Cells["id"].Value.ToString());
@@ -529,6 +524,44 @@ namespace app
             else
             {
                 txtRegistro.Mask = "99,999,999/9999-99";
+            }
+        }
+        private void btnReceita_Click(object sender, EventArgs e)
+        {
+            string registro = txtRegistro.Text;
+            formConsultaReceita formConsultaReceita = new formConsultaReceita(registro);
+            formConsultaReceita.ShowDialog();
+            this.mdlConsulta = formConsultaReceita.mdlConsulta;
+            try
+            {
+                radioButton2.Checked = true;
+                txtRegistro.Text = registro;
+                if (txtCliente.Text == "")
+                {
+                    txtCliente.Text = primeiraLetraMaiuscula(mdlConsulta.RAZAO); ;
+                }
+                if (txtFone1.Text == "(  )    -" && txtFone2.Text == "(  )    -")
+                {
+                    txtFone1.Text = mdlConsulta.FONE.Replace(" ", "");
+                }
+                else if (txtFone1.Text == "(  )    -" && txtFone2.Text != "(  )    -")
+                {
+                    txtFone1.Text = mdlConsulta.FONE.Replace(" ", "");
+                }
+                else if (txtFone1.Text != "(  )    -" && txtFone2.Text == "(  )    -")
+                {
+                    txtFone2.Text = mdlConsulta.FONE.Replace(" ", "");
+                }
+                if (txtEmail.Text == "")
+                {
+                    txtEmail.Text = mdlConsulta.EMAIL;
+                }
+
+                txtEndereco.Text = primeiraLetraMaiuscula(mdlConsulta.ENDERECO) + ", " + primeiraLetraMaiuscula(mdlConsulta.BAIRRO) + " - " + primeiraLetraMaiuscula(mdlConsulta.CIDADE) + ", " + mdlConsulta.UF;
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.Message);
             }
         }
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -746,6 +779,8 @@ namespace app
         {
 
         }
+        #endregion
+        #region ENDEREÇOS
         private void tabEnderecos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             sys_enderecosMDL mdlEndereco = new sys_enderecosMDL();
@@ -811,44 +846,6 @@ namespace app
             //_longitude = endereco[2].Substring(6, (endereco[2].Length - 6));
 
         }
-        private void btnReceita_Click(object sender, EventArgs e)
-        {
-            string registro = txtRegistro.Text;
-            formConsultaReceita formConsultaReceita = new formConsultaReceita(registro);
-            formConsultaReceita.ShowDialog();
-            this.mdlConsulta = formConsultaReceita.mdlConsulta;
-            try
-            {
-                radioButton2.Checked = true;
-                txtRegistro.Text = registro;
-                if (txtCliente.Text == "")
-                {
-                    txtCliente.Text = primeiraLetraMaiuscula(mdlConsulta.RAZAO); ;
-                }
-                if (txtFone1.Text == "(  )    -" && txtFone2.Text == "(  )    -")
-                {
-                    txtFone1.Text = mdlConsulta.FONE.Replace(" ", "");
-                }
-                else if (txtFone1.Text == "(  )    -" && txtFone2.Text != "(  )    -")
-                {
-                    txtFone1.Text = mdlConsulta.FONE.Replace(" ", "");
-                }
-                else if (txtFone1.Text != "(  )    -" && txtFone2.Text == "(  )    -")
-                {
-                    txtFone2.Text = mdlConsulta.FONE.Replace(" ", "");
-                }
-                if (txtEmail.Text == "")
-                {
-                    txtEmail.Text = mdlConsulta.EMAIL;
-                }
-
-                txtEndereco.Text = primeiraLetraMaiuscula(mdlConsulta.ENDERECO) + ", " + primeiraLetraMaiuscula(mdlConsulta.BAIRRO) + " - " + primeiraLetraMaiuscula(mdlConsulta.CIDADE) + ", " + mdlConsulta.UF;
-            }
-            catch (Exception er)
-            {
-                MessageBox.Show(er.Message);
-            }
-        }
         private void btnLocalizarGoogle_Click(object sender, EventArgs e)
         {
             string Str = txtEndereco.Text.Trim();
@@ -879,7 +876,7 @@ namespace app
                         {
                             DataRow drow = source.Rows[i];
                             // Somente as linhas que não foram deletadas
-                            if (drow.RowState != DataRowState.Deleted)
+                            if (drow.RowState != DataRowState.Deleted && drow["Endereço"].ToString() != "Brasil")
                             {
                                 // Define os itens da lista
                                 ListViewItem lvi = new ListViewItem(drow["Endereço"].ToString());
@@ -1000,6 +997,7 @@ namespace app
         {
 
         }
+        #endregion
         private void txtValorAg_TextChanged(object sender, EventArgs e)
         {
             this.TextBoxMoeda(txtValorAg);
@@ -1960,12 +1958,9 @@ namespace app
                     {
                         data = data.AddDays(1);
 
-                        foreach (ClassFeriados.Feriado f in listaFeriados)
+                        if (data.IsHoliday())
                         {
-                            if (f.Data == data)
-                            {
-                                data = data.AddDays(1);
-                            }
+                            data = data.AddDays(1);
                         }
                     }
                 }
@@ -2947,12 +2942,12 @@ namespace app
                                                 margens+prevEntregaWidht+tipoWidht+clienteWidth+enderecoWidht+mapaWidht+valorWidh+cobrancaWidht+autorizacaoWidht,
                                                 margens+prevEntregaWidht+tipoWidht+clienteWidth+enderecoWidht+mapaWidht+valorWidh+cobrancaWidht+autorizacaoWidht+observacaoEntWidht};
                     #endregion
-                    formatterAlinEsquerda.DrawString("Nome: " + mdlFuncPrinc.NOME, fonteGrandeNegrito, Brushes.Black, xRectLinha, XStringFormats.TopLeft);
+                    formatterAlinEsquerda.DrawString("Nome: " + mdlFuncPrinc.NOME, fonteGrandeNegrito, XBrushes.Black, xRectLinha, XStringFormats.TopLeft);
                     novalinhaPdf(linha, pageHeight);
                     if (dtbEntPrinc.Rows.Count != 0)
                     {
                         #region CABEÇALHOS DA TABELA
-                        formatterAlinEsquerda.DrawString("ENTREGAS", fonteGrande, Brushes.Black, xRectLinha, XStringFormats.TopLeft);
+                        formatterAlinEsquerda.DrawString("ENTREGAS", fonteGrande, XBrushes.Black, xRectLinha, XStringFormats.TopLeft);
                         novalinhaPdf(linha, pageHeight);
                         for (int x = 0; x < dtbEntPrinc.Columns.Count - 1; x++)
                         {
@@ -2964,7 +2959,7 @@ namespace app
                             {
                                 xRectCelula = new XRect(posXEnt[x], posYinicial, ((pageWidth - margens) - posXEnt[x]), linha);
                             }
-                            formatterAlinCenter.DrawString(cabEnt[x].ToString(), fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                            formatterAlinCenter.DrawString(cabEnt[x].ToString(), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                         }
                         novalinhaPdf(linha, pageHeight);
                         #endregion
@@ -2993,7 +2988,7 @@ namespace app
                                 {
                                     xRectCelula = new XRect(posXEnt[l], posYinicial, ((pageWidth - margens) - posXEnt[l]), linha);
                                     graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                    formatterAlinCenter.DrawString(linhadtbEntPrinc[l].ToString(), fonteGrande, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                    formatterAlinCenter.DrawString(linhadtbEntPrinc[l].ToString(), fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                 }
                                 else if (l == linhadtbEntPrinc.Table.Columns["tipo"].Ordinal)
                                 {
@@ -3001,11 +2996,11 @@ namespace app
                                     graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
                                     if (linhadtbEntPrinc[l].ToString() == "Entrega")
                                     {
-                                        formatterAlinCenter.DrawString("Ent", fonteGrande, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                        formatterAlinCenter.DrawString("Ent", fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                     }
                                     else if (linhadtbEntPrinc[l].ToString() == "Troca")
                                     {
-                                        formatterAlinCenter.DrawString("Tro", fonteGrande, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                        formatterAlinCenter.DrawString("Tro", fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                     }
                                 }
                                 else if (l == linhadtbEntPrinc.Table.Columns["endereco"].Ordinal)
@@ -3022,14 +3017,14 @@ namespace app
                                     }
                                     xRectCelula = new XRect(posXEnt[l], posYinicial, (posXEnt[l + 1] - posXEnt[l]), linha);
                                     graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                    formatterAlinCenter.DrawString(cont, fonteGrande, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                    formatterAlinCenter.DrawString(cont, fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                 }
                                 else
                                 {
                                     string cont = linhadtbEntPrinc[l].ToString();
                                     xRectCelula = new XRect(posXEnt[l], posYinicial, (posXEnt[l + 1] - posXEnt[l]), linha);
                                     graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                    formatterAlinCenter.DrawString(cont, fonteGrande, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                    formatterAlinCenter.DrawString(cont, fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                 }
                             }
                             posYinicial = posYinicial + linha;
@@ -3063,7 +3058,7 @@ namespace app
                     if (dtbRetPrinc.Rows.Count != 0)
                     {
                         #region CABEÇALHOS DA TABELA
-                        formatterAlinEsquerda.DrawString("RETIRADAS", fonteGrande, Brushes.Black, xRectLinha, XStringFormats.TopLeft);
+                        formatterAlinEsquerda.DrawString("RETIRADAS", fonteGrande, XBrushes.Black, xRectLinha, XStringFormats.TopLeft);
                         novalinhaPdf(linha, pageHeight);
                         for (int k = 0; k <= (dtbRetPrinc.Columns.Count - 2); k++)
                         {
@@ -3075,7 +3070,7 @@ namespace app
                             {
                                 xRectCelula = new XRect(posXRet[k], posYinicial, ((pageWidth - margens) - posXRet[k]), linha);
                             }
-                            formatterAlinCenter.DrawString(cabRet[k].ToString(), fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                            formatterAlinCenter.DrawString(cabRet[k].ToString(), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                         }
                         novalinhaPdf(linha, pageHeight);
                         #endregion
@@ -3105,13 +3100,13 @@ namespace app
                                 {
                                     xRectCelula = new XRect(posXRet[l], posYinicial, ((pageWidth - margens) - posXRet[l]), linha);
                                     graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                    formatterAlinCenter.DrawString(linhadtbRetPrinc[l].ToString(), fonteGrande, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                    formatterAlinCenter.DrawString(linhadtbRetPrinc[l].ToString(), fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                 }
                                 else if (l == linhadtbRetPrinc.Table.Columns["data_entrega"].Ordinal)
                                 {
                                     xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linha);
                                     graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                    formatterAlinCenter.DrawString(Convert.ToDateTime(linhadtbRetPrinc[l].ToString()).ToString("dd/MM/yy"), fonteGrande, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                    formatterAlinCenter.DrawString(Convert.ToDateTime(linhadtbRetPrinc[l].ToString()).ToString("dd/MM/yy"), fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                 }
                                 else if (l == linhadtbRetPrinc.Table.Columns["cobranca"].Ordinal)
                                 {
@@ -3130,13 +3125,13 @@ namespace app
                                     }
                                     xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linha);
                                     graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                    formatterAlinCenter.DrawString(cobranca, fonteGrande, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                    formatterAlinCenter.DrawString(cobranca, fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                 }
                                 else if (l == linhadtbRetPrinc.Table.Columns["previsao_retirada"].Ordinal)
                                 {
                                     xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linha);
                                     graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                    formatterAlinCenter.DrawString(Convert.ToDateTime(linhadtbRetPrinc[l].ToString()).ToString("dd/MM/yy hh:mm"), fonteGrande, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                    formatterAlinCenter.DrawString(Convert.ToDateTime(linhadtbRetPrinc[l].ToString()).ToString("dd/MM/yy hh:mm"), fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                 }
                                 else if (l == linhadtbRetPrinc.Table.Columns["quitado"].Ordinal)
                                 {
@@ -3145,11 +3140,11 @@ namespace app
                                     graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
                                     if (linhadtbRetPrinc[l].ToString() == "True")
                                     {
-                                        formatterAlinCenter.DrawString("Sim", fonteGrande, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                        formatterAlinCenter.DrawString("Sim", fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                     }
                                     else if (linhadtbRetPrinc[l].ToString() == "False")
                                     {
-                                        formatterAlinCenter.DrawString("Não", fonteGrande, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                        formatterAlinCenter.DrawString("Não", fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                     }
                                 }
                                 else if (l == linhadtbRetPrinc.Table.Columns["endereco"].Ordinal)
@@ -3166,14 +3161,14 @@ namespace app
                                     }
                                     xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linha);
                                     graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                    formatterAlinEsquerda.DrawString(cont, fonteGrande, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                    formatterAlinEsquerda.DrawString(cont, fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                 }
                                 else
                                 {
                                     string teste1 = linhadtbRetPrinc[l].ToString();
                                     xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linha);
                                     graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                    formatterAlinCenter.DrawString(teste1, fonteGrande, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                    formatterAlinCenter.DrawString(teste1, fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                 }
                             }
                             posYinicial = posYinicial + linha;
@@ -3183,7 +3178,7 @@ namespace app
                     #endregion
                     #endregion
                     novalinhaPdf(linha, pageWidth);
-                    graphList.DrawLine(new XPen(XColors.Black, 1), new Point(Convert.ToInt32(margens), posYinicial), new Point(Convert.ToInt32(pageWidth - margens), posYinicial));
+                    graphList.DrawLine(new XPen(XColors.Black, 1), new XPoint(Convert.ToInt32(margens), posYinicial), new XPoint(Convert.ToInt32(pageWidth - margens), posYinicial));
                     #region IMPRIME AS TABELAS SECUNDÁRIAS DA PÁGINA
                     int linhaOffSet = linha - 3;
                     for (int j = 0; j < motIdSecun.Count - 1; j++) //2º for - número de tabelas secindárias dentro da página
@@ -3224,14 +3219,14 @@ namespace app
                             #endregion
                             if (dtbEntSecun.Rows.Count > 0 || dtbRetSecun.Rows.Count > 0)
                             {
-                                formatterAlinEsquerda.DrawString("Nome: " + mdlFuncPrinc.NOME, fonteGrandeNegrito, Brushes.Black, xRectLinha, XStringFormats.TopLeft);
+                                formatterAlinEsquerda.DrawString("Nome: " + mdlFuncPrinc.NOME, fonteGrandeNegrito, XBrushes.Black, xRectLinha, XStringFormats.TopLeft);
                                 novalinhaPdf(linha, pageHeight);
                             }
                             #region TABELA DE ENTREGAS
                             if (dtbEntSecun.Rows.Count != 0)
                             {
                                 #region CABEÇALHOS DA TABELA
-                                formatterAlinEsquerda.DrawString("ENTREGAS", fontePequena, Brushes.Black, xRectLinha, XStringFormats.TopLeft);
+                                formatterAlinEsquerda.DrawString("ENTREGAS", fontePequena, XBrushes.Black, xRectLinha, XStringFormats.TopLeft);
                                 novalinhaPdf(linha + 5, pageHeight);
                                 for (int x = 0; x < dtbEntSecun.Columns.Count - 1; x++)
                                 {
@@ -3243,7 +3238,7 @@ namespace app
                                     {
                                         xRectCelula = new XRect(posXEnt[x], posYinicial, ((pageWidth - margens) - posXEnt[x]), linhaOffSet);
                                     }
-                                    formatterAlinCenter.DrawString(cabEnt[x].ToString(), fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                    formatterAlinCenter.DrawString(cabEnt[x].ToString(), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                 }
                                 novalinhaPdf(linha, pageHeight);
                                 #endregion
@@ -3272,7 +3267,7 @@ namespace app
                                         {
                                             xRectCelula = new XRect(posXEnt[l], posYinicial, ((pageWidth - margens) - posXEnt[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(linhadtbEntSec[l].ToString(), fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(linhadtbEntSec[l].ToString(), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                         else if (l == linhadtbEntSec.Table.Columns["tipo"].Ordinal)
                                         {
@@ -3280,11 +3275,11 @@ namespace app
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
                                             if (linhadtbEntSec[l].ToString() == "Entrega")
                                             {
-                                                formatterAlinCenter.DrawString("Ent", fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                                formatterAlinCenter.DrawString("Ent", fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                             }
                                             else if (linhadtbEntSec[l].ToString() == "Troca")
                                             {
-                                                formatterAlinCenter.DrawString("Tro", fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                                formatterAlinCenter.DrawString("Tro", fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                             }
                                         }
                                         else if (l == linhadtbEntSec.Table.Columns["endereco"].Ordinal)
@@ -3301,14 +3296,14 @@ namespace app
                                             }
                                             xRectCelula = new XRect(posXEnt[l], posYinicial, (posXEnt[l + 1] - posXEnt[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(cont, fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(cont, fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                         else
                                         {
                                             string cont = linhadtbEntSec[l].ToString();
                                             xRectCelula = new XRect(posXEnt[l], posYinicial, (posXEnt[l + 1] - posXEnt[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(cont, fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(cont, fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                     }
                                     posYinicial = posYinicial + linhaOffSet;
@@ -3342,7 +3337,7 @@ namespace app
                             {
                                 #region CABEÇALHOS DA TABELA
                                 novalinhaPdf(linha, pageHeight);
-                                formatterAlinEsquerda.DrawString("RETIRADAS", fonteGrande, Brushes.Black, xRectLinha, XStringFormats.TopLeft);
+                                formatterAlinEsquerda.DrawString("RETIRADAS", fonteGrande, XBrushes.Black, xRectLinha, XStringFormats.TopLeft);
                                 novalinhaPdf(linha, pageHeight);
                                 for (int k = 0; k <= (dtbRetSecun.Columns.Count - 2); k++)
                                 {
@@ -3354,7 +3349,7 @@ namespace app
                                     {
                                         xRectCelula = new XRect(posXRet[k], posYinicial, ((pageWidth - margens) - posXRet[k]), linhaOffSet);
                                     }
-                                    formatterAlinCenter.DrawString(cabRet[k].ToString(), fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                    formatterAlinCenter.DrawString(cabRet[k].ToString(), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                 }
                                 novalinhaPdf(linha, pageHeight);
                                 #endregion
@@ -3384,13 +3379,13 @@ namespace app
                                         {
                                             xRectCelula = new XRect(posXRet[l], posYinicial, ((pageWidth - margens) - posXRet[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(linhadtbRetSecun[l].ToString(), fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(linhadtbRetSecun[l].ToString(), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                         else if (l == linhadtbRetSecun.Table.Columns["data_entrega"].Ordinal)
                                         {
                                             xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(Convert.ToDateTime(linhadtbRetSecun[l].ToString()).ToString("dd/MM/yy"), fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(Convert.ToDateTime(linhadtbRetSecun[l].ToString()).ToString("dd/MM/yy"), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                         else if (l == linhadtbRetSecun.Table.Columns["cobranca"].Ordinal)
                                         {
@@ -3409,13 +3404,13 @@ namespace app
                                             }
                                             xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(cobranca, fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(cobranca, fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                         else if (l == linhadtbRetSecun.Table.Columns["previsao_retirada"].Ordinal)
                                         {
                                             xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(Convert.ToDateTime(linhadtbRetSecun[l].ToString()).ToString("dd/MM/yy hh:mm"), fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(Convert.ToDateTime(linhadtbRetSecun[l].ToString()).ToString("dd/MM/yy hh:mm"), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                         else if (l == linhadtbRetSecun.Table.Columns["quitado"].Ordinal)
                                         {
@@ -3424,11 +3419,11 @@ namespace app
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
                                             if (linhadtbRetSecun[l].ToString() == "True")
                                             {
-                                                formatterAlinCenter.DrawString("Sim", fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                                formatterAlinCenter.DrawString("Sim", fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                             }
                                             else if (linhadtbRetSecun[l].ToString() == "False")
                                             {
-                                                formatterAlinCenter.DrawString("Não", fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                                formatterAlinCenter.DrawString("Não", fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                             }
                                         }
                                         else if (l == linhadtbRetSecun.Table.Columns["endereco"].Ordinal)
@@ -3445,14 +3440,14 @@ namespace app
                                             }
                                             xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinEsquerda.DrawString(cont, fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinEsquerda.DrawString(cont, fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                         else
                                         {
                                             string teste1 = linhadtbRetSecun[l].ToString();
                                             xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(teste1, fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(teste1, fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                     }
                                     posYinicial = posYinicial + linhaOffSet;
@@ -3463,7 +3458,7 @@ namespace app
                             if (dtbEntSecun.Rows.Count > 0 || dtbRetSecun.Rows.Count > 0)
                             {
                                 novalinhaPdf(linha, pageWidth);
-                                graphList.DrawLine(new XPen(XColors.Black, 1), new Point(Convert.ToInt32(margens), posYinicial), new Point(Convert.ToInt32(pageWidth - margens), posYinicial));
+                                graphList.DrawLine(new XPen(XColors.Black, 1), new XPoint(Convert.ToInt32(margens), posYinicial), new XPoint(Convert.ToInt32(pageWidth - margens), posYinicial));
                             }
                         }
                     }
@@ -3537,14 +3532,14 @@ namespace app
                             #endregion
                             if (dtbEntSecun.Rows.Count > 0 || dtbRetSecun.Rows.Count > 0)
                             {
-                                formatterAlinEsquerda.DrawString("Nome: " + mdlFuncPrinc.NOME, fonteGrandeNegrito, Brushes.Black, xRectLinha, XStringFormats.TopLeft);
+                                formatterAlinEsquerda.DrawString("Nome: " + mdlFuncPrinc.NOME, fonteGrandeNegrito, XBrushes.Black, xRectLinha, XStringFormats.TopLeft);
                                 novalinhaPdf(linhaOffSet, pageHeight);
                             }
                             #region TABELA DE ENTREGAS
                             if (dtbEntSecun.Rows.Count != 0)
                             {
                                 #region CABEÇALHOS DA TABELA
-                                formatterAlinEsquerda.DrawString("ENTREGAS", fontePequena, Brushes.Black, xRectLinha, XStringFormats.TopLeft);
+                                formatterAlinEsquerda.DrawString("ENTREGAS", fontePequena, XBrushes.Black, xRectLinha, XStringFormats.TopLeft);
                                 novalinhaPdf(linhaOffSet, pageHeight);
                                 for (int x = 0; x < dtbEntSecun.Columns.Count - 1; x++)
                                 {
@@ -3556,7 +3551,7 @@ namespace app
                                     {
                                         xRectCelula = new XRect(posXEnt[x], posYinicial, ((pageWidth - margens) - posXEnt[x]), linhaOffSet);
                                     }
-                                    formatterAlinCenter.DrawString(cabEnt[x].ToString(), fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                    formatterAlinCenter.DrawString(cabEnt[x].ToString(), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                 }
                                 novalinhaPdf(linhaOffSet, pageHeight);
                                 #endregion
@@ -3585,7 +3580,7 @@ namespace app
                                         {
                                             xRectCelula = new XRect(posXEnt[l], posYinicial, ((pageWidth - margens) - posXEnt[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(linhadtbEntSec[l].ToString(), fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(linhadtbEntSec[l].ToString(), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                         else if (l == linhadtbEntSec.Table.Columns["tipo"].Ordinal)
                                         {
@@ -3593,11 +3588,11 @@ namespace app
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
                                             if (linhadtbEntSec[l].ToString() == "Entrega")
                                             {
-                                                formatterAlinCenter.DrawString("Ent", fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                                formatterAlinCenter.DrawString("Ent", fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                             }
                                             else if (linhadtbEntSec[l].ToString() == "Troca")
                                             {
-                                                formatterAlinCenter.DrawString("Tro", fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                                formatterAlinCenter.DrawString("Tro", fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                             }
                                         }
                                         else if (l == linhadtbEntSec.Table.Columns["endereco"].Ordinal)
@@ -3614,14 +3609,14 @@ namespace app
                                             }
                                             xRectCelula = new XRect(posXEnt[l], posYinicial, (posXEnt[l + 1] - posXEnt[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(cont, fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(cont, fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                         else
                                         {
                                             string cont = linhadtbEntSec[l].ToString();
                                             xRectCelula = new XRect(posXEnt[l], posYinicial, (posXEnt[l + 1] - posXEnt[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(cont, fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(cont, fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                     }
                                     posYinicial = posYinicial + linhaOffSet;
@@ -3655,7 +3650,7 @@ namespace app
                             {
                                 #region CABEÇALHOS DA TABELA
                                 novalinhaPdf(linhaOffSet, pageHeight);
-                                formatterAlinEsquerda.DrawString("RETIRADAS", fonteGrande, Brushes.Black, xRectLinha, XStringFormats.TopLeft);
+                                formatterAlinEsquerda.DrawString("RETIRADAS", fonteGrande, XBrushes.Black, xRectLinha, XStringFormats.TopLeft);
                                 novalinhaPdf(linhaOffSet, pageHeight);
                                 for (int k = 0; k <= (dtbRetSecun.Columns.Count - 2); k++)
                                 {
@@ -3667,7 +3662,7 @@ namespace app
                                     {
                                         xRectCelula = new XRect(posXRet[k], posYinicial, ((pageWidth - margens) - posXRet[k]), linhaOffSet);
                                     }
-                                    formatterAlinCenter.DrawString(cabRet[k].ToString(), fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                    formatterAlinCenter.DrawString(cabRet[k].ToString(), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                 }
                                 novalinhaPdf(linhaOffSet, pageHeight);
                                 #endregion
@@ -3697,13 +3692,13 @@ namespace app
                                         {
                                             xRectCelula = new XRect(posXRet[l], posYinicial, ((pageWidth - margens) - posXRet[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(linhadtbRetSecun[l].ToString(), fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(linhadtbRetSecun[l].ToString(), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                         else if (l == linhadtbRetSecun.Table.Columns["data_entrega"].Ordinal)
                                         {
                                             xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(Convert.ToDateTime(linhadtbRetSecun[l].ToString()).ToString("dd/MM/yy"), fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(Convert.ToDateTime(linhadtbRetSecun[l].ToString()).ToString("dd/MM/yy"), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                         else if (l == linhadtbRetSecun.Table.Columns["cobranca"].Ordinal)
                                         {
@@ -3722,13 +3717,13 @@ namespace app
                                             }
                                             xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(cobranca, fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(cobranca, fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                         else if (l == linhadtbRetSecun.Table.Columns["previsao_retirada"].Ordinal)
                                         {
                                             xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(Convert.ToDateTime(linhadtbRetSecun[l].ToString()).ToString("dd/MM/yy hh:mm"), fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(Convert.ToDateTime(linhadtbRetSecun[l].ToString()).ToString("dd/MM/yy hh:mm"), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                         else if (l == linhadtbRetSecun.Table.Columns["quitado"].Ordinal)
                                         {
@@ -3737,11 +3732,11 @@ namespace app
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
                                             if (linhadtbRetSecun[l].ToString() == "True")
                                             {
-                                                formatterAlinCenter.DrawString("Sim", fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                                formatterAlinCenter.DrawString("Sim", fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                             }
                                             else if (linhadtbRetSecun[l].ToString() == "False")
                                             {
-                                                formatterAlinCenter.DrawString("Não", fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                                formatterAlinCenter.DrawString("Não", fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                             }
                                         }
                                         else if (l == linhadtbRetSecun.Table.Columns["endereco"].Ordinal)
@@ -3758,14 +3753,14 @@ namespace app
                                             }
                                             xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinEsquerda.DrawString(cont, fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinEsquerda.DrawString(cont, fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                         else
                                         {
                                             string teste1 = linhadtbRetSecun[l].ToString();
                                             xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(teste1, fontePequena, Brushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(teste1, fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                     }
                                     posYinicial = posYinicial + linhaOffSet;
@@ -3776,7 +3771,7 @@ namespace app
                             if (dtbEntSecun.Rows.Count > 0 || dtbRetSecun.Rows.Count > 0)
                             {
                                 novalinhaPdf(linhaOffSet, pageWidth);
-                                graphList.DrawLine(new XPen(XColors.Black, 1), new Point(Convert.ToInt32(margens), posYinicial), new Point(Convert.ToInt32(pageWidth - margens), posYinicial));
+                                graphList.DrawLine(new XPen(XColors.Black, 1), new XPoint(Convert.ToInt32(margens), posYinicial), new XPoint(Convert.ToInt32(pageWidth - margens), posYinicial));
                             }
 
                         }
@@ -3863,12 +3858,9 @@ namespace app
                 {
                     dia = dia.AddDays(1);
 
-                    foreach (ClassFeriados.Feriado f in listaFeriados)
+                    if (dia.IsHoliday())
                     {
-                        if (f.Data == dia)
-                        {
-                            dia = dia.AddDays(1);
-                        }
+                        dia = dia.AddDays(1);
                     }
                 }
             }

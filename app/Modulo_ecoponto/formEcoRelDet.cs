@@ -115,7 +115,7 @@ namespace app
                             break;
                         case 2:
                             g.DrawRectangle(pen, x, y, tamCelDataOs.Width, (tamCelDataOs.Height * numVezes));
-                            g.DrawString(dtbRelatorio.Rows[i]["total"].ToString(), font, brush, x+30, y);
+                            g.DrawString(dtbRelatorio.Rows[i]["total"].ToString(), font, brush, x + 30, y);
                             x += tamCelDataOs.Width;
                             break;
                     }

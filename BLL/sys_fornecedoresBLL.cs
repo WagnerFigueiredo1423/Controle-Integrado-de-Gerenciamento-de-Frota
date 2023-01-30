@@ -1,5 +1,5 @@
-﻿using MDL;
-using DAL;
+﻿using DAL;
+using MDL;
 using MySql.Data.MySqlClient;
 using System.Data;
 

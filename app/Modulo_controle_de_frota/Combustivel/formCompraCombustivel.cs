@@ -1,5 +1,4 @@
 ﻿using BLL;
-using FNC;
 using MDL;
 using System;
 using System.Data;

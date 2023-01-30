@@ -172,7 +172,7 @@ namespace app
                     carregaServicos();
                 }
             }
-            catch(Exception er)
+            catch (Exception er)
             {
                 MessageBox.Show(er.Message);
             }
