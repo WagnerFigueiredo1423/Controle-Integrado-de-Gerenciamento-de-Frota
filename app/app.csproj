@@ -776,6 +776,9 @@
     <PackageReference Include="GMap.NET.WindowsForms">
       <Version>1.7.5</Version>
     </PackageReference>
+    <PackageReference Include="Holidays">
+      <Version>1.0.1</Version>
+    </PackageReference>
     <PackageReference Include="HtmlAgilityPack">
       <Version>1.11.46</Version>
     </PackageReference>
