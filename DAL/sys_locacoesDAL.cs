@@ -462,6 +462,7 @@ namespace DAL
                                                     "(SELECT sys_funcionarios.nome FROM " + dbName + ".sys_funcionarios WHERE sys_funcionarios.id = sys_locacoes.func_retirada_id) AS func_retirada," +
                                                     "(SELECT sys_funcionarios.ativo FROM " + dbName + ".sys_funcionarios WHERE sys_funcionarios.id = sys_locacoes.func_retirada_id) AS func_retirada_ativo," +
                                                     "(SELECT sys_funcionarios.mot_poli FROM " + dbName + ".sys_funcionarios WHERE sys_funcionarios.id = sys_locacoes.func_retirada_id) AS func_retirada_mot_poli," +
+                                                    "sys_locacoes.Veic_retirada_id AS veic_retirada_id," +
                                                     "(SELECT sys_veiculos.placa FROM " + dbName + ".sys_veiculos WHERE sys_veiculos.id = sys_locacoes.veic_retirada_id) AS veic_retirada, " +
                                                     "(SELECT sys_veiculos.ativo FROM " + dbName + ".sys_veiculos WHERE sys_veiculos.id = sys_locacoes.veic_retirada_id) AS veic_retirada_ativo," +
                                                     "(SELECT sys_veiculos.tipo FROM " + dbName + ".sys_veiculos WHERE sys_veiculos.id = sys_locacoes.veic_retirada_id) AS veic_retirada_tipo" +

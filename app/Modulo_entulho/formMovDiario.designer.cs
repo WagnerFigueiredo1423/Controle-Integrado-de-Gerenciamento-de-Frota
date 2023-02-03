@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.agendamentos = new System.Windows.Forms.TabPage();
             this.tabela2linhasPrincipalAgendamento = new System.Windows.Forms.TableLayoutPanel();
@@ -40,7 +42,6 @@
             this.tabClientes = new System.Windows.Forms.DataGridView();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel17 = new System.Windows.Forms.Panel();
-            this.checkLocalizaCliente = new System.Windows.Forms.CheckBox();
             this.btnAtualizaCliente = new System.Windows.Forms.Button();
             this.btnGravaCliente = new System.Windows.Forms.Button();
             this.btnNovoCliente = new System.Windows.Forms.Button();
@@ -73,6 +74,10 @@
             this.tabEnderecos = new System.Windows.Forms.DataGridView();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel16 = new System.Windows.Forms.Panel();
+            this.tabListEnd = new System.Windows.Forms.DataGridView();
+            this.Endereço = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Latitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Longitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.btnAtualizaEndereco = new System.Windows.Forms.Button();
             this.btnGravaEndereco = new System.Windows.Forms.Button();
@@ -84,7 +89,6 @@
             this.txtEndNumero = new System.Windows.Forms.TextBox();
             this.txtEndereco = new System.Windows.Forms.TextBox();
             this.btnLocalizarGoogle = new System.Windows.Forms.Button();
-            this.listEnd = new System.Windows.Forms.ListBox();
             this.rdbBuscaBanco = new System.Windows.Forms.RadioButton();
             this.txtObsEnd = new System.Windows.Forms.TextBox();
             this.label71 = new System.Windows.Forms.Label();
@@ -216,6 +220,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tabEnderecos)).BeginInit();
             this.panel9.SuspendLayout();
             this.panel16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tabListEnd)).BeginInit();
             this.panel7.SuspendLayout();
             this.tabAgendamentoColunaComplementos.SuspendLayout();
             this.panel15.SuspendLayout();
@@ -257,7 +262,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1350, 611);
+            this.tabControl1.Size = new System.Drawing.Size(1350, 661);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -380,7 +385,6 @@
             // 
             // panel17
             // 
-            this.panel17.Controls.Add(this.checkLocalizaCliente);
             this.panel17.Controls.Add(this.btnAtualizaCliente);
             this.panel17.Controls.Add(this.btnGravaCliente);
             this.panel17.Controls.Add(this.btnNovoCliente);
@@ -412,17 +416,6 @@
             this.panel17.Name = "panel17";
             this.panel17.Size = new System.Drawing.Size(454, 314);
             this.panel17.TabIndex = 1;
-            // 
-            // checkLocalizaCliente
-            // 
-            this.checkLocalizaCliente.AutoSize = true;
-            this.checkLocalizaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkLocalizaCliente.Location = new System.Drawing.Point(314, 285);
-            this.checkLocalizaCliente.Name = "checkLocalizaCliente";
-            this.checkLocalizaCliente.Size = new System.Drawing.Size(103, 17);
-            this.checkLocalizaCliente.TabIndex = 126;
-            this.checkLocalizaCliente.Text = "Localizar Cliente";
-            this.checkLocalizaCliente.UseVisualStyleBackColor = true;
             // 
             // btnAtualizaCliente
             // 
@@ -461,7 +454,7 @@
             // 
             this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(254, 155);
+            this.txtEmail.Location = new System.Drawing.Point(254, 149);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(193, 20);
@@ -481,7 +474,7 @@
             // txtObservacaoCli
             // 
             this.txtObservacaoCli.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtObservacaoCli.Location = new System.Drawing.Point(5, 213);
+            this.txtObservacaoCli.Location = new System.Drawing.Point(5, 203);
             this.txtObservacaoCli.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtObservacaoCli.Multiline = true;
             this.txtObservacaoCli.Name = "txtObservacaoCli";
@@ -492,7 +485,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(6, 187);
+            this.label8.Location = new System.Drawing.Point(4, 187);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(65, 13);
@@ -513,14 +506,12 @@
             // txtFone2
             // 
             this.txtFone2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFone2.Location = new System.Drawing.Point(107, 155);
+            this.txtFone2.Location = new System.Drawing.Point(107, 149);
             this.txtFone2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtFone2.Mask = "(99)99999-9999";
             this.txtFone2.Name = "txtFone2";
             this.txtFone2.Size = new System.Drawing.Size(93, 20);
             this.txtFone2.TabIndex = 7;
-            this.txtFone2.TextChanged += new System.EventHandler(this.txtFone2_TextChanged);
-            this.txtFone2.Leave += new System.EventHandler(this.txtFone2_Leave);
             // 
             // label6
             // 
@@ -537,7 +528,7 @@
             // 
             this.txtContato.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtContato.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContato.Location = new System.Drawing.Point(319, 32);
+            this.txtContato.Location = new System.Drawing.Point(319, 27);
             this.txtContato.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtContato.Name = "txtContato";
             this.txtContato.Size = new System.Drawing.Size(128, 20);
@@ -546,25 +537,21 @@
             // txtFone1
             // 
             this.txtFone1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFone1.Location = new System.Drawing.Point(7, 155);
+            this.txtFone1.Location = new System.Drawing.Point(7, 149);
             this.txtFone1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtFone1.Mask = "(99)99999-9999";
             this.txtFone1.Name = "txtFone1";
             this.txtFone1.Size = new System.Drawing.Size(92, 20);
             this.txtFone1.TabIndex = 6;
-            this.txtFone1.TextChanged += new System.EventHandler(this.txtFone1_TextChanged);
-            this.txtFone1.Leave += new System.EventHandler(this.txtFone1_Leave);
             // 
             // txtRegistro
             // 
             this.txtRegistro.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRegistro.Location = new System.Drawing.Point(125, 91);
+            this.txtRegistro.Location = new System.Drawing.Point(125, 85);
             this.txtRegistro.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtRegistro.Name = "txtRegistro";
             this.txtRegistro.Size = new System.Drawing.Size(162, 20);
             this.txtRegistro.TabIndex = 4;
-            this.txtRegistro.TextChanged += new System.EventHandler(this.txtRegistro_TextChanged);
-            this.txtRegistro.Leave += new System.EventHandler(this.txtRegistro_Leave);
             // 
             // label5
             // 
@@ -580,10 +567,10 @@
             // btnReceita
             // 
             this.btnReceita.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReceita.Location = new System.Drawing.Point(320, 86);
+            this.btnReceita.Location = new System.Drawing.Point(320, 80);
             this.btnReceita.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnReceita.Name = "btnReceita";
-            this.btnReceita.Size = new System.Drawing.Size(108, 33);
+            this.btnReceita.Size = new System.Drawing.Size(127, 33);
             this.btnReceita.TabIndex = 106;
             this.btnReceita.Text = "Busca Receita";
             this.btnReceita.UseVisualStyleBackColor = true;
@@ -594,39 +581,39 @@
             this.btnLocalizarCliFone.BackgroundImage = global::app.Properties.Resources.f9bb81e576c1a361c61a8c08945b2c48_icone_de_pesquisa;
             this.btnLocalizarCliFone.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLocalizarCliFone.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLocalizarCliFone.Location = new System.Drawing.Point(199, 155);
+            this.btnLocalizarCliFone.Location = new System.Drawing.Point(199, 149);
             this.btnLocalizarCliFone.Margin = new System.Windows.Forms.Padding(4);
             this.btnLocalizarCliFone.Name = "btnLocalizarCliFone";
             this.btnLocalizarCliFone.Size = new System.Drawing.Size(20, 20);
             this.btnLocalizarCliFone.TabIndex = 138;
             this.btnLocalizarCliFone.UseVisualStyleBackColor = true;
-            this.btnLocalizarCliFone.Click += new System.EventHandler(this.btnLocalizarGoogle_Click);
+            this.btnLocalizarCliFone.Click += new System.EventHandler(this.btnLocalizarCliFone_Click);
             // 
             // btnLocalizarCliRegistro
             // 
             this.btnLocalizarCliRegistro.BackgroundImage = global::app.Properties.Resources.f9bb81e576c1a361c61a8c08945b2c48_icone_de_pesquisa;
             this.btnLocalizarCliRegistro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLocalizarCliRegistro.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLocalizarCliRegistro.Location = new System.Drawing.Point(288, 92);
+            this.btnLocalizarCliRegistro.Location = new System.Drawing.Point(288, 86);
             this.btnLocalizarCliRegistro.Margin = new System.Windows.Forms.Padding(4);
             this.btnLocalizarCliRegistro.Name = "btnLocalizarCliRegistro";
             this.btnLocalizarCliRegistro.Size = new System.Drawing.Size(20, 20);
             this.btnLocalizarCliRegistro.TabIndex = 138;
             this.btnLocalizarCliRegistro.UseVisualStyleBackColor = true;
-            this.btnLocalizarCliRegistro.Click += new System.EventHandler(this.btnLocalizarGoogle_Click);
+            this.btnLocalizarCliRegistro.Click += new System.EventHandler(this.btnLocalizarCliRegistro_Click);
             // 
             // btnLocalizarCliNome
             // 
             this.btnLocalizarCliNome.BackgroundImage = global::app.Properties.Resources.f9bb81e576c1a361c61a8c08945b2c48_icone_de_pesquisa;
             this.btnLocalizarCliNome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLocalizarCliNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLocalizarCliNome.Location = new System.Drawing.Point(288, 32);
+            this.btnLocalizarCliNome.Location = new System.Drawing.Point(288, 27);
             this.btnLocalizarCliNome.Margin = new System.Windows.Forms.Padding(4);
             this.btnLocalizarCliNome.Name = "btnLocalizarCliNome";
             this.btnLocalizarCliNome.Size = new System.Drawing.Size(20, 20);
             this.btnLocalizarCliNome.TabIndex = 138;
             this.btnLocalizarCliNome.UseVisualStyleBackColor = true;
-            this.btnLocalizarCliNome.Click += new System.EventHandler(this.btnLocalizarGoogle_Click);
+            this.btnLocalizarCliNome.Click += new System.EventHandler(this.btnLocalizarCliNome_Click);
             // 
             // label4
             // 
@@ -667,19 +654,17 @@
             // 
             this.txtCliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCliente.Location = new System.Drawing.Point(84, 32);
+            this.txtCliente.Location = new System.Drawing.Point(84, 27);
             this.txtCliente.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.Size = new System.Drawing.Size(203, 20);
             this.txtCliente.TabIndex = 3;
-            this.txtCliente.TextChanged += new System.EventHandler(this.txtCliente_TextChanged);
-            this.txtCliente.Leave += new System.EventHandler(this.txtCliente_Leave);
             // 
             // txtCodigo
             // 
             this.txtCodigo.Enabled = false;
             this.txtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigo.Location = new System.Drawing.Point(5, 32);
+            this.txtCodigo.Location = new System.Drawing.Point(5, 27);
             this.txtCodigo.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(70, 20);
@@ -689,7 +674,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(9, 113);
+            this.radioButton2.Location = new System.Drawing.Point(9, 107);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(76, 17);
@@ -703,7 +688,7 @@
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
             this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(9, 91);
+            this.radioButton1.Location = new System.Drawing.Point(9, 85);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(67, 17);
@@ -788,6 +773,7 @@
             // 
             // panel16
             // 
+            this.panel16.Controls.Add(this.tabListEnd);
             this.panel16.Controls.Add(this.checkBox1);
             this.panel16.Controls.Add(this.btnAtualizaEndereco);
             this.panel16.Controls.Add(this.btnGravaEndereco);
@@ -799,7 +785,6 @@
             this.panel16.Controls.Add(this.txtEndNumero);
             this.panel16.Controls.Add(this.txtEndereco);
             this.panel16.Controls.Add(this.btnLocalizarGoogle);
-            this.panel16.Controls.Add(this.listEnd);
             this.panel16.Controls.Add(this.rdbBuscaBanco);
             this.panel16.Controls.Add(this.txtObsEnd);
             this.panel16.Controls.Add(this.label71);
@@ -808,6 +793,44 @@
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(556, 314);
             this.panel16.TabIndex = 1;
+            // 
+            // tabListEnd
+            // 
+            this.tabListEnd.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.tabListEnd.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.tabListEnd.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.tabListEnd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tabListEnd.ColumnHeadersVisible = false;
+            this.tabListEnd.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Endereço,
+            this.Latitude,
+            this.Longitude});
+            this.tabListEnd.Location = new System.Drawing.Point(7, 113);
+            this.tabListEnd.Name = "tabListEnd";
+            this.tabListEnd.RowHeadersVisible = false;
+            this.tabListEnd.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tabListEnd.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tabListEnd.Size = new System.Drawing.Size(541, 62);
+            this.tabListEnd.TabIndex = 172;
+            this.tabListEnd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tabListEnd_CellContentClick);
+            // 
+            // Endereço
+            // 
+            this.Endereço.HeaderText = "Endereço";
+            this.Endereço.Name = "Endereço";
+            this.Endereço.Width = 20;
+            // 
+            // Latitude
+            // 
+            this.Latitude.HeaderText = "Latitude";
+            this.Latitude.Name = "Latitude";
+            this.Latitude.Visible = false;
+            // 
+            // Longitude
+            // 
+            this.Longitude.HeaderText = "Longitude";
+            this.Longitude.Name = "Longitude";
+            this.Longitude.Visible = false;
             // 
             // checkBox1
             // 
@@ -898,12 +921,11 @@
             this.txtEndCompl.BackColor = System.Drawing.SystemColors.Window;
             this.txtEndCompl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEndCompl.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtEndCompl.Location = new System.Drawing.Point(151, 78);
+            this.txtEndCompl.Location = new System.Drawing.Point(151, 74);
             this.txtEndCompl.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtEndCompl.Name = "txtEndCompl";
             this.txtEndCompl.Size = new System.Drawing.Size(112, 20);
             this.txtEndCompl.TabIndex = 135;
-            this.txtEndCompl.TextChanged += new System.EventHandler(this.txtEndereco_TextChanged);
             // 
             // txtEndNumero
             // 
@@ -914,12 +936,11 @@
             this.txtEndNumero.BackColor = System.Drawing.SystemColors.Window;
             this.txtEndNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEndNumero.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtEndNumero.Location = new System.Drawing.Point(7, 78);
+            this.txtEndNumero.Location = new System.Drawing.Point(7, 74);
             this.txtEndNumero.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtEndNumero.Name = "txtEndNumero";
             this.txtEndNumero.Size = new System.Drawing.Size(112, 20);
             this.txtEndNumero.TabIndex = 135;
-            this.txtEndNumero.TextChanged += new System.EventHandler(this.txtEndereco_TextChanged);
             // 
             // txtEndereco
             // 
@@ -930,19 +951,18 @@
             this.txtEndereco.BackColor = System.Drawing.SystemColors.Window;
             this.txtEndereco.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEndereco.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtEndereco.Location = new System.Drawing.Point(7, 31);
+            this.txtEndereco.Location = new System.Drawing.Point(5, 27);
             this.txtEndereco.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(396, 20);
             this.txtEndereco.TabIndex = 135;
-            this.txtEndereco.TextChanged += new System.EventHandler(this.txtEndereco_TextChanged);
             // 
             // btnLocalizarGoogle
             // 
             this.btnLocalizarGoogle.BackgroundImage = global::app.Properties.Resources.f9bb81e576c1a361c61a8c08945b2c48_icone_de_pesquisa;
             this.btnLocalizarGoogle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLocalizarGoogle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLocalizarGoogle.Location = new System.Drawing.Point(403, 32);
+            this.btnLocalizarGoogle.Location = new System.Drawing.Point(405, 32);
             this.btnLocalizarGoogle.Margin = new System.Windows.Forms.Padding(4);
             this.btnLocalizarGoogle.Name = "btnLocalizarGoogle";
             this.btnLocalizarGoogle.Size = new System.Drawing.Size(20, 20);
@@ -950,24 +970,11 @@
             this.btnLocalizarGoogle.UseVisualStyleBackColor = true;
             this.btnLocalizarGoogle.Click += new System.EventHandler(this.btnLocalizarGoogle_Click);
             // 
-            // listEnd
-            // 
-            this.listEnd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listEnd.FormattingEnabled = true;
-            this.listEnd.Location = new System.Drawing.Point(7, 119);
-            this.listEnd.Margin = new System.Windows.Forms.Padding(4);
-            this.listEnd.Name = "listEnd";
-            this.listEnd.Size = new System.Drawing.Size(543, 56);
-            this.listEnd.TabIndex = 166;
-            this.listEnd.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listEnd_MouseClick);
-            // 
             // rdbBuscaBanco
             // 
             this.rdbBuscaBanco.AutoSize = true;
             this.rdbBuscaBanco.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbBuscaBanco.Location = new System.Drawing.Point(431, 33);
+            this.rdbBuscaBanco.Location = new System.Drawing.Point(439, 33);
             this.rdbBuscaBanco.Margin = new System.Windows.Forms.Padding(4);
             this.rdbBuscaBanco.Name = "rdbBuscaBanco";
             this.rdbBuscaBanco.Size = new System.Drawing.Size(110, 17);
@@ -981,7 +988,7 @@
             this.txtObsEnd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtObsEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtObsEnd.Location = new System.Drawing.Point(7, 211);
+            this.txtObsEnd.Location = new System.Drawing.Point(7, 203);
             this.txtObsEnd.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtObsEnd.Multiline = true;
             this.txtObsEnd.Name = "txtObsEnd";
@@ -992,7 +999,7 @@
             // 
             this.label71.AutoSize = true;
             this.label71.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label71.Location = new System.Drawing.Point(1, 187);
+            this.label71.Location = new System.Drawing.Point(4, 187);
             this.label71.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label71.Name = "label71";
             this.label71.Size = new System.Drawing.Size(65, 13);
@@ -1257,7 +1264,7 @@
             // btnAgendar
             // 
             this.btnAgendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgendar.Location = new System.Drawing.Point(185, 11);
+            this.btnAgendar.Location = new System.Drawing.Point(162, 4);
             this.btnAgendar.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnAgendar.Name = "btnAgendar";
             this.btnAgendar.Size = new System.Drawing.Size(147, 31);
@@ -1269,7 +1276,7 @@
             // btnNovo
             // 
             this.btnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNovo.Location = new System.Drawing.Point(14, 11);
+            this.btnNovo.Location = new System.Drawing.Point(7, 4);
             this.btnNovo.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(147, 31);
@@ -1285,7 +1292,7 @@
             this.movimento.Margin = new System.Windows.Forms.Padding(4);
             this.movimento.Name = "movimento";
             this.movimento.Padding = new System.Windows.Forms.Padding(4);
-            this.movimento.Size = new System.Drawing.Size(1342, 582);
+            this.movimento.Size = new System.Drawing.Size(1342, 632);
             this.movimento.TabIndex = 5;
             this.movimento.Text = "Movimento";
             this.movimento.UseVisualStyleBackColor = true;
@@ -1300,25 +1307,42 @@
             this.tabelaMovimentoDiario.Name = "tabelaMovimentoDiario";
             this.tabelaMovimentoDiario.RowCount = 2;
             this.tabelaMovimentoDiario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tabelaMovimentoDiario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tabelaMovimentoDiario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F));
             this.tabelaMovimentoDiario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tabelaMovimentoDiario.Size = new System.Drawing.Size(1248, 625);
+            this.tabelaMovimentoDiario.Size = new System.Drawing.Size(1338, 625);
             this.tabelaMovimentoDiario.TabIndex = 160;
             // 
             // paginaMovimentoPainelTabelaMovimentoDiario
             // 
             this.paginaMovimentoPainelTabelaMovimentoDiario.BackColor = System.Drawing.SystemColors.Control;
             this.paginaMovimentoPainelTabelaMovimentoDiario.Controls.Add(this.tabMov);
+            this.paginaMovimentoPainelTabelaMovimentoDiario.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paginaMovimentoPainelTabelaMovimentoDiario.Location = new System.Drawing.Point(3, 3);
             this.paginaMovimentoPainelTabelaMovimentoDiario.Name = "paginaMovimentoPainelTabelaMovimentoDiario";
-            this.paginaMovimentoPainelTabelaMovimentoDiario.Size = new System.Drawing.Size(1242, 519);
+            this.paginaMovimentoPainelTabelaMovimentoDiario.Size = new System.Drawing.Size(1332, 479);
             this.paginaMovimentoPainelTabelaMovimentoDiario.TabIndex = 158;
             // 
             // tabMov
             // 
             this.tabMov.AllowUserToAddRows = false;
             this.tabMov.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tabMov.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tabMov.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tabMov.DefaultCellStyle = dataGridViewCellStyle2;
             this.tabMov.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabMov.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.tabMov.Location = new System.Drawing.Point(0, 0);
@@ -1326,7 +1350,7 @@
             this.tabMov.Name = "tabMov";
             this.tabMov.RowHeadersVisible = false;
             this.tabMov.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.tabMov.Size = new System.Drawing.Size(1242, 519);
+            this.tabMov.Size = new System.Drawing.Size(1332, 479);
             this.tabMov.TabIndex = 1;
             this.tabMov.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.tabMov_CellBeginEdit);
             this.tabMov.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tabMov_CellClick);
@@ -1343,9 +1367,9 @@
             this.paginaMovimentoPainelItensBusca.BackColor = System.Drawing.SystemColors.Control;
             this.paginaMovimentoPainelItensBusca.Controls.Add(this.tableLayoutPanel1);
             this.paginaMovimentoPainelItensBusca.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.paginaMovimentoPainelItensBusca.Location = new System.Drawing.Point(3, 528);
+            this.paginaMovimentoPainelItensBusca.Location = new System.Drawing.Point(3, 488);
             this.paginaMovimentoPainelItensBusca.Name = "paginaMovimentoPainelItensBusca";
-            this.paginaMovimentoPainelItensBusca.Size = new System.Drawing.Size(1242, 94);
+            this.paginaMovimentoPainelItensBusca.Size = new System.Drawing.Size(1332, 134);
             this.paginaMovimentoPainelItensBusca.TabIndex = 159;
             // 
             // tableLayoutPanel1
@@ -1366,7 +1390,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1242, 94);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1332, 134);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel18
@@ -1374,9 +1398,9 @@
             this.panel18.Controls.Add(this.label20);
             this.panel18.Controls.Add(this.lblRegistros);
             this.panel18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel18.Location = new System.Drawing.Point(1123, 3);
+            this.panel18.Location = new System.Drawing.Point(1213, 3);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(116, 88);
+            this.panel18.Size = new System.Drawing.Size(116, 128);
             this.panel18.TabIndex = 5;
             // 
             // label20
@@ -1408,16 +1432,16 @@
             this.panel14.Controls.Add(this.checkBuscaGeral);
             this.panel14.Controls.Add(this.btnShowMap);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel14.Location = new System.Drawing.Point(892, 3);
+            this.panel14.Location = new System.Drawing.Point(982, 3);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(225, 88);
+            this.panel14.Size = new System.Drawing.Size(225, 128);
             this.panel14.TabIndex = 4;
             // 
             // checkBuscaGeral
             // 
             this.checkBuscaGeral.AutoSize = true;
             this.checkBuscaGeral.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBuscaGeral.Location = new System.Drawing.Point(28, 57);
+            this.checkBuscaGeral.Location = new System.Drawing.Point(28, 48);
             this.checkBuscaGeral.Margin = new System.Windows.Forms.Padding(4);
             this.checkBuscaGeral.Name = "checkBuscaGeral";
             this.checkBuscaGeral.Size = new System.Drawing.Size(170, 17);
@@ -1429,7 +1453,7 @@
             // 
             this.btnShowMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnShowMap.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShowMap.Location = new System.Drawing.Point(28, 15);
+            this.btnShowMap.Location = new System.Drawing.Point(28, 8);
             this.btnShowMap.Name = "btnShowMap";
             this.btnShowMap.Size = new System.Drawing.Size(164, 33);
             this.btnShowMap.TabIndex = 173;
@@ -1441,9 +1465,9 @@
             this.panel11.Controls.Add(this.dropVisualPorStatus);
             this.panel11.Controls.Add(this.label14);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel11.Location = new System.Drawing.Point(764, 3);
+            this.panel11.Location = new System.Drawing.Point(854, 3);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(122, 88);
+            this.panel11.Size = new System.Drawing.Size(122, 128);
             this.panel11.TabIndex = 3;
             // 
             // dropVisualPorStatus
@@ -1457,7 +1481,7 @@
             "Entregue",
             "Ag. Retirada",
             "Finalizada"});
-            this.dropVisualPorStatus.Location = new System.Drawing.Point(4, 44);
+            this.dropVisualPorStatus.Location = new System.Drawing.Point(4, 3);
             this.dropVisualPorStatus.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.dropVisualPorStatus.Name = "dropVisualPorStatus";
             this.dropVisualPorStatus.Size = new System.Drawing.Size(113, 21);
@@ -1468,7 +1492,7 @@
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(1, 20);
+            this.label14.Location = new System.Drawing.Point(2, 26);
             this.label14.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(83, 13);
@@ -1491,13 +1515,13 @@
             this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel2.Location = new System.Drawing.Point(124, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(634, 88);
+            this.panel2.Size = new System.Drawing.Size(724, 128);
             this.panel2.TabIndex = 2;
             // 
             // txtBusca
             // 
             this.txtBusca.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBusca.Location = new System.Drawing.Point(60, 58);
+            this.txtBusca.Location = new System.Drawing.Point(50, 53);
             this.txtBusca.Name = "txtBusca";
             this.txtBusca.Size = new System.Drawing.Size(544, 20);
             this.txtBusca.TabIndex = 165;
@@ -1506,7 +1530,7 @@
             // 
             this.radioBtnBuscaMtr.AutoSize = true;
             this.radioBtnBuscaMtr.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioBtnBuscaMtr.Location = new System.Drawing.Point(411, 28);
+            this.radioBtnBuscaMtr.Location = new System.Drawing.Point(411, 22);
             this.radioBtnBuscaMtr.Name = "radioBtnBuscaMtr";
             this.radioBtnBuscaMtr.Size = new System.Drawing.Size(104, 17);
             this.radioBtnBuscaMtr.TabIndex = 166;
@@ -1518,7 +1542,7 @@
             // 
             this.radioBtnBuscaAutorizacaoEptc.AutoSize = true;
             this.radioBtnBuscaAutorizacaoEptc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioBtnBuscaAutorizacaoEptc.Location = new System.Drawing.Point(234, 28);
+            this.radioBtnBuscaAutorizacaoEptc.Location = new System.Drawing.Point(234, 22);
             this.radioBtnBuscaAutorizacaoEptc.Name = "radioBtnBuscaAutorizacaoEptc";
             this.radioBtnBuscaAutorizacaoEptc.Size = new System.Drawing.Size(152, 17);
             this.radioBtnBuscaAutorizacaoEptc.TabIndex = 166;
@@ -1542,7 +1566,7 @@
             // 
             this.radioBtnBuscaConteiner.AutoSize = true;
             this.radioBtnBuscaConteiner.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioBtnBuscaConteiner.Location = new System.Drawing.Point(85, 28);
+            this.radioBtnBuscaConteiner.Location = new System.Drawing.Point(85, 22);
             this.radioBtnBuscaConteiner.Name = "radioBtnBuscaConteiner";
             this.radioBtnBuscaConteiner.Size = new System.Drawing.Size(125, 17);
             this.radioBtnBuscaConteiner.TabIndex = 166;
@@ -1590,7 +1614,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(3, 61);
+            this.label24.Location = new System.Drawing.Point(3, 57);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(40, 13);
             this.label24.TabIndex = 164;
@@ -1615,7 +1639,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(115, 88);
+            this.panel1.Size = new System.Drawing.Size(115, 128);
             this.panel1.TabIndex = 1;
             // 
             // txtMovVisDe
@@ -1623,7 +1647,7 @@
             this.txtMovVisDe.CustomFormat = "dd/MM/yyyy";
             this.txtMovVisDe.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMovVisDe.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtMovVisDe.Location = new System.Drawing.Point(5, 18);
+            this.txtMovVisDe.Location = new System.Drawing.Point(5, 15);
             this.txtMovVisDe.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtMovVisDe.Name = "txtMovVisDe";
             this.txtMovVisDe.Size = new System.Drawing.Size(105, 20);
@@ -1635,7 +1659,7 @@
             this.txtMovVisAte.CustomFormat = "dd/MM/yyyy";
             this.txtMovVisAte.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMovVisAte.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtMovVisAte.Location = new System.Drawing.Point(5, 58);
+            this.txtMovVisAte.Location = new System.Drawing.Point(5, 54);
             this.txtMovVisAte.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtMovVisAte.Name = "txtMovVisAte";
             this.txtMovVisAte.Size = new System.Drawing.Size(105, 20);
@@ -2431,7 +2455,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1350, 611);
+            this.ClientSize = new System.Drawing.Size(1350, 661);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -2461,6 +2485,7 @@
             this.panel9.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tabListEnd)).EndInit();
             this.panel7.ResumeLayout(false);
             this.tabAgendamentoColunaComplementos.ResumeLayout(false);
             this.tabAgendamentoColunaComplementos.PerformLayout();
@@ -2629,7 +2654,6 @@
         private System.Windows.Forms.Panel panel16;
         public System.Windows.Forms.TextBox txtEndereco;
         private System.Windows.Forms.Button btnLocalizarGoogle;
-        private System.Windows.Forms.ListBox listEnd;
         private System.Windows.Forms.TextBox txtObsEnd;
         private System.Windows.Forms.Label label71;
         private System.Windows.Forms.Panel panel15;
@@ -2640,7 +2664,6 @@
         private System.Windows.Forms.Button btnAtualizaEndereco;
         private System.Windows.Forms.Button btnGravaEndereco;
         private System.Windows.Forms.Button btnNovoEndereco;
-        private System.Windows.Forms.CheckBox checkLocalizaCliente;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TableLayoutPanel tabelaMovimentoDiario;
         private System.Windows.Forms.Panel paginaMovimentoPainelTabelaMovimentoDiario;
@@ -2680,5 +2703,9 @@
         public System.Windows.Forms.TextBox txtEndCompl;
         public System.Windows.Forms.TextBox txtEndNumero;
         private System.Windows.Forms.RadioButton rdbBuscaBanco;
+        private System.Windows.Forms.DataGridView tabListEnd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Endereço;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Latitude;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Longitude;
     }
 }

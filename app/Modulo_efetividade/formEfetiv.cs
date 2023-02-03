@@ -18,8 +18,7 @@ namespace app
         protected bool clicado = false;
         protected formConteiner parent;
 
-        //List<Feriado> listaFeriados = new List<Feriado>();
-
+        
         public formEfetiv(formConteiner _parent)
         {
             InitializeComponent();

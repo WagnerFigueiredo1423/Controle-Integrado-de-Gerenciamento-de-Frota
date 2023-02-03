@@ -25,14 +25,13 @@ namespace app
         private int idCli = 0, idEnd = 0, idLoc = 0;
         private DataTable tabelaFuncListagem = new DataTable();
         private int posYinicial = 10;
-        private bool atualizaTabEndereco = true;
         protected bool clicado = false;
         PrintDialog showprint = new PrintDialog();
         protected sys_consultaReceitaMDL mdlConsulta = new sys_consultaReceitaMDL();
         protected DataTable source = new DataTable();
         protected bool carregaEnd = false;
         private DateTimePicker oDateTimePicker;
-        System.Windows.Forms.ComboBox combo;
+        ComboBox combo;
         protected int _nCont = 0;
         protected string _vlrAntigo;
         protected string _latitude;
@@ -51,6 +50,7 @@ namespace app
         protected DateTime dataFim;
         protected string queryStatusLocacao;
         protected string _enderecoSelecionado;
+        protected sys_enderecosMDL _EnderecosMDL = new sys_enderecosMDL();
         static string dbName = sys_databaseMDL.DBNAME;
         XRect xRectLinha;
         double margens = 10;
@@ -190,19 +190,17 @@ namespace app
             txtEmail.Text = "";
             txtObservacaoCli.Text = "";
             txtObsEnd.Text = "";
-            //txtLat.Text = "";
-            //txtLng.Text = "";
             txtObsLocacao.Text = "";
             radioButton1.Checked = false;
             radioButton2.Checked = false;
             dropTipo.SelectedIndex = 0;
             dropCobranca.SelectedIndex = 0;
-            //listEnd.DataSource = null;
+            tabListEnd.DataSource = null;
         }
         private void zeraEnderecos()
         {
             txtEndereco.Text = "";
-            listEnd.DataSource = null;
+            tabListEnd.DataSource = null;
         }
         private void zeraFinaliza()
         {
@@ -362,7 +360,6 @@ namespace app
             zeraAgendamento();
             zeraEnderecos();
             carregaTabelaClientes();
-            tabEnderecos.DataSource = null;
         }
         private void btnAgendar_Click(object sender, EventArgs e)
         {
@@ -411,11 +408,30 @@ namespace app
                 mdlLocacao.PREVISAO_RETIRADA = new DateTime(txtValAut.Value.Year, txtValAut.Value.Month, txtValAut.Value.Day, 8, 0, 0);
             }
             mdlLocacao.OBSERVACAO = txtObsLocacao.Text;
-            try
+            if (MessageBox.Show("As Informações estão corretas?: \n\nCliente:" + mdlCliente.NOME + "\nEndereço:" + mdlEndereco.ENDERECO + "\nTipo:" + mdlLocacao.TIPO + "\nData Entrega:" + mdlLocacao.DATA_ENTREGA.ToShortDateString() + "\nValor:" + mdlPagamento.VALOR, "Mensagem", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (sys_FNCBLL.jaExisteNoBancoBLL("sys_locacoes", "sys_endereco_id", mdlLocacao.SYS_ENDERECO_ID.ToString()) == true && sys_FNCBLL.jaExisteNoBancoBLL("sys_locacoes", "previsao_entrega", mdlLocacao.PREVISAO_ENTREGA.ToString("yyyy-MM-dd HH:mm:ss")) == true && sys_FNCBLL.jaExisteNoBancoBLL("sys_locacoes", "tipo", mdlLocacao.TIPO) == true)
+                try
                 {
-                    if (MessageBox.Show("Existe um agendamento com as informações semelhantes, cadastrar mesmo assim?", "Mensagem", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (sys_FNCBLL.jaExisteNoBancoBLL("sys_locacoes", "sys_endereco_id", mdlLocacao.SYS_ENDERECO_ID.ToString()) == true && sys_FNCBLL.jaExisteNoBancoBLL("sys_locacoes", "previsao_entrega", mdlLocacao.PREVISAO_ENTREGA.ToString("yyyy-MM-dd HH:mm:ss")) == true && sys_FNCBLL.jaExisteNoBancoBLL("sys_locacoes", "tipo", mdlLocacao.TIPO) == true)
+                    {
+                        if (MessageBox.Show("Existe um agendamento com as informações semelhantes, cadastrar mesmo assim?", "Mensagem", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            sys_locacoesBLL.InserirBLL(mdlLocacao);
+                            idLoc = sys_FNCBLL.retornaUltimoIdBLL("id", "sys_locacoes");
+                            if (sys_FNCBLL.jaExisteNoBancoBLL("sys_pagamentos", "sys_locacoes_id", idLoc.ToString()) == false)
+                            {
+                                mdlPagamento.SYS_LOCACOES_ID = idLoc;
+                                mdlPagamento.SITUACAO = "ABERTO";
+                                sys_pagamentosBLL.InserirBLL(mdlPagamento);
+                            }
+                            MessageBox.Show("Locação Agendada");
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    else
                     {
                         sys_locacoesBLL.InserirBLL(mdlLocacao);
                         idLoc = sys_FNCBLL.retornaUltimoIdBLL("id", "sys_locacoes");
@@ -427,27 +443,11 @@ namespace app
                         }
                         MessageBox.Show("Locação Agendada");
                     }
-                    else
-                    {
-                        return;
-                    }
                 }
-                else
+                catch (Exception erro)
                 {
-                    sys_locacoesBLL.InserirBLL(mdlLocacao);
-                    idLoc = sys_FNCBLL.retornaUltimoIdBLL("id", "sys_locacoes");
-                    if (sys_FNCBLL.jaExisteNoBancoBLL("sys_pagamentos", "sys_locacoes_id", idLoc.ToString()) == false)
-                    {
-                        mdlPagamento.SYS_LOCACOES_ID = idLoc;
-                        mdlPagamento.SITUACAO = "ABERTO";
-                        sys_pagamentosBLL.InserirBLL(mdlPagamento);
-                    }
-                    MessageBox.Show("Locação Agendada");
+                    MessageBox.Show(erro.Message);
                 }
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show(erro.Message);
             }
             #endregion
             zeraAgendamento();
@@ -496,23 +496,6 @@ namespace app
             {
                 atualizaDtbClientes();
                 carregaTabelaClientes();
-            }
-        }
-        private void txtCliente_TextChanged(object sender, EventArgs e)
-        {
-            if (checkLocalizaCliente.Checked)
-            {
-                if (txtCliente.Text == "")
-                {
-                    tabClientes.DataSource = dtbClientes;
-                }
-                else
-                {
-                    DataTable dtbBuscaCliente = new DataTable();
-                    DataView dataView = new DataView(dtbClientes);
-                    dataView.RowFilter = string.Format(@"nome LIKE'%{0}%'", txtCliente.Text);
-                    tabClientes.DataSource = dataView;
-                }
             }
         }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -575,71 +558,54 @@ namespace app
                 txtRegistro.Mask = "99,999,999/9999-99";
             }
         }
-        private void txtRegistro_TextChanged(object sender, EventArgs e)
+        private void btnLocalizarCliNome_Click(object sender, EventArgs e)
         {
-            if (checkLocalizaCliente.Checked)
+            if (txtRegistro.Text == "   .   .   -" || txtRegistro.Text == "  .   .   /    -" || txtRegistro.Text == "")
             {
-                if (txtRegistro.Text == "   .   .   -" || txtRegistro.Text == "  .   .   /    -")
-                {
-                    tabClientes.DataSource = dtbClientes;
-                }
-                else
-                {
-                    string parametro = String.Join("", Regex.Split(txtRegistro.Text, @"[^\d]"));
-                    dtvClientes.RowFilter = string.Format(@"registro LIKE'%{0}%'", parametro);
-                    tabClientes.DataSource = dtvClientes;
-                }
+                tabClientes.DataSource = dtbClientes;
+                MessageBox.Show("Digite um Nome de Cliente válido");
+            }
+            else
+            {
+                string parametro = String.Join("", Regex.Split(txtRegistro.Text, @"[^\d]"));
+                dtvClientes.RowFilter = string.Format(@"nome LIKE'%{0}%'", parametro);
+                tabClientes.DataSource = dtvClientes;
             }
         }
-        private void txtFone1_TextChanged(object sender, EventArgs e)
+        private void btnLocalizarCliRegistro_Click(object sender, EventArgs e)
         {
-            if (checkLocalizaCliente.Checked)
+            if (txtRegistro.Text == "   .   .   -" || txtRegistro.Text == "  .   .   /    -" || txtRegistro.Text == "")
             {
-                if (txtFone1.Text == "(  )    -")
-                {
-                    tabClientes.DataSource = dtbClientes;
-                }
-                else
-                {
-                    DataTable dtbBuscaCliente = new DataTable();
-                    DataView dataView = new DataView(dtbClientes);
-                    dataView.RowFilter = string.Format(@"fone1 LIKE'%{0}%'", txtFone1.Text);
-                    tabClientes.DataSource = dataView;
-                }
+                tabClientes.DataSource = dtbClientes;
+                MessageBox.Show("Digite um CPF/CNPJ válido");
+            }
+            else
+            {
+                string parametro = String.Join("", Regex.Split(txtRegistro.Text, @"[^\d]"));
+                dtvClientes.RowFilter = string.Format(@"registro LIKE'%{0}%'", parametro);
+                tabClientes.DataSource = dtvClientes;
             }
         }
-        private void txtFone2_TextChanged(object sender, EventArgs e)
+        private void btnLocalizarCliFone_Click(object sender, EventArgs e)
         {
-            if (checkLocalizaCliente.Checked)
+            DataTable dtbBuscaCliente = new DataTable();
+            DataView dataView = new DataView(dtbClientes);
+
+            if (txtFone1.Text == "(  )    -" || txtFone1.Text == "" && txtFone2.Text == "(  )    -" || txtFone2.Text == "")
             {
-                if (txtFone2.Text == "(  )    -")
-                {
-                    tabClientes.DataSource = dtbClientes;
-                }
-                else
-                {
-                    DataTable dtbBuscaCliente = new DataTable();
-                    DataView dataView = new DataView(dtbClientes);
-                    dataView.RowFilter = string.Format(@"fone2 LIKE'%{0}%'", txtFone2.Text);
-                    tabClientes.DataSource = dataView;
-                }
+                tabClientes.DataSource = dtbClientes;
+                MessageBox.Show("Digite um Telefone válido");
             }
-        }
-        private void txtCliente_Leave(object sender, EventArgs e)
-        {
-            if (checkLocalizaCliente.Checked) checkLocalizaCliente.Checked = false;
-        }
-        private void txtRegistro_Leave(object sender, EventArgs e)
-        {
-            if (checkLocalizaCliente.Checked) checkLocalizaCliente.Checked = false;
-        }
-        private void txtFone1_Leave(object sender, EventArgs e)
-        {
-            if (checkLocalizaCliente.Checked) checkLocalizaCliente.Checked = false;
-        }
-        private void txtFone2_Leave(object sender, EventArgs e)
-        {
-            if (checkLocalizaCliente.Checked) checkLocalizaCliente.Checked = false;
+            else if (txtFone2.Text == "(  )    -" || txtFone2.Text == "")
+            {
+                dataView.RowFilter = string.Format(@"fone1 LIKE'%{0}%' OR fone2 LIKE'%{0}%'", txtFone1.Text);
+                tabClientes.DataSource = dataView;
+            }
+            else if (txtFone1.Text == "(  )    -" || txtFone1.Text == "")
+            {
+                dataView.RowFilter = string.Format(@"fone1 LIKE'%{0}%' OR fone2 LIKE'%{0}%'", txtFone2.Text);
+                tabClientes.DataSource = dataView;
+            }
         }
         private void btnNovoCliente_Click(object sender, EventArgs e)
         {
@@ -655,6 +621,7 @@ namespace app
             txtObservacaoCli.Text = string.Empty;
             radioButton1.Checked = false;
             radioButton2.Checked = false;
+            tabListEnd.DataSource = null;
             atualizaDtbClientes();
             carregaTabelaClientes();
         }
@@ -775,76 +742,29 @@ namespace app
                 MessageBox.Show(erro.Message);
             }
         }
-        private void btnExcluiCliente_Click(object sender, EventArgs e)
-        {
-
-        }
         #endregion
         #region ENDEREÇOS
         private void tabEnderecos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             sys_enderecosMDL mdlEndereco = new sys_enderecosMDL();
-            //atualizaTabEndereco = false;
             idEnd = Convert.ToInt16(tabEnderecos.SelectedRows[0].Cells["id"].Value.ToString());
             idCli = Convert.ToInt16(tabEnderecos.SelectedRows[0].Cells["sys_clientes_id"].Value.ToString());
             try
             {
-                //DataTable dtbBuscaCliente = new DataTable();
-                //DataView dataView = new DataView(dtbClientes);
-                //dataView.RowFilter = string.Format(@"id = '{0}'", idCli);
-                //tabClientes.DataSource = dataView;
-                //tabClientes.AutoResizeColumns();
-                //tabClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-                //tabClientes.Columns["id"].HeaderText = "Cod.";
-                //tabClientes.Columns["nome"].HeaderText = "Nome";
-                //tabClientes.Columns["tipo"].HeaderText = "Tipo";
-                //tabClientes.Columns["registro"].HeaderText = "Registro";
-                //tabClientes.Columns["contato"].HeaderText = "Contato";
                 mdlEndereco = sys_enderecosBLL.MostrarBLL(idEnd);
                 txtEndereco.Text = mdlEndereco.ENDERECO;
                 txtObsEnd.Text = mdlEndereco.OBSERVACAO;
-                //atualizaTabEndereco = true;
             }
             catch (Exception erro)
             {
                 MessageBox.Show(erro.Message);
             }
         }
-        private void txtEndereco_TextChanged(object sender, EventArgs e)
+        private void tabListEnd_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (rdbBuscaBanco.Checked && txtEndereco.Text.Length != 0)
-            //{
-            //    if (rdbBuscaBanco.Checked && atualizaTabEndereco)
-            //    {
-            //        DataTable dtbBuscaEndereco = new DataTable();
-            //        DataView dataView = new DataView(dtbTodosEnderecos);
-            //        dataView.RowFilter = string.Format(@"endereco LIKE'%{0}%'", txtEndereco.Text);
-            //        tabEnderecos.DataSource = dataView;
-            //        tabEnderecos.Columns["id"].Visible = false;
-            //        tabEnderecos.Columns["endereco"].HeaderText = "Endereço";
-            //        tabEnderecos.Columns["endereco"].Width = tabEnderecos.Width;
-            //        tabEnderecos.Columns["sys_clientes_id"].Visible = false;
-            //        tabEnderecos.Columns["mapa"].Visible = false;
-            //        tabEnderecos.Columns["latitude"].Visible = false;
-            //        tabEnderecos.Columns["longitude"].Visible = false;
-            //        tabEnderecos.Columns["criado"].Visible = false;
-            //        tabEnderecos.Columns["modificado"].Visible = false;
-            //        tabEnderecos.Columns["observacao"].Visible = false;
-            //    }
-            //}
-            //else
-            //{
-            //    //tabEnderecos.DataSource = null;
-            //}
-        }
-        private void listEnd_MouseClick(object sender, MouseEventArgs e)
-        {
-            string[] endereco = listEnd.GetItemText(listEnd.SelectedItem).Split(';');
-            int indexEnd = listEnd.GetItemText(listEnd.SelectedItem).IndexOf(";");
-            txtEndereco.Text = _enderecoSelecionado = endereco[0];
-            //_latitude = endereco[1].Substring(6, (endereco[1].Length - 6));
-            //_longitude = endereco[2].Substring(6, (endereco[2].Length - 6));
-
+            txtEndereco.Text = tabListEnd.SelectedRows[0].Cells["Endereço"].Value.ToString();
+            _latitude = tabListEnd.SelectedRows[0].Cells["Latitude"].Value.ToString();
+            _longitude = tabListEnd.SelectedRows[0].Cells["Longitude"].Value.ToString();
         }
         private void btnLocalizarGoogle_Click(object sender, EventArgs e)
         {
@@ -852,7 +772,7 @@ namespace app
             double Num;
             bool isNum = double.TryParse(Str, out Num);
             string parametro = string.Empty;
-            listEnd.Items.Clear();
+            tabListEnd.DataSource = null;
             if (isNum)
             {
                 if (txtEndereco.Text == string.Empty)
@@ -871,18 +791,15 @@ namespace app
                     {
                         var result = new WebServiceCEP.AtendeClienteClient();
                         source = googleAutoCompleteFNC.autoComplete(result.consultaCEP(txtEndereco.Text).end + ", " + txtEndNumero.Text);
-                        listEnd.Items.Clear();
+                        tabListEnd.DataSource = null;
                         for (int i = 0; i < source.Rows.Count; i++)
                         {
                             DataRow drow = source.Rows[i];
-                            // Somente as linhas que não foram deletadas
+
                             if (drow.RowState != DataRowState.Deleted && drow["Endereço"].ToString() != "Brasil")
                             {
-                                // Define os itens da lista
-                                ListViewItem lvi = new ListViewItem(drow["Endereço"].ToString());
-
-                                // Inclui os itens no ListView
-                                listEnd.Items.Add(lvi.Text);
+                                ListViewItem lvi = new ListViewItem(drow["Endereço"].ToString() + ";" + drow["Latitude"].ToString() + ";" + drow["Longitude"].ToString());
+                                tabListEnd.Rows.Add(drow["Endereço"].ToString(), drow["Latitude"].ToString(), drow["Longitude"].ToString());
                             }
                         }
                     }
@@ -899,33 +816,26 @@ namespace app
 
                     parametro = txtEndereco.Text;
                     source = googleAutoCompleteFNC.autoComplete(parametro);
-                    listEnd.Items.Clear();
+                    tabListEnd.DataSource = null;
                     for (int i = 0; i < source.Rows.Count; i++)
                     {
                         DataRow drow = source.Rows[i];
-                        // Somente as linhas que não foram deletadas
-                        if (drow.RowState != DataRowState.Deleted)
-                        {
-                            // Define os itens da lista
-                            ListViewItem lvi = new ListViewItem(drow["Endereço"].ToString());
 
-                            // Inclui os itens no ListView
-                            listEnd.Items.Add(lvi.Text);
+                        if (drow.RowState != DataRowState.Deleted && drow["Endereço"].ToString() != "Brasil")
+                        {
+                            ListViewItem lvi = new ListViewItem(drow["Endereço"].ToString() + ";" + drow["Latitude"].ToString() + ";" + drow["Longitude"].ToString());
+                            tabListEnd.Rows.Add(drow["Endereço"].ToString(), drow["Latitude"].ToString(), drow["Longitude"].ToString());
                         }
                     }
                 }
             }
-        }
-        private void btn_localizaEndCep_Click(object sender, EventArgs e)
-        {
-
         }
         private void btnNovoEndereco_Click(object sender, EventArgs e)
         {
             idEnd = 0;
             txtEndereco.Text = string.Empty;
             txtObsEnd.Text = string.Empty;
-            listEnd.Text = string.Empty;
+            tabListEnd.DataSource = null;
             _latitude = string.Empty;
             _longitude = string.Empty;
         }
@@ -998,10 +908,12 @@ namespace app
 
         }
         #endregion
+        #region AGENDAMENTO
         private void txtValorAg_TextChanged(object sender, EventArgs e)
         {
             this.TextBoxMoeda(txtValorAg);
         }
+        #endregion
         #endregion
         #region ABA MOVIMENTO
         private void txtBusca_TextChanged(object sender, EventArgs e)
@@ -1562,6 +1474,7 @@ namespace app
                 tabMov.Columns["veic_entrega_ativo"].Visible = false;
                 tabMov.Columns["veic_entrega_tipo"].Visible = false;
                 tabMov.Columns["func_retirada_ativo"].Visible = false;
+                tabMov.Columns["veic_retirada_id"].Visible = false;
                 tabMov.Columns["func_retirada_mot_poli"].Visible = false;
                 tabMov.Columns["veic_retirada_ativo"].Visible = false;
                 tabMov.Columns["veic_retirada_tipo"].Visible = false;
@@ -3904,7 +3817,6 @@ namespace app
                 MessageBox.Show(e.Exception.ToString());
             }
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             //parent.lblMessage.Text = "";
