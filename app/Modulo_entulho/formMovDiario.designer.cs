@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.agendamentos = new System.Windows.Forms.TabPage();
             this.tabela2linhasPrincipalAgendamento = new System.Windows.Forms.TableLayoutPanel();
@@ -273,7 +273,7 @@
             this.agendamentos.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.agendamentos.Name = "agendamentos";
             this.agendamentos.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.agendamentos.Size = new System.Drawing.Size(1342, 582);
+            this.agendamentos.Size = new System.Drawing.Size(1342, 632);
             this.agendamentos.TabIndex = 0;
             this.agendamentos.Text = "Agendamentos";
             this.agendamentos.UseVisualStyleBackColor = true;
@@ -290,7 +290,7 @@
             this.tabela2linhasPrincipalAgendamento.RowCount = 2;
             this.tabela2linhasPrincipalAgendamento.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tabela2linhasPrincipalAgendamento.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tabela2linhasPrincipalAgendamento.Size = new System.Drawing.Size(1334, 578);
+            this.tabela2linhasPrincipalAgendamento.Size = new System.Drawing.Size(1334, 628);
             this.tabela2linhasPrincipalAgendamento.TabIndex = 0;
             // 
             // panel4
@@ -299,7 +299,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(3, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1328, 527);
+            this.panel4.Size = new System.Drawing.Size(1328, 577);
             this.panel4.TabIndex = 1;
             // 
             // tabela3Colunas
@@ -316,7 +316,7 @@
             this.tabela3Colunas.Name = "tabela3Colunas";
             this.tabela3Colunas.RowCount = 1;
             this.tabela3Colunas.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tabela3Colunas.Size = new System.Drawing.Size(1328, 527);
+            this.tabela3Colunas.Size = new System.Drawing.Size(1328, 577);
             this.tabela3Colunas.TabIndex = 2;
             // 
             // panel5
@@ -325,7 +325,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(3, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(462, 521);
+            this.panel5.Size = new System.Drawing.Size(462, 571);
             this.panel5.TabIndex = 0;
             // 
             // tabelaColunaClientes
@@ -343,7 +343,7 @@
             this.tabelaColunaClientes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
             this.tabelaColunaClientes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tabelaColunaClientes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 320F));
-            this.tabelaColunaClientes.Size = new System.Drawing.Size(462, 521);
+            this.tabelaColunaClientes.Size = new System.Drawing.Size(462, 571);
             this.tabelaColunaClientes.TabIndex = 125;
             // 
             // label15
@@ -368,7 +368,7 @@
             this.tabClientes.Name = "tabClientes";
             this.tabClientes.RowHeadersVisible = false;
             this.tabClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tabClientes.Size = new System.Drawing.Size(452, 174);
+            this.tabClientes.Size = new System.Drawing.Size(452, 224);
             this.tabClientes.TabIndex = 120;
             this.tabClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tabClientes_CellClick);
             this.tabClientes.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.tabClientes_MouseClick);
@@ -378,7 +378,7 @@
             // 
             this.panel8.Controls.Add(this.panel17);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(4, 203);
+            this.panel8.Location = new System.Drawing.Point(4, 253);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(454, 314);
             this.panel8.TabIndex = 121;
@@ -715,7 +715,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(471, 3);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(564, 521);
+            this.panel6.Size = new System.Drawing.Size(564, 571);
             this.panel6.TabIndex = 1;
             // 
             // tabelaColunaEnderecos
@@ -733,7 +733,7 @@
             this.tabelaColunaEnderecos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tabelaColunaEnderecos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tabelaColunaEnderecos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 320F));
-            this.tabelaColunaEnderecos.Size = new System.Drawing.Size(564, 521);
+            this.tabelaColunaEnderecos.Size = new System.Drawing.Size(564, 571);
             this.tabelaColunaEnderecos.TabIndex = 1;
             // 
             // label16
@@ -758,7 +758,7 @@
             this.tabEnderecos.Name = "tabEnderecos";
             this.tabEnderecos.RowHeadersVisible = false;
             this.tabEnderecos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tabEnderecos.Size = new System.Drawing.Size(554, 173);
+            this.tabEnderecos.Size = new System.Drawing.Size(554, 223);
             this.tabEnderecos.TabIndex = 135;
             this.tabEnderecos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tabEnderecos_CellClick);
             // 
@@ -766,7 +766,7 @@
             // 
             this.panel9.Controls.Add(this.panel16);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(4, 203);
+            this.panel9.Location = new System.Drawing.Point(4, 253);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(556, 314);
             this.panel9.TabIndex = 136;
@@ -1012,7 +1012,7 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(1041, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(284, 521);
+            this.panel7.Size = new System.Drawing.Size(284, 571);
             this.panel7.TabIndex = 2;
             // 
             // tabAgendamentoColunaComplementos
@@ -1029,7 +1029,7 @@
             this.tabAgendamentoColunaComplementos.RowCount = 2;
             this.tabAgendamentoColunaComplementos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.tabAgendamentoColunaComplementos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tabAgendamentoColunaComplementos.Size = new System.Drawing.Size(284, 521);
+            this.tabAgendamentoColunaComplementos.Size = new System.Drawing.Size(284, 571);
             this.tabAgendamentoColunaComplementos.TabIndex = 164;
             // 
             // label19
@@ -1063,7 +1063,7 @@
             this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel15.Location = new System.Drawing.Point(4, 27);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(276, 490);
+            this.panel15.Size = new System.Drawing.Size(276, 540);
             this.panel15.TabIndex = 165;
             // 
             // txtObsLocacao
@@ -1256,7 +1256,7 @@
             this.panel3.Controls.Add(this.btnAgendar);
             this.panel3.Controls.Add(this.btnNovo);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(3, 536);
+            this.panel3.Location = new System.Drawing.Point(3, 586);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1328, 39);
             this.panel3.TabIndex = 0;
@@ -1326,23 +1326,23 @@
             // 
             this.tabMov.AllowUserToAddRows = false;
             this.tabMov.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tabMov.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tabMov.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.tabMov.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tabMov.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tabMov.DefaultCellStyle = dataGridViewCellStyle4;
             this.tabMov.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabMov.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.tabMov.Location = new System.Drawing.Point(0, 0);
