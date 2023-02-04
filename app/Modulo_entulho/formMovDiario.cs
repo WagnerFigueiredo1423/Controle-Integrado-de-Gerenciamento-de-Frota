@@ -2043,9 +2043,9 @@ namespace app
             #region LISTAGEM DE ENTREGA
             else if (e.ColumnIndex == tabMov.Columns["listagem_entrega"].Index)
             {
-                if (tabMov.Rows[e.RowIndex].Cells[tabMov.Columns["listagem_entrega"].Index].Value.Equals(false))
+                if (tabMov.Rows[e.RowIndex].Cells[tabMov.Columns["listagem_entrega"].Index].Value.Equals(true))
                 {
-                    tabMov.Rows[e.RowIndex].Cells[tabMov.Columns["listagem_entrega"].Index].Value = true;
+                    tabMov.Rows[e.RowIndex].Cells[tabMov.Columns["listagem_entrega"].Index].Value = false;
                     try
                     {
                         if (MessageBox.Show("Deseja Retirar a locação selecionada da Listagem de Entrega?", "Mensagem", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -2066,8 +2066,8 @@ namespace app
                 }
                 else
                 {
-                    tabMov.Rows[e.RowIndex].Cells[tabMov.Columns["listagem_entrega"].Index].Value = false;
-                    if (tabMov.Rows[e.RowIndex].Cells["drop_func_entrega"].Value.ToString() == "" || tabMov.Rows[e.RowIndex].Cells["drop_veic_entrega"].Value.ToString() == "")
+                    tabMov.Rows[e.RowIndex].Cells[tabMov.Columns["listagem_entrega"].Index].Value = true;
+                    if (tabMov.Rows[e.RowIndex].Cells["drop_func_entrega"].Value.ToString() == "0" || tabMov.Rows[e.RowIndex].Cells["drop_veic_entrega"].Value.ToString() == "0")
                     {
                         formMotVeic formMot = new formMotVeic(this);
                         formMot.ShowDialog();
@@ -2084,6 +2084,7 @@ namespace app
                         sys_locacoesBLL.AtualizarComParametroBLL("UPDATE " + dbName + ".sys_locacoes SET func_entrega_id = " + mdlLocacao.FUNC_ENTREGA_ID + ", veic_entrega_id = " + mdlLocacao.VEIC_ENTREGA_ID + ", situacao = 'Ag.Entrega', listagem_entrega = true WHERE id = " + tabMov.Rows[e.RowIndex].Cells["id"].Value.ToString() + ";");
                         timer1.Start();
                         //parent.lblMessage.Text = "Locação Adicionada à Listagem de Entregas";
+
                     }
                     catch (Exception erro)
                     {
@@ -2247,23 +2248,11 @@ namespace app
                     formMotVeic formMotVeic = new formMotVeic(this);
                     formMotVeic.ShowDialog();
                     sys_locacoesBLL.AtualizarComParametroBLL("UPDATE " + dbName + ".sys_locacoes SET func_entrega_id = " + formMotVeic.funcId + ", veic_entrega_id = " + formMotVeic.veicId + ", situacao = 'Ag.Retirada', listagem_retirada = true, urgencia_retirada = true WHERE id = " + tabMov.Rows[e.RowIndex].Cells["id"].Value + ";");
-                    Clipboard.SetText(@"---ENTREGA---
-                    MOTORISTA: " + sys_funcionariosBLL.MostrarBLL(formMotVeic.funcId).NOME + @".
-                    CLIENTE: " + tabMov.Rows[e.RowIndex].Cells["nome"].Value.ToString() + @".
-                    ENDEREÇO: " + tabMov.Rows[e.RowIndex].Cells["endereco"].Value.ToString() + @".
-                    VALOR: " + tabMov.Rows[e.RowIndex].Cells["valor"].Value.ToString() + @".
-                    COBRANÇA: " + tabMov.Rows[e.RowIndex].Cells["cobranca"].Value.ToString() + string.Format(@"
-                    www.google.com.br/maps/place/{0}", tabMov.Rows[e.RowIndex].Cells["endereco"].Value.ToString().Replace(".", "").Replace(" ", "+")));
+                    Clipboard.SetText("*---ENTREGA---*" + "\r\n" + "*MOTORISTA:* " + sys_funcionariosBLL.MostrarBLL(formMotVeic.funcId).NOME + "." + "\r\n" + "*CLIENTE:* " + tabMov.Rows[e.RowIndex].Cells["nome"].Value.ToString() + "." + "\r\n" + "*ENDEREÇO:* " + tabMov.Rows[e.RowIndex].Cells["endereco"].Value.ToString() + "." + "\r\n" + "*VALOR:* " + tabMov.Rows[e.RowIndex].Cells["valor"].Value.ToString() + "." + "\r\n" + "*COBRANÇA:* " + tabMov.Rows[e.RowIndex].Cells["cobranca"].Value.ToString() + ". " + "\r\n" + "*MAPA:* " + string.Format(@"https://www.google.com.br/maps/place/{0}", tabMov.Rows[e.RowIndex].Cells["endereco"].Value.ToString().Replace(".", "").Replace(" ", "+")));
                 }
                 else
                 {
-                    Clipboard.SetText(@"---ENTREGA---
-                    MOTORISTA: " + tabMov.Rows[e.RowIndex].Cells["func_entrega"].Value.ToString() + @".
-                    CLIENTE: " + tabMov.Rows[e.RowIndex].Cells["nome"].Value.ToString() + @".
-                    ENDEREÇO: " + tabMov.Rows[e.RowIndex].Cells["endereco"].Value.ToString() + @".
-                    VALOR: " + tabMov.Rows[e.RowIndex].Cells["valor"].Value.ToString() + @".
-                    COBRANÇA: " + tabMov.Rows[e.RowIndex].Cells["cobranca"].Value.ToString() + string.Format(@"
-                    www.google.com.br/maps/place/{0}", tabMov.Rows[e.RowIndex].Cells["endereco"].Value.ToString().Replace(".", "").Replace(" ", "+")));
+                    Clipboard.SetText(@"*---ENTREGA---*" + "\r\n" + "*MOTORISTA:* " + tabMov.Rows[e.RowIndex].Cells["func_entrega"].Value.ToString() + "." + "\r\n" + "*CLIENTE:* " + tabMov.Rows[e.RowIndex].Cells["nome"].Value.ToString() + "." + "\r\n" + "*ENDEREÇO:* " + tabMov.Rows[e.RowIndex].Cells["endereco"].Value.ToString() + "." + "\r\n" + "*VALOR:* " + tabMov.Rows[e.RowIndex].Cells["valor"].Value.ToString() + "." + "\r\n" + "*COBRANÇA:* " + tabMov.Rows[e.RowIndex].Cells["cobranca"].Value.ToString() + ". " + "\r\n" + "*MAPA:* " + string.Format(@"https://www.google.com.br/maps/place/{0}", tabMov.Rows[e.RowIndex].Cells["endereco"].Value.ToString().Replace(".", "").Replace(" ", "+")));
                 }
                 MessageBox.Show("Entrega Copiada para a área de transferencia");
             }
@@ -2277,23 +2266,11 @@ namespace app
                     formMotVeic formMotVeic = new formMotVeic(this);
                     formMotVeic.ShowDialog();
                     sys_locacoesBLL.AtualizarComParametroBLL("UPDATE " + dbName + ".sys_locacoes SET func_retirada_id = " + formMotVeic.funcId + ", veic_retirada_id = " + formMotVeic.veicId + ", situacao = 'Ag.Retirada', listagem_retirada = true, urgencia_retirada = true WHERE id = " + tabMov.Rows[e.RowIndex].Cells["id"].Value + ";");
-                    Clipboard.SetText(@"---ENTREGA---
-                    MOTORISTA: " + sys_funcionariosBLL.MostrarBLL(formMotVeic.funcId).NOME + @".
-                    CLIENTE: " + tabMov.Rows[e.RowIndex].Cells["nome"].Value.ToString() + @".
-                    ENDEREÇO: " + tabMov.Rows[e.RowIndex].Cells["endereco"].Value.ToString() + @".
-                    VALOR: " + tabMov.Rows[e.RowIndex].Cells["valor"].Value.ToString() + @".
-                    COBRANÇA: " + tabMov.Rows[e.RowIndex].Cells["cobranca"].Value.ToString() + string.Format(@"
-                    www.google.com.br/maps/place/{0}", tabMov.Rows[e.RowIndex].Cells["endereco"].Value.ToString().Replace(".", "").Replace(" ", "+")));
+                    Clipboard.SetText("*---RETIRADA---*" + "\r\n" + "*MOTORISTA:* " + sys_funcionariosBLL.MostrarBLL(formMotVeic.funcId).NOME + "." + "\r\n" + "*CLIENTE:* " + tabMov.Rows[e.RowIndex].Cells["nome"].Value.ToString() + "." + "\r\n" + "*ENDEREÇO:* " + tabMov.Rows[e.RowIndex].Cells["endereco"].Value.ToString() + "." + "\r\n" + "*VALOR:* " + tabMov.Rows[e.RowIndex].Cells["valor"].Value.ToString() + "." + "\r\n" + "*COBRANÇA:* " + tabMov.Rows[e.RowIndex].Cells["cobranca"].Value.ToString() + ". " + "\r\n" + "*MAPA:* " + string.Format(@"https://www.google.com.br/maps/place/{0}", tabMov.Rows[e.RowIndex].Cells["endereco"].Value.ToString().Replace(".", "").Replace(" ", "+")));
                 }
                 else
                 {
-                    Clipboard.SetText(@"---RETIRADA---
-                    MOTORISTA: " + tabMov.Rows[e.RowIndex].Cells["func_entrega"].Value.ToString() + @".
-                    CLIENTE: " + tabMov.Rows[e.RowIndex].Cells["nome"].Value.ToString() + @".
-                    ENDEREÇO: " + tabMov.Rows[e.RowIndex].Cells["endereco"].Value.ToString() + @".
-                    VALOR: " + tabMov.Rows[e.RowIndex].Cells["valor"].Value.ToString() + @".
-                    COBRANÇA: " + tabMov.Rows[e.RowIndex].Cells["cobranca"].Value.ToString() + string.Format(@"
-                    www.google.com.br/maps/place/{0}", tabMov.Rows[e.RowIndex].Cells["endereco"].Value.ToString().Replace(".", "").Replace(" ", "+")));
+                    Clipboard.SetText(@"*---RETIRADA---*" + "\r\n" + "*MOTORISTA:* " + tabMov.Rows[e.RowIndex].Cells["func_retirada"].Value.ToString() + "." + "\r\n" + "*CLIENTE:* " + tabMov.Rows[e.RowIndex].Cells["nome"].Value.ToString() + "." + "\r\n" + "*ENDEREÇO:* " + tabMov.Rows[e.RowIndex].Cells["endereco"].Value.ToString() + "." + "\r\n" + "*VALOR:* " + tabMov.Rows[e.RowIndex].Cells["valor"].Value.ToString() + "." + "\r\n" + "*COBRANÇA:* " + tabMov.Rows[e.RowIndex].Cells["cobranca"].Value.ToString() + ". " + "\r\n" + "*MAPA:* " + string.Format(@"https://www.google.com.br/maps/place/{0}", tabMov.Rows[e.RowIndex].Cells["endereco"].Value.ToString().Replace(".", "").Replace(" ", "+")));
                 }
                 MessageBox.Show("Retirada Copiada para a área de transferencia");
             }

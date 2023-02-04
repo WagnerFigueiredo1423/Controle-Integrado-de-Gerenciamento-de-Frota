@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.agendamentos = new System.Windows.Forms.TabPage();
             this.tabela2linhasPrincipalAgendamento = new System.Windows.Forms.TableLayoutPanel();
@@ -361,8 +360,10 @@
             // 
             this.tabClientes.AllowUserToAddRows = false;
             this.tabClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tabClientes.Font = new System.Drawing.Font("Tahoma", 7.25F, System.Drawing.FontStyle.Bold);
             this.tabClientes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabClientes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.tabClientes.Font = new System.Drawing.Font("Tahoma", 7.25F, System.Drawing.FontStyle.Bold);
             this.tabClientes.Location = new System.Drawing.Point(5, 23);
             this.tabClientes.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tabClientes.Name = "tabClientes";
@@ -617,7 +618,7 @@
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -756,6 +757,7 @@
             this.tabEnderecos.Location = new System.Drawing.Point(5, 24);
             this.tabEnderecos.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tabEnderecos.Name = "tabEnderecos";
+            this.tabEnderecos.Font = new System.Drawing.Font("Tahoma", 7.25F, System.Drawing.FontStyle.Bold);
             this.tabEnderecos.RowHeadersVisible = false;
             this.tabEnderecos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tabEnderecos.Size = new System.Drawing.Size(554, 223);
@@ -807,6 +809,7 @@
             this.Longitude});
             this.tabListEnd.Location = new System.Drawing.Point(7, 113);
             this.tabListEnd.Name = "tabListEnd";
+            this.tabListEnd.Font = new System.Drawing.Font("Tahoma", 7.25F, System.Drawing.FontStyle.Bold);
             this.tabListEnd.RowHeadersVisible = false;
             this.tabListEnd.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tabListEnd.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -914,7 +917,7 @@
             // 
             // txtEndCompl
             // 
-            this.txtEndCompl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtEndCompl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEndCompl.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtEndCompl.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
@@ -929,7 +932,7 @@
             // 
             // txtEndNumero
             // 
-            this.txtEndNumero.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtEndNumero.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEndNumero.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtEndNumero.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
@@ -944,7 +947,7 @@
             // 
             // txtEndereco
             // 
-            this.txtEndereco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtEndereco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEndereco.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtEndereco.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
@@ -985,7 +988,7 @@
             // 
             // txtObsEnd
             // 
-            this.txtObsEnd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtObsEnd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtObsEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtObsEnd.Location = new System.Drawing.Point(7, 203);
@@ -1112,7 +1115,7 @@
             // 
             // txtValAut
             // 
-            this.txtValAut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtValAut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtValAut.CustomFormat = "dd/MM/yyyy";
             this.txtValAut.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1126,7 +1129,7 @@
             // 
             // txtDataPrevEntrega
             // 
-            this.txtDataPrevEntrega.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtDataPrevEntrega.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDataPrevEntrega.CustomFormat = "dd/MM/yyyy hh:mm";
             this.txtDataPrevEntrega.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1151,7 +1154,7 @@
             // 
             // txtNroAut
             // 
-            this.txtNroAut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtNroAut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNroAut.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNroAut.Location = new System.Drawing.Point(11, 187);
@@ -1184,7 +1187,7 @@
             // 
             // dropTipo
             // 
-            this.dropTipo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dropTipo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dropTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dropTipo.FormattingEnabled = true;
@@ -1212,7 +1215,7 @@
             // 
             // txtValorAg
             // 
-            this.txtValorAg.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtValorAg.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtValorAg.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtValorAg.Location = new System.Drawing.Point(9, 98);
@@ -1225,7 +1228,7 @@
             // 
             // dropCobranca
             // 
-            this.dropCobranca.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dropCobranca.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dropCobranca.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dropCobranca.FormattingEnabled = true;
@@ -1326,28 +1329,13 @@
             // 
             this.tabMov.AllowUserToAddRows = false;
             this.tabMov.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tabMov.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.tabMov.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tabMov.DefaultCellStyle = dataGridViewCellStyle4;
             this.tabMov.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabMov.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.tabMov.Location = new System.Drawing.Point(0, 0);
             this.tabMov.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tabMov.Name = "tabMov";
+            this.tabMov.Font = new System.Drawing.Font("Tahoma", 7.25F, System.Drawing.FontStyle.Bold);
             this.tabMov.RowHeadersVisible = false;
             this.tabMov.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.tabMov.Size = new System.Drawing.Size(1332, 479);
@@ -1693,7 +1681,7 @@
             this.listagens.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.listagens.Name = "listagens";
             this.listagens.Padding = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.listagens.Size = new System.Drawing.Size(1342, 582);
+            this.listagens.Size = new System.Drawing.Size(1342, 632);
             this.listagens.TabIndex = 2;
             this.listagens.Text = "Listagens";
             this.listagens.UseVisualStyleBackColor = true;
@@ -1716,7 +1704,7 @@
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 250F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(1334, 578);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(1334, 628);
             this.tableLayoutPanel9.TabIndex = 160;
             // 
             // tabListRetiradas
@@ -1726,19 +1714,19 @@
             this.tabListRetiradas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tabListRetiradas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabListRetiradas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.tabListRetiradas.Location = new System.Drawing.Point(4, 188);
+            this.tabListRetiradas.Location = new System.Drawing.Point(4, 213);
             this.tabListRetiradas.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tabListRetiradas.Name = "tabListRetiradas";
             this.tabListRetiradas.RowHeadersVisible = false;
             this.tabListRetiradas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tabListRetiradas.Size = new System.Drawing.Size(1326, 137);
+            this.tabListRetiradas.Size = new System.Drawing.Size(1326, 162);
             this.tabListRetiradas.TabIndex = 7;
             // 
             // label40
             // 
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(4, 163);
+            this.label40.Location = new System.Drawing.Point(4, 188);
             this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(150, 17);
@@ -1757,7 +1745,7 @@
             this.tabListEntregas.Name = "tabListEntregas";
             this.tabListEntregas.RowHeadersVisible = false;
             this.tabListEntregas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tabListEntregas.Size = new System.Drawing.Size(1326, 137);
+            this.tabListEntregas.Size = new System.Drawing.Size(1326, 162);
             this.tabListEntregas.TabIndex = 4;
             // 
             // label31
@@ -1781,7 +1769,7 @@
             this.panel12.Controls.Add(this.txtListExtra);
             this.panel12.Controls.Add(this.btnListPdf);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel12.Location = new System.Drawing.Point(3, 330);
+            this.panel12.Location = new System.Drawing.Point(3, 380);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(1328, 245);
             this.panel12.TabIndex = 8;
@@ -1876,7 +1864,7 @@
             this.finalizadas.Location = new System.Drawing.Point(4, 25);
             this.finalizadas.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.finalizadas.Name = "finalizadas";
-            this.finalizadas.Size = new System.Drawing.Size(1342, 582);
+            this.finalizadas.Size = new System.Drawing.Size(1342, 632);
             this.finalizadas.TabIndex = 3;
             this.finalizadas.Text = "Finalizadas";
             // 
@@ -1894,7 +1882,7 @@
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 251F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(1342, 582);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(1342, 632);
             this.tableLayoutPanel10.TabIndex = 155;
             // 
             // tabFinalizadas
@@ -1909,7 +1897,7 @@
             this.tabFinalizadas.Name = "tabFinalizadas";
             this.tabFinalizadas.RowHeadersVisible = false;
             this.tabFinalizadas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tabFinalizadas.Size = new System.Drawing.Size(1334, 302);
+            this.tabFinalizadas.Size = new System.Drawing.Size(1334, 352);
             this.tabFinalizadas.TabIndex = 4;
             // 
             // panel13
@@ -1918,14 +1906,14 @@
             this.panel13.Controls.Add(this.label22);
             this.panel13.Controls.Add(this.tableLayoutPanel12);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel13.Location = new System.Drawing.Point(3, 334);
+            this.panel13.Location = new System.Drawing.Point(3, 384);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(1336, 245);
             this.panel13.TabIndex = 5;
             // 
             // tableLayoutPanel11
             // 
-            this.tableLayoutPanel11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tableLayoutPanel11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel11.ColumnCount = 10;
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127F));
@@ -1975,7 +1963,7 @@
             // 
             // dropVeicRetFinal
             // 
-            this.dropVeicRetFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dropVeicRetFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dropVeicRetFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dropVeicRetFinal.FormattingEnabled = true;
@@ -2010,7 +1998,7 @@
             // 
             // dropFuncRetFinal
             // 
-            this.dropFuncRetFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dropFuncRetFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dropFuncRetFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dropFuncRetFinal.FormattingEnabled = true;
@@ -2022,7 +2010,7 @@
             // 
             // dropConteinerFinal
             // 
-            this.dropConteinerFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dropConteinerFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dropConteinerFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dropConteinerFinal.FormattingEnabled = true;
@@ -2034,7 +2022,7 @@
             // 
             // txtReciboFinal
             // 
-            this.txtReciboFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtReciboFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtReciboFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReciboFinal.Location = new System.Drawing.Point(844, 15);
@@ -2055,7 +2043,7 @@
             // 
             // txtDataEntFinal
             // 
-            this.txtDataEntFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtDataEntFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDataEntFinal.CustomFormat = "dd/MM/yyyy";
             this.txtDataEntFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2069,7 +2057,7 @@
             // 
             // txtDataRetFinal
             // 
-            this.txtDataRetFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtDataRetFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDataRetFinal.CustomFormat = "dd/MM/yyyy";
             this.txtDataRetFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2116,7 +2104,7 @@
             // 
             // dropPagoFinal
             // 
-            this.dropPagoFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dropPagoFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dropPagoFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dropPagoFinal.FormattingEnabled = true;
@@ -2132,7 +2120,7 @@
             // 
             // txtNroOsFinal
             // 
-            this.txtNroOsFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtNroOsFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNroOsFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNroOsFinal.Location = new System.Drawing.Point(506, 15);
@@ -2165,7 +2153,7 @@
             // 
             // txtValorFinal
             // 
-            this.txtValorFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtValorFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtValorFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtValorFinal.Location = new System.Drawing.Point(698, 15);
@@ -2221,7 +2209,7 @@
             // 
             // dropFuncEntFinal
             // 
-            this.dropFuncEntFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dropFuncEntFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dropFuncEntFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dropFuncEntFinal.FormattingEnabled = true;
@@ -2244,7 +2232,7 @@
             // 
             // dropVeicEntFinal
             // 
-            this.dropVeicEntFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dropVeicEntFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dropVeicEntFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dropVeicEntFinal.FormattingEnabled = true;
@@ -2279,7 +2267,7 @@
             // 
             // tableLayoutPanel12
             // 
-            this.tableLayoutPanel12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tableLayoutPanel12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel12.ColumnCount = 6;
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
@@ -2351,7 +2339,7 @@
             // 
             // txtNomeFinal
             // 
-            this.txtNomeFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtNomeFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNomeFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeFinal.Location = new System.Drawing.Point(289, 2);
