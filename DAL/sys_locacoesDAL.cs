@@ -584,7 +584,33 @@ namespace DAL
             DataTable dtb = null;
             try
             {
-                sqlCom = new MySqlCommand(@"SELECT previsao_entrega,sys_locacoes.tipo,sys_clientes.nome,sys_enderecos.endereco AS endereco,mapa,valor,cobranca,autorizacao,sys_locacoes.observacao,urgencia_entrega FROM " + dbName + ".sys_locacoes, " + dbName + ".sys_enderecos, " + dbName + ".sys_clientes, " + dbName + ".sys_veiculos," + dbName + ".sys_funcionarios WHERE sys_locacoes.situacao IN ('Ag.Entrega') AND sys_locacoes.sys_endereco_id = sys_enderecos.id AND sys_enderecos.sys_clientes_id = sys_clientes.id AND sys_locacoes.func_entrega_id = sys_funcionarios.id AND sys_locacoes.veic_entrega_id = sys_veiculos.id AND func_entrega_id = " + func_entrega_id + " ORDER BY sys_locacoes.id DESC;", con);
+                sqlCom = new MySqlCommand(@"SELECT 
+                                                    previsao_entrega,
+                                                    sys_locacoes.tipo,
+                                                    sys_clientes.nome,
+                                                    sys_enderecos.endereco AS endereco,
+                                                    valor,
+                                                    cobranca,
+                                                    autorizacao,
+                                                    sys_locacoes.observacao,
+                                                    urgencia_entrega 
+                                            FROM " + dbName + ".sys_locacoes, " +
+                                                    dbName + ".sys_enderecos, " +
+                                                    dbName + ".sys_clientes, " +
+                                                    dbName + ".sys_veiculos," +
+                                                    dbName + ".sys_funcionarios " +
+                                            "WHERE sys_locacoes.situacao IN ('Ag.Entrega')" +
+                                            " AND " +
+                                                    "sys_locacoes.sys_endereco_id = sys_enderecos.id" +
+                                            " AND " +
+                                                    "sys_enderecos.sys_clientes_id = sys_clientes.id" +
+                                            " AND " +
+                                                    "sys_locacoes.func_entrega_id = sys_funcionarios.id" +
+                                            " AND " +
+                                                    "sys_locacoes.veic_entrega_id = sys_veiculos.id" +
+                                            " AND " +
+                                                    "func_entrega_id = " + func_entrega_id + "" +
+                                            " ORDER BY sys_locacoes.id DESC;", con);
                 adt = new MySqlDataAdapter(sqlCom);
                 dtb = new DataTable();
                 adt.Fill(dtb);

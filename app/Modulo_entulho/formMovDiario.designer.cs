@@ -363,7 +363,6 @@
             this.tabClientes.Font = new System.Drawing.Font("Tahoma", 7.25F, System.Drawing.FontStyle.Bold);
             this.tabClientes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabClientes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.tabClientes.Font = new System.Drawing.Font("Tahoma", 7.25F, System.Drawing.FontStyle.Bold);
             this.tabClientes.Location = new System.Drawing.Point(5, 23);
             this.tabClientes.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tabClientes.Name = "tabClientes";
@@ -1717,6 +1716,7 @@
             this.tabListRetiradas.Location = new System.Drawing.Point(4, 213);
             this.tabListRetiradas.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tabListRetiradas.Name = "tabListRetiradas";
+            this.tabListRetiradas.Font = new System.Drawing.Font("Tahoma", 7.25F, System.Drawing.FontStyle.Bold);
             this.tabListRetiradas.RowHeadersVisible = false;
             this.tabListRetiradas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tabListRetiradas.Size = new System.Drawing.Size(1326, 162);
@@ -1743,6 +1743,7 @@
             this.tabListEntregas.Location = new System.Drawing.Point(4, 24);
             this.tabListEntregas.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tabListEntregas.Name = "tabListEntregas";
+            this.tabListEntregas.Font = new System.Drawing.Font("Tahoma", 7.25F, System.Drawing.FontStyle.Bold);
             this.tabListEntregas.RowHeadersVisible = false;
             this.tabListEntregas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tabListEntregas.Size = new System.Drawing.Size(1326, 162);
@@ -1802,6 +1803,7 @@
             this.tabFuncListagem.Location = new System.Drawing.Point(3, 42);
             this.tabFuncListagem.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tabFuncListagem.Name = "tabFuncListagem";
+            this.tabFuncListagem.Font = new System.Drawing.Font("Tahoma", 7.25F, System.Drawing.FontStyle.Bold);
             this.tabFuncListagem.RowHeadersVisible = false;
             this.tabFuncListagem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tabFuncListagem.Size = new System.Drawing.Size(441, 169);
@@ -1895,6 +1897,7 @@
             this.tabFinalizadas.Location = new System.Drawing.Point(4, 27);
             this.tabFinalizadas.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tabFinalizadas.Name = "tabFinalizadas";
+            this.tabFinalizadas.Font = new System.Drawing.Font("Tahoma", 7.25F, System.Drawing.FontStyle.Bold);
             this.tabFinalizadas.RowHeadersVisible = false;
             this.tabFinalizadas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tabFinalizadas.Size = new System.Drawing.Size(1334, 352);
