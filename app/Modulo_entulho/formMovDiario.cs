@@ -284,7 +284,6 @@ namespace app
             tabListEntregas.Columns["nome"].HeaderText = "Cliente";
             tabListEntregas.Columns["endereco"].HeaderText = "Endereço";
             tabListEntregas.Columns["registro"].HeaderText = "Registro";
-            tabListEntregas.Columns["mapa"].HeaderText = "Mapa";
             tabListEntregas.Columns["fones"].HeaderText = "Fones";
             tabListEntregas.Columns["cobranca"].HeaderText = "Cobrança";
             tabListEntregas.Columns["autorizacao"].HeaderText = "Aut. EPTC";
@@ -2756,8 +2755,8 @@ namespace app
                 double[] posXEnt;
                 double[] posXRet;
 
-                string[] cabEnt = new string[] { "Prev. Ent.", "Tipo", "Cliente", "Endereço", "Mapa", "Valor", "Cobrança", "Val.Aut.EPTC", "Observação" };
-                string[] cabRet = new string[] { "Data Ent.", "Prev. Ret.", "O.S.", "Cont.", "Cobrança", "Pago", "Valor", "Endereço", "Mapa", "Observação" };
+                string[] cabEnt = new string[] { "Cod.", "Prev. Ent.", "Tipo", "Cliente", "Endereço", "Valor", "Cobrança", "Val.Aut.EPTC", "Observação" };
+                string[] cabRet = new string[] { "Cod.", "Data Ent.", "Prev. Ret.", "O.S.", "Cont.", "Cobrança", "Pago", "Valor", "Endereço", "Observação" };
 
                 #region IMPRIMI AS TABLEAS DOS MOTORISTAS
                 #region 1º Vê quantos motoristas foram selecionados.
@@ -2811,30 +2810,30 @@ namespace app
                     #region IMPRIME A TABELA PRINCIPAL DA PÁGINA
                     #region TABELA DE ENTREGAS
                     #region POSICIONAMENTOS DAS COLUNAS
+                    double idWidth = 20;
                     double prevEntregaWidht = 70;
                     double tipoWidht = 15;
                     double clienteWidth = 105;
                     double enderecoWidht = 170;
-                    double mapaWidht = 20;
                     double valorWidh = 30;
                     double cobrancaWidht = 35;
                     double autorizacaoWidht = 70;
-                    double observacaoEntWidht = pageWidth - (margens + prevEntregaWidht + tipoWidht + clienteWidth + enderecoWidht + mapaWidht + valorWidh + cobrancaWidht + autorizacaoWidht + margens);
+                    double observacaoEntWidht = pageWidth - (margens + idWidth + prevEntregaWidht + tipoWidht + clienteWidth + enderecoWidht + valorWidh + cobrancaWidht + autorizacaoWidht + margens);
 
                     //tabela Entregas
-                    //prev entrega/tipo/cliente/endereço/mapa/valor/cobrança/autorização/observação
-                    //    70       15     105     150     35   35     35         70       
+                    //codigo|prev entrega|tipo|cliente|endereço|valor|cobrança|autorização|observação
+                    //  20  |     70     | 15 |  105  |  150   | 35  |   35   |    70     |    X
                     //posXEnt = new double[] { 10, 80, 95, 200, 350, 375, 410, 440, 530 };
                     posXEnt = new double[] {margens,
-                                                margens+prevEntregaWidht,
-                                                margens+prevEntregaWidht+tipoWidht,
-                                                margens+prevEntregaWidht+tipoWidht+clienteWidth,
-                                                margens+prevEntregaWidht+tipoWidht+clienteWidth+enderecoWidht,
-                                                margens+prevEntregaWidht+tipoWidht+clienteWidth+enderecoWidht+mapaWidht,
-                                                margens+prevEntregaWidht+tipoWidht+clienteWidth+enderecoWidht+mapaWidht+valorWidh,
-                                                margens+prevEntregaWidht+tipoWidht+clienteWidth+enderecoWidht+mapaWidht+valorWidh+cobrancaWidht,
-                                                margens+prevEntregaWidht+tipoWidht+clienteWidth+enderecoWidht+mapaWidht+valorWidh+cobrancaWidht+autorizacaoWidht,
-                                                margens+prevEntregaWidht+tipoWidht+clienteWidth+enderecoWidht+mapaWidht+valorWidh+cobrancaWidht+autorizacaoWidht+observacaoEntWidht};
+                                            margens+idWidth,
+                                            margens+idWidth+prevEntregaWidht,
+                                            margens+idWidth+prevEntregaWidht+tipoWidht,
+                                            margens+idWidth+prevEntregaWidht+tipoWidht+clienteWidth,
+                                            margens+idWidth+prevEntregaWidht+tipoWidht+clienteWidth+enderecoWidht,
+                                            margens+idWidth+prevEntregaWidht+tipoWidht+clienteWidth+enderecoWidht+valorWidh,
+                                            margens+idWidth+prevEntregaWidht+tipoWidht+clienteWidth+enderecoWidht+valorWidh+cobrancaWidht,
+                                            margens+idWidth+prevEntregaWidht+tipoWidht+clienteWidth+enderecoWidht+valorWidh+cobrancaWidht+autorizacaoWidht,
+                                            margens+idWidth+prevEntregaWidht+tipoWidht+clienteWidth+enderecoWidht+valorWidh+cobrancaWidht+autorizacaoWidht+observacaoEntWidht};
                     #endregion
                     formatterAlinEsquerda.DrawString("Nome: " + mdlFuncPrinc.NOME, fonteGrandeNegrito, XBrushes.Black, xRectLinha, XStringFormats.TopLeft);
                     novalinhaPdf(linha, pageHeight);
@@ -2911,7 +2910,7 @@ namespace app
                                     }
                                     xRectCelula = new XRect(posXEnt[l], posYinicial, (posXEnt[l + 1] - posXEnt[l]), linha);
                                     graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                    formatterAlinCenter.DrawString(cont, fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                    formatterAlinEsquerda.DrawString(cont, fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                 }
                                 else
                                 {
@@ -2927,26 +2926,26 @@ namespace app
                     }
                     #endregion
                     #region TABELA DE RETIRADAS
-                    #region POSICIONAMENTO DAS COLUNAS
-                    double dataEntWidh = 50;
-                    double prevRetWidh = 75;
+                    #region POSICIONAMENTO DAS COLUNAA
+                    double dataEntWidth = 50;
+                    double prevRetWidth = 75;
                     double osWidht = 30;
                     double contWidht = 20;
                     double pagowidht = 20;
-                    double observacaoRetWidht = pageWidth - (margens + dataEntWidh + prevRetWidh + osWidht + contWidht + cobrancaWidht + pagowidht + valorWidh + enderecoWidht + mapaWidht + margens);
+                    double observacaoRetWidht = pageWidth - (margens + dataEntWidth + prevRetWidth + osWidht + contWidht + cobrancaWidht + pagowidht + valorWidh + enderecoWidht + margens);
 
-                    //"Data Ent.", "Prev. Ret.", "O.S.", "Cont.", "Cobrança", "Pago", "Valor", "Endereço", "Mapa", "Observação"
+                    //"Cod", "Data Ent.", "Prev. Ret.", "O.S.", "Cont.", "Cobrança", "Pago", "Valor", "Endereço", "Observação"
                     //posXRet = new double[] { 10, 65, 150, 180, 203, 243, 265, 300, 433, 715, 740 };
                     posXRet = new double[] {margens,
-                                                margens+dataEntWidh,
-                                                margens+dataEntWidh+prevRetWidh,
-                                                margens+dataEntWidh+prevRetWidh+osWidht,
-                                                margens+dataEntWidh+prevRetWidh+osWidht+contWidht,
-                                                margens+dataEntWidh+prevRetWidh+osWidht+contWidht+cobrancaWidht,
-                                                margens+dataEntWidh+prevRetWidh+osWidht+contWidht+cobrancaWidht+pagowidht,
-                                                margens+dataEntWidh+prevRetWidh+osWidht+contWidht+cobrancaWidht+pagowidht+valorWidh,
-                                                margens+dataEntWidh+prevRetWidh+osWidht+contWidht+cobrancaWidht+pagowidht+valorWidh+enderecoWidht,
-                                                margens+dataEntWidh+prevRetWidh+osWidht+contWidht+cobrancaWidht+pagowidht+valorWidh+enderecoWidht+mapaWidht};
+                                            margens+idWidth,
+                                            margens+idWidth+dataEntWidth,
+                                            margens+idWidth+dataEntWidth+prevRetWidth,
+                                            margens+idWidth+dataEntWidth+prevRetWidth+osWidht,
+                                            margens+idWidth+dataEntWidth+prevRetWidth+osWidht+contWidht,
+                                            margens+idWidth+dataEntWidth+prevRetWidth+osWidht+contWidht+cobrancaWidht,
+                                            margens+idWidth+dataEntWidth+prevRetWidth+osWidht+contWidht+cobrancaWidht+pagowidht,
+                                            margens+idWidth+dataEntWidth+prevRetWidth+osWidht+contWidht+cobrancaWidht+pagowidht+valorWidh,
+                                            margens+idWidth+dataEntWidth+prevRetWidth+osWidht+contWidht+cobrancaWidht+pagowidht+valorWidh+enderecoWidht};
                     #endregion
                     novalinhaPdf(linha, pageHeight);
                     if (dtbRetPrinc.Rows.Count != 0)
@@ -3080,36 +3079,36 @@ namespace app
                         if (motIdSecun[j] != motIdPrinc[0])
                         {
                             mdlFuncPrinc = sys_funcionariosBLL.MostrarBLL(motIdSecun[j]);
-                            //prev entrega/tipo/cliente/endereço/mapa/fone/valor/cobrança/autorização/observação
+                            //cod|prev entrega|tipo|cliente|endereço|fone|valor|cobrança|autorização|observação
                             dtbEntSecun = sys_locacoesBLL.PrintListagemEntregaBLL(mdlFuncPrinc.ID.ToString());
                             dtbRetSecun = sys_locacoesBLL.PrintListagemRetiradaBLL(mdlFuncPrinc.ID.ToString());
                             fontePequena = new XFont("Tahoma", 6, XFontStyle.Regular);
                             fonteGrande = new XFont("Tahoma", 8, XFontStyle.Regular);
                             #region POSICIONAMENTOS DAS COLUNAS
+                            double idSecWidht = 20;
                             double prevEntregaSecWidht = 70;
                             double tipoSecWidht = 15;
                             double clienteSecWidth = 105;
                             double enderecoSecWidht = 150;
-                            double mapaSecWidht = 20;
                             double valorSecWidh = 30;
                             double cobrancaSecWidht = 35;
                             double autorizacaoSecWidht = 70;
-                            double observacaoEntSecWidht = pageWidth - (margens + prevEntregaSecWidht + tipoSecWidht + clienteSecWidth + enderecoSecWidht + mapaSecWidht + valorSecWidh + cobrancaSecWidht + autorizacaoSecWidht + margens);
+                            double observacaoEntSecWidht = pageWidth - (margens + idSecWidht + prevEntregaSecWidht + tipoSecWidht + clienteSecWidth + enderecoSecWidht + valorSecWidh + cobrancaSecWidht + autorizacaoSecWidht + margens);
 
                             //tabela Entregas
-                            //prev entrega/tipo/cliente/endereço/mapa/valor/cobrança/autorização/observação
-                            //    70       15     105     150     35   35     35         70       
+                            //id|prev entrega|tipo|cliente|endereço|valor|cobrança|autorização|observação
+                            //20|    70      | 15 |  105  |  150   | 30  |   35   |    70     |    X       
                             //posXEnt = new double[] { 10, 80, 95, 200, 350, 375, 410, 440, 530 };
                             posXEnt = new double[] {margens,
-                                                margens+prevEntregaSecWidht,
-                                                margens+prevEntregaSecWidht+tipoSecWidht,
-                                                margens+prevEntregaSecWidht+tipoSecWidht+clienteSecWidth,
-                                                margens+prevEntregaSecWidht+tipoSecWidht+clienteSecWidth+enderecoSecWidht,
-                                                margens+prevEntregaSecWidht+tipoSecWidht+clienteSecWidth+enderecoSecWidht+mapaSecWidht,
-                                                margens+prevEntregaSecWidht+tipoSecWidht+clienteSecWidth+enderecoSecWidht+mapaSecWidht+valorSecWidh,
-                                                margens+prevEntregaSecWidht+tipoSecWidht+clienteSecWidth+enderecoSecWidht+mapaSecWidht+valorSecWidh+cobrancaSecWidht,
-                                                margens+prevEntregaSecWidht+tipoSecWidht+clienteSecWidth+enderecoSecWidht+mapaSecWidht+valorSecWidh+cobrancaSecWidht+autorizacaoSecWidht,
-                                                margens+prevEntregaSecWidht+tipoSecWidht+clienteSecWidth+enderecoSecWidht+mapaSecWidht+valorSecWidh+cobrancaSecWidht+autorizacaoSecWidht+observacaoEntSecWidht};
+                                                margens+idSecWidht,
+                                                margens+idSecWidht+prevEntregaSecWidht,
+                                                margens+idSecWidht+prevEntregaSecWidht+tipoSecWidht,
+                                                margens+idSecWidht+prevEntregaSecWidht+tipoSecWidht+clienteSecWidth,
+                                                margens+idSecWidht+prevEntregaSecWidht+tipoSecWidht+clienteSecWidth+enderecoSecWidht,
+                                                margens+idSecWidht+prevEntregaSecWidht+tipoSecWidht+clienteSecWidth+enderecoSecWidht+valorSecWidh,
+                                                margens+idSecWidht+prevEntregaSecWidht+tipoSecWidht+clienteSecWidth+enderecoSecWidht+valorSecWidh+cobrancaSecWidht,
+                                                margens+idSecWidht+prevEntregaSecWidht+tipoSecWidht+clienteSecWidth+enderecoSecWidht+valorSecWidh+cobrancaSecWidht+autorizacaoSecWidht,
+                                                margens+idSecWidht+prevEntregaSecWidht+tipoSecWidht+clienteSecWidth+enderecoSecWidht+valorSecWidh+cobrancaSecWidht+autorizacaoSecWidht+observacaoEntSecWidht};
                             #endregion
                             if (dtbEntSecun.Rows.Count > 0 || dtbRetSecun.Rows.Count > 0)
                             {
@@ -3212,7 +3211,7 @@ namespace app
                             double osSecWidht = 30;
                             double contSecWidht = 20;
                             double pagoSecWidht = 20;
-                            double observacaoRetSecWidht = pageWidth - (margens + dataEntSecWidh + prevRetSecWidh + osSecWidht + contSecWidht + cobrancaWidht + pagoSecWidht + valorWidh + enderecoWidht + mapaWidht + margens);
+                            double observacaoRetSecWidht = pageWidth - (margens + dataEntSecWidh + prevRetSecWidh + osSecWidht + contSecWidht + cobrancaWidht + pagoSecWidht + valorWidh + enderecoWidht + margens);
 
                             //"Data Ent.", "Prev. Ret.", "O.S.", "Cont.", "Cobrança", "Pago", "Valor", "Endereço", "Mapa", "Observação"
                             //posXRet = new double[] { 10, 65, 150, 180, 203, 243, 265, 300, 433, 715, 740 };
@@ -3225,7 +3224,7 @@ namespace app
                                                 margens+dataEntSecWidh+prevRetSecWidh+osSecWidht+contSecWidht+cobrancaWidht+pagoSecWidht,
                                                 margens+dataEntSecWidh+prevRetSecWidh+osSecWidht+contSecWidht+cobrancaWidht+pagoSecWidht+valorWidh,
                                                 margens+dataEntSecWidh+prevRetSecWidh+osSecWidht+contSecWidht+cobrancaWidht+pagoSecWidht+valorWidh+enderecoWidht,
-                                                margens+dataEntSecWidh+prevRetSecWidh+osSecWidht+contSecWidht+cobrancaWidht+pagoSecWidht+valorWidh+enderecoWidht+mapaWidht};
+                                                margens+dataEntSecWidh+prevRetSecWidh+osSecWidht+contSecWidht+cobrancaWidht+pagoSecWidht+valorWidh+enderecoWidht};
                             #endregion
                             if (dtbRetSecun.Rows.Count != 0)
                             {
@@ -3796,6 +3795,15 @@ namespace app
             if (e.Exception != null)
             {
                 MessageBox.Show(e.Exception.ToString());
+            }
+        }
+        private void tabMov_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                dtbLocacoes = sys_locacoesBLL.ListarTudoBLL(txtMovVisDe.Value, txtMovVisAte.Value, queryStatusLocacao);
+                tabMov.DataSource = null;
+                carregaMovimento(dtbLocacoes);
             }
         }
         private void timer1_Tick(object sender, EventArgs e)

@@ -538,7 +538,41 @@ namespace DAL
             DataTable dtb = null;
             try
             {
-                sqlCom = new MySqlCommand(@"SELECT sys_locacoes.id,previsao_entrega,sys_locacoes.tipo,sys_funcionarios.id AS id_func_entrega,sys_funcionarios.nome AS func_entrega,sys_veiculos.placa AS veic_entrega,sys_locacoes.situacao,sys_locacoes.urgencia_entrega,sys_clientes.nome,registro,sys_enderecos.endereco AS endereco,sys_clientes.nome,mapa, CONCAT(fone1,' - ',fone2) AS fones,valor,listagem_retirada,cobranca,autorizacao,val_autorizacao,numero_autorizacao,sys_locacoes.observacao FROM " + dbName + ".sys_locacoes, " + dbName + ".sys_enderecos, " + dbName + ".sys_clientes, " + dbName + ".sys_veiculos," + dbName + ".sys_funcionarios WHERE sys_locacoes.situacao IN ('Ag.Entrega') AND sys_locacoes.listagem_entrega = true AND sys_locacoes.sys_endereco_id = sys_enderecos.id AND sys_enderecos.sys_clientes_id = sys_clientes.id AND sys_locacoes.func_entrega_id = sys_funcionarios.id AND sys_locacoes.veic_entrega_id = sys_veiculos.id ORDER BY sys_locacoes.id DESC;", con);
+                sqlCom = new MySqlCommand(@"SELECT 
+                                                    sys_locacoes.id,
+                                                    previsao_entrega,
+                                                    sys_locacoes.tipo,
+                                                    sys_funcionarios.id AS id_func_entrega,
+                                                    sys_funcionarios.nome AS func_entrega,
+                                                    sys_veiculos.placa AS veic_entrega,
+                                                    sys_locacoes.situacao,
+                                                    sys_locacoes.urgencia_entrega,
+                                                    sys_clientes.nome,
+                                                    sys_clientes.registro,
+                                                    sys_enderecos.endereco AS endereco,
+                                                    sys_clientes.nome, 
+                                                    CONCAT(fone1,' - ',fone2) AS fones,
+                                                    valor,
+                                                    listagem_retirada,
+                                                    cobranca,
+                                                    autorizacao,
+                                                    val_autorizacao,
+                                                    numero_autorizacao,
+                                                    sys_locacoes.observacao 
+                                            FROM 
+                                                  " + dbName + ".sys_locacoes, " 
+                                                    + dbName + ".sys_enderecos, " 
+                                                    + dbName + ".sys_clientes, " 
+                                                    + dbName + ".sys_veiculos," 
+                                                    + dbName + ".sys_funcionarios " +
+                                            "WHERE " +
+                                                    "sys_locacoes.situacao IN ('Ag.Entrega') " +
+                                            "AND sys_locacoes.listagem_entrega = true " +
+                                            "AND sys_locacoes.sys_endereco_id = sys_enderecos.id " +
+                                            "AND sys_enderecos.sys_clientes_id = sys_clientes.id " +
+                                            "AND sys_locacoes.func_entrega_id = sys_funcionarios.id " +
+                                            "AND sys_locacoes.veic_entrega_id = sys_veiculos.id " +
+                                            "ORDER BY sys_locacoes.id DESC;", con);
                 adt = new MySqlDataAdapter(sqlCom);
                 dtb = new DataTable();
                 adt.Fill(dtb);
@@ -584,7 +618,31 @@ namespace DAL
             DataTable dtb = null;
             try
             {
-                sqlCom = new MySqlCommand(@"SELECT previsao_entrega,sys_locacoes.tipo,sys_clientes.nome,sys_enderecos.endereco AS endereco,mapa,valor,cobranca,autorizacao,sys_locacoes.observacao,urgencia_entrega FROM " + dbName + ".sys_locacoes, " + dbName + ".sys_enderecos, " + dbName + ".sys_clientes, " + dbName + ".sys_veiculos," + dbName + ".sys_funcionarios WHERE sys_locacoes.situacao IN ('Ag.Entrega') AND sys_locacoes.sys_endereco_id = sys_enderecos.id AND sys_enderecos.sys_clientes_id = sys_clientes.id AND sys_locacoes.func_entrega_id = sys_funcionarios.id AND sys_locacoes.veic_entrega_id = sys_veiculos.id AND func_entrega_id = " + func_entrega_id + " ORDER BY sys_locacoes.id DESC;", con);
+                sqlCom = new MySqlCommand(@"SELECT
+                                            sys_locacoes.id,
+                                            sys_locacoes.previsao_entrega,
+                                            sys_locacoes.tipo,
+                                            sys_clientes.nome,
+                                            sys_enderecos.endereco AS endereco,
+                                            sys_locacoes.valor,
+                                            sys_locacoes.cobranca,
+                                            sys_locacoes.autorizacao,
+                                            sys_locacoes.observacao,
+                                            sys_locacoes.urgencia_entrega 
+                                        FROM 
+                                            " + dbName + ".sys_locacoes," +
+                                            " " + dbName + ".sys_enderecos," +
+                                            " " + dbName + ".sys_clientes," +
+                                            " " + dbName + ".sys_veiculos," +
+                                            " " + dbName + ".sys_funcionarios " +
+                                        "WHERE sys_locacoes.situacao IN ('Ag.Entrega') " +
+                                        "AND sys_locacoes.sys_endereco_id = sys_enderecos.id " +
+                                        "AND sys_enderecos.sys_clientes_id = sys_clientes.id " +
+                                        "AND sys_locacoes.func_entrega_id = sys_funcionarios.id " +
+                                        "AND sys_locacoes.veic_entrega_id = sys_veiculos.id " +
+                                        "AND func_entrega_id = " + func_entrega_id + " " +
+                                        "ORDER BY sys_locacoes.id DESC;", con);
+
                 adt = new MySqlDataAdapter(sqlCom);
                 dtb = new DataTable();
                 adt.Fill(dtb);
@@ -607,7 +665,33 @@ namespace DAL
             DataTable dtb = null;
             try
             {
-                sqlCom = new MySqlCommand(@"SELECT loc.data_entrega,loc.previsao_retirada,loc.numero_os,loc.numero_conteiner,loc.cobranca,pag.quitado,pag.valor,ender.endereco,ender.mapa, loc.observacao AS observacao, loc.urgencia_retirada FROM sys_locacoes loc INNER JOIN sys_funcionarios a1 ON loc.func_entrega_id = a1.id INNER JOIN sys_funcionarios a2 ON loc.func_retirada_id = a2.id INNER JOIN sys_veiculos b1 ON loc.veic_entrega_id = b1.id INNER JOIN sys_veiculos b2 ON loc.veic_retirada_id = b2.id,sys_enderecos ender,sys_clientes cli,sys_pagamentos pag where loc.sys_endereco_id = ender.id and	ender.sys_clientes_id = cli.id and pag.sys_locacoes_id = loc.id and loc.situacao = 'Ag.retirada' AND a2.id = " + func_retirada_id + " ORDER BY loc.id DESC;", con);
+                sqlCom = new MySqlCommand(@"SELECT 
+                                                loc.id,
+                                                loc.data_entrega,
+                                                loc.previsao_retirada,
+                                                loc.numero_os,
+                                                loc.numero_conteiner,
+                                                loc.cobranca,
+                                                pag.quitado,
+                                                pag.valor,
+                                                ender.endereco,
+                                                loc.observacao AS observacao,
+                                                loc.urgencia_retirada 
+                                        FROM 
+                                                " + dbName + ".sys_locacoes loc " +
+                                        "INNER JOIN " + dbName + ".sys_funcionarios a1 ON loc.func_entrega_id = a1.id " +
+                                        "INNER JOIN " + dbName + ".sys_funcionarios a2 ON loc.func_retirada_id = a2.id " +
+                                        "INNER JOIN " + dbName + ".sys_veiculos b1 ON loc.veic_entrega_id = b1.id " +
+                                        "INNER JOIN " + dbName + ".sys_veiculos b2 ON loc.veic_retirada_id = b2.id, " +
+                                                dbName + ".sys_enderecos ender, " +
+                                                dbName + ".sys_clientes cli, " +
+                                                dbName + ".sys_pagamentos pag " +
+                                        "WHERE " +
+                                                "loc.sys_endereco_id = ender.id " +
+                                        "AND ender.sys_clientes_id = cli.id " +
+                                        "AND pag.sys_locacoes_id = loc.id " +
+                                        "AND loc.situacao = 'Ag.retirada' " +
+                                        "AND a2.id = " + func_retirada_id + " ORDER BY loc.id DESC; ", con);
                 adt = new MySqlDataAdapter(sqlCom);
                 dtb = new DataTable();
                 adt.Fill(dtb);
