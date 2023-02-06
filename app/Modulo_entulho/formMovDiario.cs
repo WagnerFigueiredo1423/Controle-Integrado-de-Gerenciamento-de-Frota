@@ -335,6 +335,10 @@ namespace app
             tabFuncListagem.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             tabFuncListagem.Columns["id"].Visible = false;
             tabFuncListagem.Columns["sys_empresas_id"].Visible = false;
+            tabFuncListagem.Columns["habilitacao_categoria"].Visible = false;
+            tabFuncListagem.Columns["habilitacao_validade"].Visible = false;
+            tabFuncListagem.Columns["habilitacao_numero"].Visible = false;
+            tabFuncListagem.Columns["piso_salarial"].Visible = false;
             tabFuncListagem.Columns["tipo"].Visible = false;
             tabFuncListagem.Columns["foto"].Visible = false;
             tabFuncListagem.Columns["mot_poli"].Visible = false;
@@ -378,7 +382,7 @@ namespace app
             mdlLocacao.SYS_ENDERECO_ID = idEnd;
             mdlLocacao.PREVISAO_ENTREGA = txtDataPrevEntrega.Value;
             mdlLocacao.DATA_ENTREGA = txtDataPrevEntrega.Value.Date;
-            mdlLocacao.PREVISAO_RETIRADA = Convert.ToDateTime(addDiaUtilLocacao(mdlLocacao.DATA_ENTREGA).ToString("dd/MM/yyyy 12:00"));
+            mdlLocacao.PREVISAO_RETIRADA = RetornaDateTimeBLL._retornaDateTimeBLL(addDiaUtilLocacao(mdlLocacao.DATA_ENTREGA).ToString("dd/MM/yyyy 12:00"));
             if (mdlLocacao.PREVISAO_ENTREGA.Date > DateTime.Now.Date)
             {
                 if (MessageBox.Show("A data de previsão para entrega será dia " + mdlLocacao.PREVISAO_ENTREGA.ToShortDateString() + ".\nDeseja incluir esata locação na listagem de entrega?", "Mensagem", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -2714,7 +2718,7 @@ namespace app
         #region LISTAGEM EM PDF
         private void imprime_pdf()
         {
-            string path = @"\\Servidor\d\PROGRAMAS\controle de caminhões\entulhos\listagens\" + txtDaraPrevEntregaListagem.Value.Year.ToString() + "\\" + DateTimeFormatInfo.CurrentInfo.GetMonthName(txtDaraPrevEntregaListagem.Value.Month) + "\\";
+            string path = @"C:\ProgramData\SIG\listagens\" + txtDaraPrevEntregaListagem.Value.Year.ToString() + "\\" + DateTimeFormatInfo.CurrentInfo.GetMonthName(txtDaraPrevEntregaListagem.Value.Month) + "\\";
             string arquivo = "list_dia_" + txtDaraPrevEntregaListagem.Value.ToString("dd_MM_yyyy") + ".pdf";
             string destino = path + arquivo;
             try
@@ -2996,7 +3000,7 @@ namespace app
                                 {
                                     xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linha);
                                     graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                    formatterAlinCenter.DrawString(Convert.ToDateTime(linhadtbRetPrinc[l].ToString()).ToString("dd/MM/yy"), fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                    formatterAlinCenter.DrawString(RetornaDateTimeBLL._retornaDateTimeBLL(linhadtbRetPrinc[l].ToString()).ToString("dd/MM/yy"), fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                 }
                                 else if (l == linhadtbRetPrinc.Table.Columns["cobranca"].Ordinal)
                                 {
@@ -3021,7 +3025,7 @@ namespace app
                                 {
                                     xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linha);
                                     graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                    formatterAlinCenter.DrawString(Convert.ToDateTime(linhadtbRetPrinc[l].ToString()).ToString("dd/MM/yy hh:mm"), fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                    formatterAlinCenter.DrawString(RetornaDateTimeBLL._retornaDateTimeBLL(linhadtbRetPrinc[l].ToString()).ToString("dd/MM/yy hh:mm"), fonteGrande, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                 }
                                 else if (l == linhadtbRetPrinc.Table.Columns["quitado"].Ordinal)
                                 {
@@ -3275,7 +3279,7 @@ namespace app
                                         {
                                             xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(Convert.ToDateTime(linhadtbRetSecun[l].ToString()).ToString("dd/MM/yy"), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(RetornaDateTimeBLL._retornaDateTimeBLL(linhadtbRetSecun[l].ToString()).ToString("dd/MM/yy"), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                         else if (l == linhadtbRetSecun.Table.Columns["cobranca"].Ordinal)
                                         {
@@ -3300,7 +3304,7 @@ namespace app
                                         {
                                             xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(Convert.ToDateTime(linhadtbRetSecun[l].ToString()).ToString("dd/MM/yy hh:mm"), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(RetornaDateTimeBLL._retornaDateTimeBLL(linhadtbRetSecun[l].ToString()).ToString("dd/MM/yy hh:mm"), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                         else if (l == linhadtbRetSecun.Table.Columns["quitado"].Ordinal)
                                         {
@@ -3588,7 +3592,7 @@ namespace app
                                         {
                                             xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(Convert.ToDateTime(linhadtbRetSecun[l].ToString()).ToString("dd/MM/yy"), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(RetornaDateTimeBLL._retornaDateTimeBLL(linhadtbRetSecun[l].ToString()).ToString("dd/MM/yy"), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                         else if (l == linhadtbRetSecun.Table.Columns["cobranca"].Ordinal)
                                         {
@@ -3613,7 +3617,7 @@ namespace app
                                         {
                                             xRectCelula = new XRect(posXRet[l], posYinicial, (posXRet[l + 1] - posXRet[l]), linhaOffSet);
                                             graphList.DrawRectangle(new XPen(XColors.Black, 1), xRectCelula);
-                                            formatterAlinCenter.DrawString(Convert.ToDateTime(linhadtbRetSecun[l].ToString()).ToString("dd/MM/yy hh:mm"), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
+                                            formatterAlinCenter.DrawString(RetornaDateTimeBLL._retornaDateTimeBLL(linhadtbRetSecun[l].ToString()).ToString("dd/MM/yy hh:mm"), fontePequena, XBrushes.Black, xRectCelula, XStringFormats.TopLeft);
                                         }
                                         else if (l == linhadtbRetSecun.Table.Columns["quitado"].Ordinal)
                                         {

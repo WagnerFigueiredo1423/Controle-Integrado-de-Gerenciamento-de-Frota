@@ -18,16 +18,16 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="dbHost" Type="System.String" Scope="User">
-      <Value Profile="(Default)">mysql.gauchateleentulhos.com.br</Value>
+      <Value Profile="(Default)">sql847.main-hosting.eu</Value>
     </Setting>
     <Setting Name="dbName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">gauchateleentu</Value>
+      <Value Profile="(Default)">u587292910_gauchateleentu</Value>
     </Setting>
     <Setting Name="dbUser" Type="System.String" Scope="User">
-      <Value Profile="(Default)">gauchateleentu</Value>
+      <Value Profile="(Default)">u587292910_gauchateleentulhos</Value>
     </Setting>
     <Setting Name="dbPass" Type="System.String" Scope="User">
-      <Value Profile="(Default)">gaucha2021</Value>
+      <Value Profile="(Default)">Root2022</Value>
     </Setting>
     <Setting Name="logPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">ssdgfsd</Value>
