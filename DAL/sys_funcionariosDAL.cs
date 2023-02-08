@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Windows.Forms;
 
 namespace DAL
 {
@@ -202,6 +203,12 @@ namespace DAL
                 adt = new MySqlDataAdapter(sqlCom);
                 dtb = new DataTable();
                 adt.Fill(dtb);
+                dtb.Columns.Add("primeiro_nome", typeof(string));
+                foreach (DataRow row in dtb.Rows)
+                {
+                    string nome = row["nome"].ToString();
+                    row["primeiro_nome"] = nome.Substring(0, nome.IndexOf(" "));
+                }
                 return dtb;
             }
             catch (MySqlException erro)

@@ -128,6 +128,7 @@
             this.dropVisualPorStatus = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btn_buscaMov = new System.Windows.Forms.Button();
             this.txtBusca = new System.Windows.Forms.TextBox();
             this.radioBtnBuscaMtr = new System.Windows.Forms.RadioButton();
             this.radioBtnBuscaAutorizacaoEptc = new System.Windows.Forms.RadioButton();
@@ -511,6 +512,7 @@
             this.txtFone2.Name = "txtFone2";
             this.txtFone2.Size = new System.Drawing.Size(93, 20);
             this.txtFone2.TabIndex = 7;
+            this.txtFone2.Leave += new System.EventHandler(this.txtFone2_Leave);
             // 
             // label6
             // 
@@ -542,6 +544,7 @@
             this.txtFone1.Name = "txtFone1";
             this.txtFone1.Size = new System.Drawing.Size(92, 20);
             this.txtFone1.TabIndex = 6;
+            this.txtFone1.Leave += new System.EventHandler(this.txtFone1_Leave);
             // 
             // txtRegistro
             // 
@@ -551,6 +554,7 @@
             this.txtRegistro.Name = "txtRegistro";
             this.txtRegistro.Size = new System.Drawing.Size(162, 20);
             this.txtRegistro.TabIndex = 4;
+            this.txtRegistro.Leave += new System.EventHandler(this.txtRegistro_Leave);
             // 
             // label5
             // 
@@ -653,11 +657,13 @@
             // 
             this.txtCliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCliente.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtCliente.Location = new System.Drawing.Point(84, 27);
             this.txtCliente.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.Size = new System.Drawing.Size(203, 20);
             this.txtCliente.TabIndex = 3;
+            this.txtCliente.Leave += new System.EventHandler(this.txtCliente_Leave);
             // 
             // txtCodigo
             // 
@@ -1395,7 +1401,7 @@
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label20.Location = new System.Drawing.Point(21, 13);
+            this.label20.Location = new System.Drawing.Point(21, 8);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(81, 20);
@@ -1407,7 +1413,7 @@
             this.lblRegistros.AutoSize = true;
             this.lblRegistros.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRegistros.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblRegistros.Location = new System.Drawing.Point(34, 42);
+            this.lblRegistros.Location = new System.Drawing.Point(33, 30);
             this.lblRegistros.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRegistros.Name = "lblRegistros";
             this.lblRegistros.Size = new System.Drawing.Size(54, 20);
@@ -1473,6 +1479,7 @@
             this.dropVisualPorStatus.Name = "dropVisualPorStatus";
             this.dropVisualPorStatus.Size = new System.Drawing.Size(113, 21);
             this.dropVisualPorStatus.TabIndex = 168;
+            this.dropVisualPorStatus.SelectedIndexChanged += new System.EventHandler(this.dropVisualPorStatus_SelectedIndexChanged_1);
             // 
             // label14
             // 
@@ -1488,6 +1495,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btn_buscaMov);
             this.panel2.Controls.Add(this.txtBusca);
             this.panel2.Controls.Add(this.radioBtnBuscaMtr);
             this.panel2.Controls.Add(this.radioBtnBuscaAutorizacaoEptc);
@@ -1504,6 +1512,19 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(724, 128);
             this.panel2.TabIndex = 2;
+            // 
+            // btn_buscaMov
+            // 
+            this.btn_buscaMov.BackgroundImage = global::app.Properties.Resources.f9bb81e576c1a361c61a8c08945b2c48_icone_de_pesquisa;
+            this.btn_buscaMov.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_buscaMov.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_buscaMov.Location = new System.Drawing.Point(601, 54);
+            this.btn_buscaMov.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_buscaMov.Name = "btn_buscaMov";
+            this.btn_buscaMov.Size = new System.Drawing.Size(20, 20);
+            this.btn_buscaMov.TabIndex = 167;
+            this.btn_buscaMov.UseVisualStyleBackColor = true;
+            this.btn_buscaMov.Click += new System.EventHandler(this.btn_buscaMov_Click);
             // 
             // txtBusca
             // 
@@ -1640,6 +1661,7 @@
             this.txtMovVisDe.Size = new System.Drawing.Size(105, 20);
             this.txtMovVisDe.TabIndex = 167;
             this.txtMovVisDe.Value = new System.DateTime(2014, 10, 8, 0, 0, 0, 0);
+            this.txtMovVisDe.ValueChanged += new System.EventHandler(this.txtMovVisDe_ValueChanged_1);
             // 
             // txtMovVisAte
             // 
@@ -1652,6 +1674,7 @@
             this.txtMovVisAte.Size = new System.Drawing.Size(105, 20);
             this.txtMovVisAte.TabIndex = 167;
             this.txtMovVisAte.Value = new System.DateTime(2014, 10, 8, 0, 0, 0, 0);
+            this.txtMovVisAte.ValueChanged += new System.EventHandler(this.txtMovVisAte_ValueChanged_1);
             // 
             // label26
             // 
@@ -2439,7 +2462,7 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 2000;
+            this.timer1.Interval = 3000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // formMovDiario
@@ -2698,5 +2721,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Endereço;
         private System.Windows.Forms.DataGridViewTextBoxColumn Latitude;
         private System.Windows.Forms.DataGridViewTextBoxColumn Longitude;
+        private System.Windows.Forms.Button btn_buscaMov;
     }
 }

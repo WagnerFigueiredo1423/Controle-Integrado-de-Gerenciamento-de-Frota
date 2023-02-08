@@ -470,12 +470,12 @@ namespace DAL
                                                     + dbName + ".sys_enderecos,"
                                                     + dbName + ".sys_clientes,"
                                                     + dbName + ".sys_pagamentos" +
-                                            " WHERE(DAY(previsao_entrega) BETWEEN " + dataIni.Day + " AND " + dataFim.Day + ") AND(MONTH(previsao_entrega) BETWEEN " + dataIni.Month + " AND " + dataFim.Month + ") AND(YEAR(previsao_entrega) BETWEEN " + dataIni.Year + " AND " + dataFim.Year + @") AND
-                                                    sys_locacoes.sys_endereco_id = sys_enderecos.id AND
-                                                    sys_enderecos.sys_clientes_id = sys_clientes.id AND
-                                                    sys_locacoes.id = sys_pagamentos.sys_locacoes_id
-                                                   " + parametro + @"
-                                            ORDER BY DAY(previsao_entrega) ASC, func_entrega ASC, numero_os ASC; ", con);
+                                            " WHERE sys_locacoes.previsao_entrega BETWEEN \'" + dataIni.ToString("yyyy-MM-dd HH:mm:ss") + "\' AND \'" + dataFim.ToString("yyyy-MM-dd HH:mm:ss") + "\' AND " +
+                                                    "sys_locacoes.sys_endereco_id = sys_enderecos.id AND " +
+                                                    "sys_enderecos.sys_clientes_id = sys_clientes.id AND " +
+                                                    "sys_locacoes.id = sys_pagamentos.sys_locacoes_id " +
+                                                    parametro +
+                                           " ORDER BY DAY(previsao_entrega) ASC, func_entrega ASC, numero_os ASC; ", con);
                 adt = new MySqlDataAdapter(sqlCom);
                 dtb = new DataTable();
                 adt.Fill(dtb);
@@ -518,7 +518,7 @@ namespace DAL
                 }
                 adt = new MySqlDataAdapter(sqlCom);
                 dtb = new DataTable();
-                adt.Fill(dtb);
+                adt.Fill(dtb);                
                 return dtb;
             }
             catch (Exception erro)
@@ -560,10 +560,10 @@ namespace DAL
                                                     numero_autorizacao,
                                                     sys_locacoes.observacao 
                                             FROM 
-                                                  " + dbName + ".sys_locacoes, " 
-                                                    + dbName + ".sys_enderecos, " 
-                                                    + dbName + ".sys_clientes, " 
-                                                    + dbName + ".sys_veiculos," 
+                                                  " + dbName + ".sys_locacoes, "
+                                                    + dbName + ".sys_enderecos, "
+                                                    + dbName + ".sys_clientes, "
+                                                    + dbName + ".sys_veiculos,"
                                                     + dbName + ".sys_funcionarios " +
                                             "WHERE " +
                                                     "sys_locacoes.situacao IN ('Ag.Entrega') " +
@@ -576,6 +576,11 @@ namespace DAL
                 adt = new MySqlDataAdapter(sqlCom);
                 dtb = new DataTable();
                 adt.Fill(dtb);
+                dtb.Columns.Add("primeiro_nome_entrega", typeof(string));
+                foreach (DataRow row in dtb.Rows)
+                {
+                    row["primeiro_nome_entrega"] = row["func_entrega"].ToString().Substring(0, row["func_entrega"].ToString().IndexOf(" "));
+                }
                 return dtb;
             }
             catch (Exception erro)
@@ -595,10 +600,59 @@ namespace DAL
             DataTable dtb = null;
             try
             {
-                sqlCom = new MySqlCommand(@"SELECT loc.id,loc.previsao_entrega,loc.data_entrega,a1.id AS id_func_entrega,a1.nome AS func_entrega,b1.placa AS veic_entrega,loc.numero_os,loc.numero_conteiner,loc.previsao_retirada,a2.id AS id_func_retirada,a2.nome AS func_retirada,b2.placa AS veic_retirada,loc.data_retirada,loc.tipo,loc.situacao,loc.urgencia_retirada,loc.cobranca,pag.quitado,pag.valor,cli.nome,cli.registro,ender.endereco,ender.mapa, CONCAT(cli.fone1,' - ',cli.fone2) AS fones FROM sys_locacoes loc INNER JOIN sys_funcionarios a1 ON loc.func_entrega_id = a1.id INNER JOIN sys_funcionarios a2 ON loc.func_retirada_id = a2.id INNER JOIN sys_veiculos b1 ON loc.veic_entrega_id = b1.id INNER JOIN sys_veiculos b2 ON loc.veic_retirada_id = b2.id,sys_enderecos ender,sys_clientes cli,sys_pagamentos pag where loc.sys_endereco_id = ender.id and	ender.sys_clientes_id = cli.id and pag.sys_locacoes_id = loc.id and loc.situacao = 'Ag.retirada' ORDER BY loc.id DESC;", con);
+                sqlCom = new MySqlCommand(@"SELECT 
+                                                    loc.id,
+                                                    loc.previsao_entrega,
+                                                    loc.data_entrega,
+                                                    a1.id AS id_func_entrega,
+                                                    a1.nome AS func_entrega,
+                                                    b1.placa AS veic_entrega,
+                                                    loc.numero_os,
+                                                    loc.numero_conteiner,
+                                                    loc.previsao_retirada,
+                                                    a2.id AS id_func_retirada,
+                                                    a2.nome AS func_retirada,
+                                                    b2.placa AS veic_retirada,
+                                                    loc.data_retirada,
+                                                    loc.tipo,loc.situacao,
+                                                    loc.urgencia_retirada,
+                                                    loc.cobranca,
+                                                    pag.quitado,
+                                                    pag.valor,
+                                                    cli.nome,
+                                                    cli.registro,
+                                                    ender.endereco,
+                                                    ender.mapa, 
+                                                    CONCAT(cli.fone1,' - ',cli.fone2) AS fones 
+                                            FROM 
+                                                    sys_locacoes loc 
+                                            INNER JOIN 
+                                                    sys_funcionarios a1 ON loc.func_entrega_id = a1.id 
+                                            INNER JOIN 
+                                                    sys_funcionarios a2 ON loc.func_retirada_id = a2.id 
+                                            INNER JOIN 
+                                                    sys_veiculos b1 ON loc.veic_entrega_id = b1.id 
+                                            INNER JOIN 
+                                                    sys_veiculos b2 ON loc.veic_retirada_id = b2.id,
+                                                    sys_enderecos ender,
+                                                    sys_clientes cli,
+                                                    sys_pagamentos pag 
+                                            WHERE 
+                                                    loc.sys_endereco_id = ender.id 
+                                            AND ender.sys_clientes_id = cli.id 
+                                            AND pag.sys_locacoes_id = loc.id 
+                                            AND loc.situacao = 'Ag.retirada' 
+                                            ORDER BY loc.id DESC;", con);
                 adt = new MySqlDataAdapter(sqlCom);
                 dtb = new DataTable();
                 adt.Fill(dtb);
+                dtb.Columns.Add("primeiro_nome_entrega", typeof(string));
+                dtb.Columns.Add("primeiro_nome_retirada", typeof(string));
+                foreach (DataRow row in dtb.Rows)
+                {
+                    row["primeiro_nome_entrega"] = row["func_entrega"].ToString().Substring(0, row["func_entrega"].ToString().IndexOf(" "));
+                    row["primeiro_nome_retirada"] = row["func_retirada"].ToString().Substring(0, row["func_retirada"].ToString().IndexOf(" "));
+                }
                 return dtb;
             }
             catch (Exception erro)
