@@ -423,9 +423,10 @@ namespace app
             {
                 try
                 {
+                    #region QUANDO EXISTE O CLIENTE NO BD
                     if (sys_FNCBLL.jaExisteNoBancoBLL("sys_clientes", "registro", txtRegistro.Text))
                     {
-                        //quando existe o cliente e o endereço
+                        #region QUANDO EXISTE O ENDEREÇO NO BD
                         if (sys_FNCBLL.jaExisteNoBancoBLL("sys_enderecos,", "endereco", txtEndereco.Text))
                         {
                             if (sys_FNCBLL.jaExisteNoBancoBLL("sys_locacoes", "sys_endereco_id", mdlLocacao.SYS_ENDERECO_ID.ToString()) == true &&
@@ -440,6 +441,7 @@ namespace app
                                     {
                                         mdlPagamento.SYS_LOCACOES_ID = idLoc;
                                         mdlPagamento.SITUACAO = "ABERTO";
+                                        mdlPagamento.VALOR = txtValorAg.ToString();
                                         sys_pagamentosBLL.InserirBLL(mdlPagamento);
                                     }
                                     MessageBox.Show("Locação Agendada");
@@ -457,12 +459,14 @@ namespace app
                                 {
                                     mdlPagamento.SYS_LOCACOES_ID = idLoc;
                                     mdlPagamento.SITUACAO = "ABERTO";
+                                    mdlPagamento.VALOR = txtValorAg.ToString();
                                     sys_pagamentosBLL.InserirBLL(mdlPagamento);
                                 }
                                 MessageBox.Show("Locação Agendada");
                             }
                         }
-                        //quando existe o cliente, mas não existe o endereço
+                        #endregion
+                        #region QUANDO EXISTE O CLIENTE, MAS NÃO EXISTE O ENDEREÇO
                         else
                         {
                             idCli = sys_FNCBLL.retornaIdItem(txtRegistro.Text, "registro", "sys_clientes");
@@ -483,13 +487,110 @@ namespace app
                             try
                             {
                                 sys_enderecosBLL.InserirBLL(mdlEndereco);
-                                MessageBox.Show("Endereço Salvo");
+                                sys_locacoesBLL.InserirBLL(mdlLocacao);
+                                idLoc = sys_FNCBLL.retornaUltimoIdBLL("id", "sys_locacoes");
+                                if (sys_FNCBLL.jaExisteNoBancoBLL("sys_pagamentos", "sys_locacoes_id", idLoc.ToString()) == false)
+                                {
+                                    mdlPagamento.SYS_LOCACOES_ID = idLoc;
+                                    mdlPagamento.SITUACAO = "ABERTO";
+                                    mdlPagamento.VALOR = txtValorAg.ToString();
+                                    sys_pagamentosBLL.InserirBLL(mdlPagamento);
+                                }
+                                MessageBox.Show("Locação Agendada");
                             }
                             catch (Exception erro)
                             {
                                 MessageBox.Show(erro.Message);
                             }
                         }
+                        #endregion
+                    }
+                    //quando não existe nem enderço, nem o cliente
+                    else
+                    {
+                        #region INDFORMAÇÕES DO CLIENTE
+                        idCli = sys_FNCBLL.retornaUltimoIdBLL("id", "sys_clientesBLL")+1;
+                        mdlCliente.ID = idCli;
+
+                        if (radioButton1.Checked == false && radioButton2.Checked == false)
+                        {
+                            MessageBox.Show("Necessário escolher o tipo de Cliente");
+                            return;
+                        }
+
+                        if (radioButton1.Checked == true) mdlCliente.TIPO = "P.FÍSICA";
+                        else mdlCliente.TIPO = "P.JURÍDICA";
+
+                        if (txtCliente.Text == "")
+                        {
+                            MessageBox.Show("Necessário Nome do Cliente");
+                            return;
+                        }
+
+                        mdlCliente.NOME = txtCliente.Text;
+                        if (txtRegistro.Text == "   ,   ,   -" || txtRegistro.Text == "  ,   ,   /    -")
+                        {
+                            MessageBox.Show("Necessário Registro do Cliente");
+                            return;
+                        }
+
+                        if (radioButton1.Checked == true && sys_validaCPF_CNPJ.IsCpf(txtRegistro.Text) == false || radioButton2.Checked == true && sys_validaCPF_CNPJ.IsCnpj(txtRegistro.Text) == false)
+                        {
+                            MessageBox.Show("Registro Inválido");
+                            return;
+                        }
+                        mdlCliente.REGISTRO = txtRegistro.Text;
+                        mdlCliente.CONTATO = txtContato.Text;
+                        mdlCliente.EMAIL = txtEmail.Text;
+                        if (txtFone1.Text == "(  )    -" && txtFone2.Text == "(  )    -")
+                        {
+                            MessageBox.Show("Necessário pelo menos um Telefone do Cliente");
+                            return;
+                        }
+                        mdlCliente.FONE1 = txtFone1.Text;
+                        mdlCliente.FONE2 = txtFone2.Text;
+                        mdlCliente.OBSERVACAO = txtObservacaoCli.Text;
+                        #endregion
+                        #region INFOS DO ENDEREÇO
+                        if (txtEndereco.Text.Length == 0)
+                        {
+                            MessageBox.Show("Necessário Digitar um Endereço Válido");
+                            return;
+                        }
+                        else
+                        {
+                            mdlEndereco.SYS_CLIENTES_ID = idCli;
+                            mdlEndereco.ENDERECO = txtEndereco.Text;
+                            mdlEndereco.LATITUDE = _latitude;
+                            mdlEndereco.LONGITUDE = _longitude;
+                            mdlEndereco.OBSERVACAO = txtObsEnd.Text;
+                        }
+                        try
+                        {
+                            
+                            MessageBox.Show("Endereço Salvo");
+                        }
+                        catch (Exception erro)
+                        {
+                            MessageBox.Show(erro.Message);
+                        }
+                        #endregion
+                        try
+                        {
+                            sys_clientesBLL.InserirBLL(mdlCliente);
+                            sys_enderecosBLL.InserirBLL(mdlEndereco);
+  
+                            MessageBox.Show("Cliente Salvo");
+                            DataTable dtbBuscaCliente = new DataTable();
+                            DataView dataView = new DataView(dtbClientes);
+                            dataView.RowFilter = string.Format(@"nome LIKE'%{0}%'", mdlCliente.NOME);
+                            tabClientes.DataSource = dataView;
+                        }
+                        catch (Exception erro)
+                        {
+                            MessageBox.Show(erro.Message);
+                        }
+
                     }
 
                 }
