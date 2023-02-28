@@ -109,7 +109,7 @@ namespace app.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("u587292910_gauchateleentulhos")]
+        [global::System.Configuration.DefaultSettingValueAttribute("u587292910_gauchaentulhos")]
         public string dbUser {
             get {
                 return ((string)(this["dbUser"]));

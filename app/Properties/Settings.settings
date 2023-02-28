@@ -24,7 +24,7 @@
       <Value Profile="(Default)">u587292910_gauchateleentu</Value>
     </Setting>
     <Setting Name="dbUser" Type="System.String" Scope="User">
-      <Value Profile="(Default)">u587292910_gauchateleentulhos</Value>
+      <Value Profile="(Default)">u587292910_gauchaentulhos</Value>
     </Setting>
     <Setting Name="dbPass" Type="System.String" Scope="User">
       <Value Profile="(Default)">Root2022</Value>
