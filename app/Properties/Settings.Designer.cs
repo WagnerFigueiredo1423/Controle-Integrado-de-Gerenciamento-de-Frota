@@ -85,7 +85,7 @@ namespace app.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("sql847.main-hosting.eu")]
+        [global::System.Configuration.DefaultSettingValueAttribute("45.132.157.1")]
         public string dbHost {
             get {
                 return ((string)(this["dbHost"]));
@@ -121,7 +121,7 @@ namespace app.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Root2022")]
+        [global::System.Configuration.DefaultSettingValueAttribute("G@ucha2024")]
         public string dbPass {
             get {
                 return ((string)(this["dbPass"]));

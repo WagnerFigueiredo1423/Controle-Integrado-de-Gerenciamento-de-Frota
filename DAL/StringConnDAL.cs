@@ -12,7 +12,7 @@ namespace DAL
         /// <returns></returns>
         public static MySqlConnection connDAL()
         {
-            MySqlConnection strConn = null;
+            MySqlConnection strConn = new MySqlConnection();
             string _database = sys_databaseMDL.DATABASE;
             string _dbhost = sys_databaseMDL.DBHOST;
             string _dbname = sys_databaseMDL.DBNAME;
@@ -21,8 +21,9 @@ namespace DAL
 
             try
             {
+                
                 switch (_database)
-                {
+                {                    
                     case "LOCAL":
                         strConn = new MySqlConnection(@"host=" + _dbhost + "; Database=" + _dbname + "; User ID=root;Password=" + _dbpass + ";Convert Zero Datetime=True;Persist Security Info=True;");
                         break;
@@ -30,7 +31,7 @@ namespace DAL
                         strConn = new MySqlConnection(@"Data Source=" + _dbhost + ";Database=" + _dbname + ";User ID=root;Password=" + _dbpass + ";Convert Zero Datetime=True;Persist Security Info=True;");
                         break;
                     case "WEB":
-                        strConn = new MySqlConnection(@"DATABASE=" + _dbname + "; SERVER = " + _dbhost + "; UID = " + _dbuser + "; PASSWORD = " + _dbpass + "; Allow Zero Datetime = true; ");
+                        strConn = new MySqlConnection(@"DATABASE=" + _dbname + "; SERVER = " + _dbhost + "; UID = " + _dbuser + "; PASSWORD = " + _dbpass + "; Allow Zero Datetime = true;Persist Security Info=True; ");
                         break;
                 }
             }

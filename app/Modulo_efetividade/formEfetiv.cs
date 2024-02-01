@@ -18,7 +18,7 @@ namespace app
         protected bool clicado = false;
         protected formConteiner parent;
 
-        
+
         public formEfetiv(formConteiner _parent)
         {
             InitializeComponent();
@@ -772,7 +772,7 @@ namespace app
         }
         private void dropPlaca_SelectedIndexChanged(object sender, EventArgs e)
         {
-            atualizaGrid();      
+            atualizaGrid();
         }
         private void tabEfetividade_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
