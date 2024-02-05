@@ -12,7 +12,8 @@ namespace DAL
         /// <returns></returns>
         public static MySqlConnection connDAL()
         {
-            MySqlConnection strConn = new MySqlConnection();
+            MySqlConnection MysqlConn = new MySqlConnection();
+            var strConn = string.Empty;
             string _database = sys_databaseMDL.DATABASE;
             string _dbhost = sys_databaseMDL.DBHOST;
             string _dbname = sys_databaseMDL.DBNAME;
@@ -21,25 +22,28 @@ namespace DAL
 
             try
             {
-                
+
                 switch (_database)
-                {                    
+                {
                     case "LOCAL":
-                        strConn = new MySqlConnection(@"host=" + _dbhost + "; Database=" + _dbname + "; User ID=root;Password=" + _dbpass + ";Convert Zero Datetime=True;Persist Security Info=True;");
+                        strConn = @"host=" + _dbhost + "; Database=" + _dbname + "; User ID=root;Password=" + _dbpass + ";Convert Zero Datetime=True;Persist Security Info=True;";
                         break;
                     case "SERVIDOR":
-                        strConn = new MySqlConnection(@"Data Source=" + _dbhost + ";Database=" + _dbname + ";User ID=root;Password=" + _dbpass + ";Convert Zero Datetime=True;Persist Security Info=True;");
+                        strConn = @"Data Source=" + _dbhost + ";Database=" + _dbname + ";User ID=root;Password=" + _dbpass + ";Convert Zero Datetime=True;Persist Security Info=True;";
                         break;
                     case "WEB":
-                        strConn = new MySqlConnection(@"DATABASE=" + _dbname + "; SERVER = " + _dbhost + "; UID = " + _dbuser + "; PASSWORD = " + _dbpass + "; Allow Zero Datetime = true;Persist Security Info=True; ");
+                        strConn = @"DATABASE=" + _dbname + "; SERVER = " + _dbhost + "; UID = " + _dbuser + "; PASSWORD = " + _dbpass + "; Allow Zero Datetime = true;Persist Security Info=True; ";
                         break;
+
+
                 }
             }
             catch (MySqlException er)
             {
+                MysqlConn.Close();
                 throw er;
             }
-            return strConn;
+            return MysqlConn;
         }
     }
 }

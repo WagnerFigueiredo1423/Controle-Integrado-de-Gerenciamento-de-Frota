@@ -201,6 +201,7 @@ namespace DAL
             }
             catch (MySqlException erro)
             {
+                con.Close();
                 throw erro;
             }
             finally
