@@ -329,7 +329,7 @@ namespace DAL
         }
         #endregion
 
-        #region RETORNA DADOS
+        #region RETORNA DADOS DOS USUÁRIOS
         public static sys_usuariosMDL RetornaDados(string login, string senha)
         {
             try
@@ -518,11 +518,11 @@ namespace DAL
         #endregion
 
         #region VERIFICA A CONEXÃO COM O BANCO DE DADOS
-        public static bool verificaConnDAL(string connectionString)
+        public static bool verificaConnDAL()
         {
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(StringConnDAL.connDAL()))
                 {
                     connection.Open();
                     return true;
