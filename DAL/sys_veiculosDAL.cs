@@ -48,6 +48,7 @@ namespace DAL
             }
             catch (MySqlException erro)
             {
+                con.Close();
                 throw erro;
             }
             finally
@@ -89,6 +90,7 @@ namespace DAL
             }
             catch (MySqlException erro)
             {
+                con.Close();
                 throw erro;
             }
             finally
@@ -108,6 +110,7 @@ namespace DAL
             }
             catch (MySqlException erro)
             {
+                con.Close();
                 throw erro;
             }
             finally
@@ -156,6 +159,7 @@ namespace DAL
             }
             catch (MySqlException erro)
             {
+                con.Close();
                 throw erro;
             }
             finally

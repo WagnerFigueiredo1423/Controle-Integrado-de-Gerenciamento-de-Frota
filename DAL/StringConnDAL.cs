@@ -22,7 +22,6 @@ namespace DAL
 
             try
             {
-
                 switch (_database)
                 {
                     case "LOCAL":
@@ -32,11 +31,10 @@ namespace DAL
                         strConn = @"Data Source=" + _dbhost + ";Database=" + _dbname + ";User ID=root;Password=" + _dbpass + ";Convert Zero Datetime=True;Persist Security Info=True;";
                         break;
                     case "WEB":
-                        strConn = @"DATABASE=" + _dbname + "; SERVER = " + _dbhost + "; UID = " + _dbuser + "; PASSWORD = " + _dbpass + "; Allow Zero Datetime = true;Persist Security Info=True; ";
+                        strConn = @"DATABASE=" + _dbname + "; SERVER = " + _dbhost + "; UID = " + _dbuser + "; PASSWORD = " + _dbpass + "; Allow Zero Datetime = true;Persist Security Info=True;";
                         break;
-
-
                 }
+                MysqlConn = new MySqlConnection(strConn);
             }
             catch (MySqlException er)
             {
