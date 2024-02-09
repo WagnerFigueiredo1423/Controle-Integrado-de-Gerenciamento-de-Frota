@@ -237,5 +237,10 @@ namespace BLL
 
             return km;
         }
+
+        public static bool verificaConnBLL(string connectionString)
+        {
+            return sys_FNCDAL.verificaConnDAL(connectionString);
+        }
     }
 }

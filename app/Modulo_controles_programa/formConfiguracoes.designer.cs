@@ -51,6 +51,7 @@
             this.txtdbUser = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtdbPass = new System.Windows.Forms.TextBox();
+            this.btn_TesteConexao = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,7 +61,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(719, 124);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(442, 418);
+            this.pictureBox1.Size = new System.Drawing.Size(442, 328);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -70,7 +71,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(719, 550);
+            this.button1.Location = new System.Drawing.Point(719, 460);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(188, 41);
@@ -81,7 +82,7 @@
             // 
             // txtCaminhoImagem
             // 
-            this.txtCaminhoImagem.Location = new System.Drawing.Point(719, 634);
+            this.txtCaminhoImagem.Location = new System.Drawing.Point(718, 526);
             this.txtCaminhoImagem.Margin = new System.Windows.Forms.Padding(4);
             this.txtCaminhoImagem.Name = "txtCaminhoImagem";
             this.txtCaminhoImagem.Size = new System.Drawing.Size(442, 23);
@@ -90,7 +91,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(715, 610);
+            this.label1.Location = new System.Drawing.Point(716, 505);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 17);
             this.label1.TabIndex = 3;
@@ -138,7 +139,7 @@
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(12, 587);
+            this.btnSalvar.Location = new System.Drawing.Point(13, 508);
             this.btnSalvar.Margin = new System.Windows.Forms.Padding(4);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(188, 41);
@@ -149,7 +150,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(208, 587);
+            this.btnCancelar.Location = new System.Drawing.Point(208, 508);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(188, 41);
@@ -264,11 +265,22 @@
             this.txtdbPass.Size = new System.Drawing.Size(188, 23);
             this.txtdbPass.TabIndex = 14;
             // 
+            // btn_TesteConexao
+            // 
+            this.btn_TesteConexao.Location = new System.Drawing.Point(404, 508);
+            this.btn_TesteConexao.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_TesteConexao.Name = "btn_TesteConexao";
+            this.btn_TesteConexao.Size = new System.Drawing.Size(188, 41);
+            this.btn_TesteConexao.TabIndex = 9;
+            this.btn_TesteConexao.Text = "Testar Conexão";
+            this.btn_TesteConexao.UseVisualStyleBackColor = true;
+            this.btn_TesteConexao.Click += new System.EventHandler(this.btn_TesteConexao_Click);
+            // 
             // formConfiguracoes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1174, 674);
+            this.ClientSize = new System.Drawing.Size(1174, 556);
             this.Controls.Add(this.txtdbPass);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtdbUser);
@@ -280,6 +292,7 @@
             this.Controls.Add(this.checkLogin);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.checkBackground);
+            this.Controls.Add(this.btn_TesteConexao);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.label3);
@@ -327,5 +340,6 @@
         private System.Windows.Forms.TextBox txtdbUser;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtdbPass;
+        private System.Windows.Forms.Button btn_TesteConexao;
     }
 }

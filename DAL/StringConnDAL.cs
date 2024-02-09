@@ -10,9 +10,8 @@ namespace DAL
         /// </summary>
         /// <param name="tipo_serv">local ou remoto</param>
         /// <returns></returns>
-        public static MySqlConnection connDAL()
+        public static string connDAL()
         {
-            MySqlConnection MysqlConn = new MySqlConnection();
             var strConn = string.Empty;
             string _database = sys_databaseMDL.DATABASE;
             string _dbhost = sys_databaseMDL.DBHOST;
@@ -20,28 +19,19 @@ namespace DAL
             string _dbuser = sys_databaseMDL.DBUSER;
             string _dbpass = sys_databaseMDL.DBPASS;
 
-            try
+            switch (_database)
             {
-                switch (_database)
-                {
-                    case "LOCAL":
-                        strConn = @"host=" + _dbhost + "; Database=" + _dbname + "; User ID=root;Password=" + _dbpass + ";Convert Zero Datetime=True;Persist Security Info=True;";
-                        break;
-                    case "SERVIDOR":
-                        strConn = @"Data Source=" + _dbhost + ";Database=" + _dbname + ";User ID=root;Password=" + _dbpass + ";Convert Zero Datetime=True;Persist Security Info=True;";
-                        break;
-                    case "WEB":
-                        strConn = @"DATABASE=" + _dbname + "; SERVER = " + _dbhost + "; UID = " + _dbuser + "; PASSWORD = " + _dbpass + "; Allow Zero Datetime = true;Persist Security Info=True;";
-                        break;
-                }
-                MysqlConn = new MySqlConnection(strConn);
+                case "LOCAL":
+                    strConn = @"host=" + _dbhost + "; Database=" + _dbname + "; User ID=root;Password=" + _dbpass + ";Convert Zero Datetime=True;Persist Security Info=True;";
+                    break;
+                case "SERVIDOR":
+                    strConn = @"Data Source=" + _dbhost + ";Database=" + _dbname + ";User ID=root;Password=" + _dbpass + ";Convert Zero Datetime=True;Persist Security Info=True;";
+                    break;
+                case "WEB":
+                    strConn = @"DATABASE=" + _dbname + "; SERVER = " + _dbhost + "; UID = " + _dbuser + "; PASSWORD = " + _dbpass + "; Allow Zero Datetime = true;Persist Security Info=True;";
+                    break;
             }
-            catch (MySqlException er)
-            {
-                MysqlConn.Close();
-                throw er;
-            }
-            return MysqlConn;
+            return strConn;
         }
     }
 }
