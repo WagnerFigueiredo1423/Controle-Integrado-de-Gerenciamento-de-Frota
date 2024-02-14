@@ -1,5 +1,7 @@
 ﻿using MDL;
 using MySql.Data.MySqlClient;
+using System.Windows.Forms;
+using System;
 
 namespace DAL
 {
@@ -19,24 +21,17 @@ namespace DAL
             string _dbuser = sys_databaseMDL.DBUSER;
             string _dbpass = sys_databaseMDL.DBPASS;
 
-            try
+            switch (_database)
             {
-                switch (_database)
-                {
-                    case "LOCAL":
-                        strConn = new MySqlConnection(@"host=" + _dbhost + "; Database=" + _dbname + "; User ID=root;Password=" + _dbpass + ";Convert Zero Datetime=True;Persist Security Info=True;");
-                        break;
-                    case "SERVIDOR":
-                        strConn = new MySqlConnection(@"Data Source=" + _dbhost + ";Database=" + _dbname + ";User ID=root;Password=" + _dbpass + ";Convert Zero Datetime=True;Persist Security Info=True;");
-                        break;
-                    case "WEB":
-                        strConn = new MySqlConnection(@"DATABASE=" + _dbname + "; SERVER = " + _dbhost + "; UID = " + _dbuser + "; PASSWORD = " + _dbpass + "; Allow Zero Datetime = true; ");
-                        break;
-                }
-            }
-            catch (MySqlException er)
-            {
-                throw er;
+                case "LOCAL":
+                    strConn = new MySqlConnection(@"host=" + _dbhost + "; Database=" + _dbname + "; User ID=root;Password=" + _dbpass + ";Convert Zero Datetime=True;Persist Security Info=True;");
+                    break;
+                case "SERVIDOR":
+                    strConn = new MySqlConnection(@"Data Source=" + _dbhost + ";Database=" + _dbname + ";User ID=root;Password=" + _dbpass + ";Convert Zero Datetime=True;Persist Security Info=True;");
+                    break;
+                case "WEB":
+                    strConn = new MySqlConnection(@"DATABASE=" + _dbname + "; SERVER = " + _dbhost + "; UID = " + _dbuser + "; PASSWORD = " + _dbpass + "; Allow Zero Datetime = true; ");
+                    break;
             }
             return strConn;
         }

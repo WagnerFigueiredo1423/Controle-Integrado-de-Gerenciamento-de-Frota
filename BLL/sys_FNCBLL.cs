@@ -237,5 +237,11 @@ namespace BLL
 
             return km;
         }
+
+        public static bool testeConexaoBDBLL()
+        {
+            bool v = (sys_FNCDAL.testeConexaoBDDAL()) ?  v=true : v=false;
+            return v;
+        }
     }
 }

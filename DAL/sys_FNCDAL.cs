@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Windows.Forms;
 
 namespace DAL
 {
@@ -617,6 +618,24 @@ namespace DAL
                 con.Close();
             }
             return km;
+        }
+
+        public static bool testeConexaoBDDAL ()
+        {
+            try
+            {
+                using (MySqlConnection connection = StringConnDAL.connDAL())
+                {
+                    connection.Open();
+                    MessageBox.Show("Conexão com o banco de dados MySQL foi bem-sucedida!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Falha ao conectar ao MySQL: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
     }
 }

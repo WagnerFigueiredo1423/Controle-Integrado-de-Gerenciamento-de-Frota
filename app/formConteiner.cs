@@ -1,5 +1,7 @@
-﻿using MDL;
+﻿using BLL;
+using MDL;
 using System;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -29,6 +31,21 @@ namespace app
                 Image myimage = new Bitmap(Program.IMAGEM);
                 this.BackgroundImage = myimage;
                 this.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+            try
+            {
+                if (sys_FNCBLL.testeConexaoBDBLL())
+                {
+                    MessageBox.Show("Conexão com Banco Bem Sucedida");
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao conectar ao Banco de Dados");
+                }
+            }
+            catch(Exception er)
+            {
+                MessageBox.Show(er.Message);
             }
         }
 
