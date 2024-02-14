@@ -518,7 +518,7 @@ namespace DAL
                 }
                 adt = new MySqlDataAdapter(sqlCom);
                 dtb = new DataTable();
-                adt.Fill(dtb);                
+                adt.Fill(dtb);
                 return dtb;
             }
             catch (Exception erro)

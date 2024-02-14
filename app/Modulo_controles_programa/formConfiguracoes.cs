@@ -1,4 +1,5 @@
-﻿using MDL;
+﻿using BLL;
+using MDL;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -115,5 +116,9 @@ namespace app
             this.Close();
         }
 
+        private void btn_TesteConexao_Click(object sender, EventArgs e)
+        {
+            sys_FNCBLL.verificaConnBLL();
+        }
     }
 }

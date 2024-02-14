@@ -18,7 +18,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="dbHost" Type="System.String" Scope="User">
-      <Value Profile="(Default)">sql847.main-hosting.eu</Value>
+      <Value Profile="(Default)">45.132.157.1</Value>
     </Setting>
     <Setting Name="dbName" Type="System.String" Scope="User">
       <Value Profile="(Default)">u587292910_gauchateleentu</Value>
@@ -27,7 +27,7 @@
       <Value Profile="(Default)">u587292910_gauchaentulhos</Value>
     </Setting>
     <Setting Name="dbPass" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Root2022</Value>
+      <Value Profile="(Default)">G@ucha2024</Value>
     </Setting>
     <Setting Name="logPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">ssdgfsd</Value>

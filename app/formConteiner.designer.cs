@@ -30,18 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblNomeUsuario = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblTipoUsuario = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblTipoServidor = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel7 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.controleDeCaminhõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abastecimentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.óleoDieseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,6 +77,18 @@
             this.permissõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçõesGeraisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parametrizaçãoDeEndereçosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblNomeUsuario = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblTipoUsuario = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblTipoServidor = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel7 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblMessage = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -111,106 +111,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(1034, 29);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.lblNomeUsuario,
-            this.toolStripStatusLabel3,
-            this.toolStripStatusLabel4,
-            this.lblTipoUsuario,
-            this.toolStripStatusLabel6,
-            this.toolStripStatusLabel2,
-            this.lblTipoServidor,
-            this.toolStripStatusLabel7,
-            this.lblMessage});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 528);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1034, 22);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.Blue;
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(59, 17);
-            this.toolStripStatusLabel1.Text = "Usuário:";
-            // 
-            // lblNomeUsuario
-            // 
-            this.lblNomeUsuario.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomeUsuario.ForeColor = System.Drawing.Color.Blue;
-            this.lblNomeUsuario.Name = "lblNomeUsuario";
-            this.lblNomeUsuario.Size = new System.Drawing.Size(116, 17);
-            this.lblNomeUsuario.Text = "Nome do Usuário";
-            // 
-            // toolStripStatusLabel3
-            // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(10, 17);
-            this.toolStripStatusLabel3.Text = "|";
-            // 
-            // toolStripStatusLabel4
-            // 
-            this.toolStripStatusLabel4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripStatusLabel4.ForeColor = System.Drawing.Color.Blue;
-            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(40, 17);
-            this.toolStripStatusLabel4.Text = "Tipo:";
-            // 
-            // lblTipoUsuario
-            // 
-            this.lblTipoUsuario.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTipoUsuario.ForeColor = System.Drawing.Color.Blue;
-            this.lblTipoUsuario.Name = "lblTipoUsuario";
-            this.lblTipoUsuario.Size = new System.Drawing.Size(107, 17);
-            this.lblTipoUsuario.Text = "Tipo do Usuário";
-            // 
-            // toolStripStatusLabel6
-            // 
-            this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
-            this.toolStripStatusLabel6.Size = new System.Drawing.Size(10, 17);
-            this.toolStripStatusLabel6.Text = "|";
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripStatusLabel2.ForeColor = System.Drawing.Color.Blue;
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(65, 17);
-            this.toolStripStatusLabel2.Text = "Servidor:";
-            // 
-            // lblTipoServidor
-            // 
-            this.lblTipoServidor.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTipoServidor.ForeColor = System.Drawing.Color.Blue;
-            this.lblTipoServidor.Name = "lblTipoServidor";
-            this.lblTipoServidor.Size = new System.Drawing.Size(111, 17);
-            this.lblTipoServidor.Text = "Tipo de Servidor";
-            // 
-            // toolStripStatusLabel7
-            // 
-            this.toolStripStatusLabel7.Name = "toolStripStatusLabel7";
-            this.toolStripStatusLabel7.Size = new System.Drawing.Size(10, 17);
-            this.toolStripStatusLabel7.Text = "|";
-            // 
-            // lblMessage
-            // 
-            this.lblMessage.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(491, 17);
-            this.lblMessage.Spring = true;
-            this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblMessage.TextChanged += new System.EventHandler(this.lblMessage_TextChanged);
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 3000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // controleDeCaminhõesToolStripMenuItem
             // 
@@ -453,34 +353,34 @@
             // peçasToolStripMenuItem
             // 
             this.peçasToolStripMenuItem.Name = "peçasToolStripMenuItem";
-            this.peçasToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.peçasToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
             this.peçasToolStripMenuItem.Text = "Combustível";
             this.peçasToolStripMenuItem.Click += new System.EventHandler(this.peçasToolStripMenuItem_Click);
             // 
             // peçasToolStripMenuItem1
             // 
             this.peçasToolStripMenuItem1.Name = "peçasToolStripMenuItem1";
-            this.peçasToolStripMenuItem1.Size = new System.Drawing.Size(180, 26);
+            this.peçasToolStripMenuItem1.Size = new System.Drawing.Size(176, 26);
             this.peçasToolStripMenuItem1.Text = "Peças";
             this.peçasToolStripMenuItem1.Click += new System.EventHandler(this.peçasToolStripMenuItem1_Click);
             // 
             // pneusToolStripMenuItem2
             // 
             this.pneusToolStripMenuItem2.Name = "pneusToolStripMenuItem2";
-            this.pneusToolStripMenuItem2.Size = new System.Drawing.Size(180, 26);
+            this.pneusToolStripMenuItem2.Size = new System.Drawing.Size(176, 26);
             this.pneusToolStripMenuItem2.Text = "Pneus";
             this.pneusToolStripMenuItem2.Click += new System.EventHandler(this.pneusToolStripMenuItem2_Click);
             // 
             // serviçosToolStripMenuItem
             // 
             this.serviçosToolStripMenuItem.Name = "serviçosToolStripMenuItem";
-            this.serviçosToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.serviçosToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
             this.serviçosToolStripMenuItem.Text = "Baterias";
             // 
             // outrosToolStripMenuItem
             // 
             this.outrosToolStripMenuItem.Name = "outrosToolStripMenuItem";
-            this.outrosToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.outrosToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
             this.outrosToolStripMenuItem.Text = "Outros";
             this.outrosToolStripMenuItem.Click += new System.EventHandler(this.outrosToolStripMenuItem_Click);
             // 
@@ -547,7 +447,7 @@
             // relatóriosToolStripMenuItem3
             // 
             this.relatóriosToolStripMenuItem3.Name = "relatóriosToolStripMenuItem3";
-            this.relatóriosToolStripMenuItem3.Size = new System.Drawing.Size(180, 26);
+            this.relatóriosToolStripMenuItem3.Size = new System.Drawing.Size(157, 26);
             this.relatóriosToolStripMenuItem3.Text = "Relatórios";
             // 
             // configuraçõesToolStripMenuItem
@@ -589,6 +489,106 @@
             this.parametrizaçãoDeEndereçosToolStripMenuItem.Size = new System.Drawing.Size(304, 26);
             this.parametrizaçãoDeEndereçosToolStripMenuItem.Text = "Parametrização de Endereços";
             this.parametrizaçãoDeEndereçosToolStripMenuItem.Click += new System.EventHandler(this.parametrizaçãoDeEndereçosToolStripMenuItem_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.lblNomeUsuario,
+            this.toolStripStatusLabel3,
+            this.toolStripStatusLabel4,
+            this.lblTipoUsuario,
+            this.toolStripStatusLabel6,
+            this.toolStripStatusLabel2,
+            this.lblTipoServidor,
+            this.toolStripStatusLabel7,
+            this.lblMessage});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 528);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1034, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.Blue;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(59, 17);
+            this.toolStripStatusLabel1.Text = "Usuário:";
+            // 
+            // lblNomeUsuario
+            // 
+            this.lblNomeUsuario.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomeUsuario.ForeColor = System.Drawing.Color.Blue;
+            this.lblNomeUsuario.Name = "lblNomeUsuario";
+            this.lblNomeUsuario.Size = new System.Drawing.Size(116, 17);
+            this.lblNomeUsuario.Text = "Nome do Usuário";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(10, 17);
+            this.toolStripStatusLabel3.Text = "|";
+            // 
+            // toolStripStatusLabel4
+            // 
+            this.toolStripStatusLabel4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabel4.ForeColor = System.Drawing.Color.Blue;
+            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(40, 17);
+            this.toolStripStatusLabel4.Text = "Tipo:";
+            // 
+            // lblTipoUsuario
+            // 
+            this.lblTipoUsuario.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTipoUsuario.ForeColor = System.Drawing.Color.Blue;
+            this.lblTipoUsuario.Name = "lblTipoUsuario";
+            this.lblTipoUsuario.Size = new System.Drawing.Size(107, 17);
+            this.lblTipoUsuario.Text = "Tipo do Usuário";
+            // 
+            // toolStripStatusLabel6
+            // 
+            this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
+            this.toolStripStatusLabel6.Size = new System.Drawing.Size(10, 17);
+            this.toolStripStatusLabel6.Text = "|";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabel2.ForeColor = System.Drawing.Color.Blue;
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(65, 17);
+            this.toolStripStatusLabel2.Text = "Servidor:";
+            // 
+            // lblTipoServidor
+            // 
+            this.lblTipoServidor.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTipoServidor.ForeColor = System.Drawing.Color.Blue;
+            this.lblTipoServidor.Name = "lblTipoServidor";
+            this.lblTipoServidor.Size = new System.Drawing.Size(111, 17);
+            this.lblTipoServidor.Text = "Tipo de Servidor";
+            // 
+            // toolStripStatusLabel7
+            // 
+            this.toolStripStatusLabel7.Name = "toolStripStatusLabel7";
+            this.toolStripStatusLabel7.Size = new System.Drawing.Size(10, 17);
+            this.toolStripStatusLabel7.Text = "|";
+            // 
+            // lblMessage
+            // 
+            this.lblMessage.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(491, 17);
+            this.lblMessage.Spring = true;
+            this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblMessage.TextChanged += new System.EventHandler(this.lblMessage_TextChanged);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 3000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // formConteiner
             // 
