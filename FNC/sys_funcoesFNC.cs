@@ -593,31 +593,31 @@ namespace FNC
             bool retorno = false;
             if (mdlCliente.REGISTRO == "000.000.000-00" || mdlCliente.REGISTRO == "00.000.000/0000-00")
             {
-                bool existeNome = sys_FNCDAL.jaExisteNoBancoDAL("sys_clientes", "nome", mdlCliente.NOME);
+                bool existeNome = sys_FNCDAL.JaExisteNoBancoDAL("sys_clientes", "nome", mdlCliente.NOME);
                 bool existeFone = false;
                 if (mdlCliente.FONE1 == "(  )    -")
                 {
-                    bool existeFone1 = sys_FNCDAL.jaExisteNoBancoDAL("sys_clientes", "fone1", mdlCliente.FONE2);
-                    bool existeFone2 = sys_FNCDAL.jaExisteNoBancoDAL("sys_clientes", "fone2", mdlCliente.FONE2);
+                    bool existeFone1 = sys_FNCDAL.JaExisteNoBancoDAL("sys_clientes", "fone1", mdlCliente.FONE2);
+                    bool existeFone2 = sys_FNCDAL.JaExisteNoBancoDAL("sys_clientes", "fone2", mdlCliente.FONE2);
                     if (existeFone1 == true || existeFone2 == true) existeFone = true;
                 }
                 else if (mdlCliente.FONE2 == "(  )    -")
                 {
-                    bool existeFone1 = sys_FNCDAL.jaExisteNoBancoDAL("sys_clientes", "fone1", mdlCliente.FONE1);
-                    bool existeFone2 = sys_FNCDAL.jaExisteNoBancoDAL("sys_clientes", "fone2", mdlCliente.FONE1);
+                    bool existeFone1 = sys_FNCDAL.JaExisteNoBancoDAL("sys_clientes", "fone1", mdlCliente.FONE1);
+                    bool existeFone2 = sys_FNCDAL.JaExisteNoBancoDAL("sys_clientes", "fone2", mdlCliente.FONE1);
                     if (existeFone1 == true || existeFone2 == true) existeFone = true;
                 }
                 else
                 {
-                    bool existeFone1 = sys_FNCDAL.jaExisteNoBancoDAL("sys_clientes", "fone1", mdlCliente.FONE1);
-                    bool existeFone2 = sys_FNCDAL.jaExisteNoBancoDAL("sys_clientes", "fone2", mdlCliente.FONE1);
-                    bool existeFone3 = sys_FNCDAL.jaExisteNoBancoDAL("sys_clientes", "fone1", mdlCliente.FONE2);
-                    bool existeFone4 = sys_FNCDAL.jaExisteNoBancoDAL("sys_clientes", "fone2", mdlCliente.FONE2);
+                    bool existeFone1 = sys_FNCDAL.JaExisteNoBancoDAL("sys_clientes", "fone1", mdlCliente.FONE1);
+                    bool existeFone2 = sys_FNCDAL.JaExisteNoBancoDAL("sys_clientes", "fone2", mdlCliente.FONE1);
+                    bool existeFone3 = sys_FNCDAL.JaExisteNoBancoDAL("sys_clientes", "fone1", mdlCliente.FONE2);
+                    bool existeFone4 = sys_FNCDAL.JaExisteNoBancoDAL("sys_clientes", "fone2", mdlCliente.FONE2);
                     if (existeFone1 == true || existeFone2 == true || existeFone3 == true || existeFone4 == true) existeFone = true;
                 }
                 if (existeNome == true && existeFone == true) retorno = true;
             }
-            else retorno = sys_FNCDAL.jaExisteNoBancoDAL("sys_clientes", "registro", mdlCliente.REGISTRO);
+            else retorno = sys_FNCDAL.JaExisteNoBancoDAL("sys_clientes", "registro", mdlCliente.REGISTRO);
             return retorno;
         }
         /// <summary>
@@ -629,7 +629,7 @@ namespace FNC
         public static bool exiteEnderecoNoBanco(string endereco)
         {
             bool retorno = false;
-            if (sys_FNCDAL.jaExisteNoBancoDAL("sys_enderecos", "endereco", endereco) == true)
+            if (sys_FNCDAL.JaExisteNoBancoDAL("sys_enderecos", "endereco", endereco) == true)
             {
                 retorno = true;
             }

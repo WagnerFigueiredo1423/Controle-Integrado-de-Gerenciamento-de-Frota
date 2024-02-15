@@ -35,7 +35,7 @@ namespace FNC
                     {
                         DataRow row = ac.NewRow();
                         row["placa"] = BuscaXml(elements, "ax21:placa").InnerText;
-                        row["tipo"] = sys_veiculosDAL.MostrarDAL(sys_FNCDAL.retornaIdItem(BuscaXml(elements, "ax21:placa").InnerText, "placa", "sys_veiculos")).TIPO;
+                        row["tipo"] = sys_veiculosDAL.MostrarDAL(sys_FNCDAL.RetornaIdItem(BuscaXml(elements, "ax21:placa").InnerText, "placa", "sys_veiculos")).TIPO;
                         row["velocidade"] = BuscaXml(elements, "ax21:velocidade").InnerText;
                         row["evento"] = BuscaXml(elements, "ax21:evento").InnerText;
                         row["localizacao"] = BuscaXml(elements, "ax21:localizacao").InnerText;
