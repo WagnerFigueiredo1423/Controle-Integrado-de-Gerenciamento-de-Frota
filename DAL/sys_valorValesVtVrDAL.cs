@@ -8,7 +8,7 @@ namespace DAL
         static string dbName = sys_databaseMDL.DBNAME;
         public static void AtualizarDAL(sys_valorValesVtVrMDL mdlLocal)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom;
             try
             {
@@ -40,7 +40,7 @@ namespace DAL
         public static sys_valorValesVtVrMDL MostrarDAL()
         {
             sys_valorValesVtVrMDL mdlLocal = new sys_valorValesVtVrMDL();
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = new MySqlCommand(
                 "SELECT * FROM " +
                 "" + dbName + ".sys_valor_vr," +

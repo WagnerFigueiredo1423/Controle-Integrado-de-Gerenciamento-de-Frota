@@ -7,7 +7,7 @@ namespace DAL
 {
     public static class sys_usuariosDAL
     {
-        static MySqlConnection con = StringConnDAL.connDAL();
+        static MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
         static string dbName = sys_databaseMDL.DBNAME;
         static MySqlCommand sqlCom = null;
         public static void InserirDAL(sys_usuariosMDL mdlLocal)

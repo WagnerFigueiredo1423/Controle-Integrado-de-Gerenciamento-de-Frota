@@ -10,7 +10,7 @@ namespace DAL
         static string dbName = sys_databaseMDL.DBNAME;
         public static void InserirDAL(sys_servicosMDL mdlLocal)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             int id = sys_FNCDAL.retornaUltimoIdDAL("id", "sys_servicos") + 1;
             try
@@ -69,7 +69,7 @@ namespace DAL
         }
         public static void AtualizarDAL(sys_servicosMDL mdlLocal)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             try
             {
@@ -103,7 +103,7 @@ namespace DAL
         }
         public static void DeletarDAL(int id)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             try
             {
@@ -123,7 +123,7 @@ namespace DAL
         public static sys_servicosMDL MostrarDAL(int id)
         {
             sys_servicosMDL mdlLocal = new sys_servicosMDL();
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM " + dbName + ".sys_servicos WHERE id = " + id + ";", con);
             MySqlDataReader dr = null;
             try
@@ -169,7 +169,7 @@ namespace DAL
         public static sys_servicosMDL MostrarComParametroDAL(string sqlCommand)
         {
             sys_servicosMDL mdlLocal = new sys_servicosMDL();
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = new MySqlCommand(sqlCommand, con);
             MySqlDataReader dr = null;
             try
@@ -214,7 +214,7 @@ namespace DAL
         }
         public static DataTable ListarDAL(string ano)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             MySqlDataAdapter adt = null;
             DataTable dtb = null;
@@ -237,7 +237,7 @@ namespace DAL
         }
         public static DataTable ListarComParamDAL(string query)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             MySqlDataAdapter adt = null;
             DataTable dtb = null;
