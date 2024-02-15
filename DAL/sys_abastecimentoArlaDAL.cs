@@ -123,7 +123,7 @@ namespace DAL
         /// <returns></returns>
         public static DataTable ListarDAL(string tipo, string indexPlaca, DateTime data)
         {
-            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());  
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             MySqlDataAdapter adt = null;
             DataTable dtb = null;

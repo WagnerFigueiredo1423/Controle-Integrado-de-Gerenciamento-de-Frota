@@ -81,7 +81,7 @@ namespace DAL
         public static sys_agendaMDL MostrarDAL(int id)
         {
             sys_agendaMDL mdlLocal = new sys_agendaMDL();
-            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL()); ;
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM " + dbName + ".sys_agenda WHERE id = " + id + ";", con);
             MySqlDataReader dr = null;
             try

@@ -32,21 +32,6 @@ namespace app
                 this.BackgroundImage = myimage;
                 this.BackgroundImageLayout = ImageLayout.Stretch;
             }
-            try
-            {
-                if (sys_FNCBLL.testeConexaoBDBLL())
-                {
-                    MessageBox.Show("Conexão com Banco Bem Sucedida");
-                }
-                else
-                {
-                    MessageBox.Show("Erro ao conectar ao Banco de Dados");
-                }
-            }
-            catch(Exception er)
-            {
-                MessageBox.Show(er.Message);
-            }
         }
 
         private void FormConteiner_FormClosing(object sender, FormClosingEventArgs e)

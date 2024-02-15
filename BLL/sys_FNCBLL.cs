@@ -192,24 +192,7 @@ namespace BLL
         }
         public static bool verificaConnBLL()
         {
-            try
-            {
-                return sys_FNCDAL.verificaConnDAL();
-            }
-            catch (MySqlException ex)
-            {
-                throw new Exception("Erro ao acessar o banco de dados.", ex);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Ocorreu um erro inesperado.", ex);
-            }
-        }
-
-        public static bool testeConexaoBDBLL()
-        {
-            bool v = (sys_FNCDAL.testeConexaoBDDAL()) ?  v=true : v=false;
-            return v;
+            return sys_FNCDAL.verificaConnDAL();
         }
     }
 }

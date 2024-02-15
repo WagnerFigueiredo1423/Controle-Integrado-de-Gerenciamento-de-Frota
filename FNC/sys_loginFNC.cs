@@ -9,7 +9,7 @@ namespace FNC
         public static bool LoginOK(string user, string pass)
         {
             bool retorno = false;
-            MySqlConnection conn = StringConnDAL.connDAL();
+            MySqlConnection conn = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sql = new MySqlCommand("SELECT COUNT(*) FROM gauchateleentu.sys_usuarios WHERE login = '" + user + "' AND senha = '" + pass + "'", conn);
 
             try

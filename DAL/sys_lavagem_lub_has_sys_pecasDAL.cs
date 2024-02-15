@@ -11,7 +11,7 @@ namespace DAL
         public static void InserirDAL(sys_lavagem_lub_has_sys_pecasMDL mdlLocal)
         {
             int id = 0;
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             id = sys_FNCDAL.retornaUltimoIdDAL("id", "sys_lavagem_lub_has_sys_pecas") + 1;
             try
@@ -34,7 +34,7 @@ namespace DAL
         }
         public static void AtualizarDAL(sys_lavagem_lub_has_sys_pecasMDL mdlLocal)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             try
             {
@@ -56,7 +56,7 @@ namespace DAL
         }
         public static void DeletarDAL(int idLavagem, int idPeca)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             try
             {
@@ -76,7 +76,7 @@ namespace DAL
         public static sys_lavagem_lub_has_sys_pecasMDL MostrarDAL(int id)
         {
             sys_lavagem_lub_has_sys_pecasMDL mdlLocal = new sys_lavagem_lub_has_sys_pecasMDL();
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM " + dbName + ".sys_lavagem_lub_has_sys_pecas WHERE id = " + id + ";", con);
             MySqlDataReader dr = null;
             try
@@ -102,7 +102,7 @@ namespace DAL
         }
         public static DataTable ListarDAL(int idLavagem)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             MySqlDataAdapter adt = null;
             DataTable dtb = null;

@@ -194,7 +194,7 @@ namespace DAL
             {
                 using (MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL()))
                 {
-                    string query = $"SELECT id FROM {dbName}.{numeroConteiner} WHERE {tipoConteiner} = @parametro;";
+                    string query = $"SELECT id FROM {dbName}.sys_conteiners WHERE {tipoConteiner} = @parametro;";
                     using (MySqlCommand sqlCom = new MySqlCommand(query, con))
                     {
                         sqlCom.Parameters.AddWithValue("@parametro", tipoConteiner);

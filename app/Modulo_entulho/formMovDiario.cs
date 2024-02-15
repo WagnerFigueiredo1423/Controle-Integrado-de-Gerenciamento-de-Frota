@@ -1353,7 +1353,7 @@ namespace app
                         + "urgencia_retirada = false "
                         + "WHERE id = " + tabMov.CurrentRow.Cells["id"].Value + ";";
 
-                        int idCont = sys_FNCBLL.retornaIdConteinerBLL(int.Parse(tabMov.CurrentRow.Cells["numero_conteiner"].Value.ToString()), "ENTULHO").ID;
+                        int idCont = sys_FNCBLL.retornaIdConteinerBLL(int.Parse(tabMov.CurrentRow.Cells["numero_conteiner"].Value.ToString()), "ENTULHO");
 
                         sys_locacoesBLL.AtualizarComParametroBLL(sqlCommand);
                         sys_FNCBLL.atualizaStatusConteinerBLL(idCont, "DISPONÍVEL");
@@ -1465,7 +1465,7 @@ namespace app
                         if (tabMov.CurrentRow.Cells["situacao"].Value.ToString() == "Entregue" || tabMov.CurrentRow.Cells["situacao"].Value.ToString() == "Ag.Retirada")
                         {
                             sys_locacoesBLL.AtualizarComParametroBLL("UPDATE " + dbName + ".sys_locacoes SET func_retirada_id = " + idFunc + ", situacao = 'Finalizada', listagem_retirada = false, listagem_entrega = false, urgencia_entrega = false, urgencia_retirada = false WHERE id = " + tabMov.CurrentRow.Cells["id"].Value + ";");
-                            sys_FNCBLL.atualizaStatusConteinerBLL(sys_FNCBLL.retornaIdConteinerBLL(int.Parse(tabMov.CurrentRow.Cells["numero_conteiner"].Value.ToString()), "ENTULHO").ID, "DISPONÍVEL");
+                            sys_FNCBLL.atualizaStatusConteinerBLL(sys_FNCBLL.retornaIdConteinerBLL(int.Parse(tabMov.CurrentRow.Cells["numero_conteiner"].Value.ToString()), "ENTULHO"), "DISPONÍVEL");
                             tabMov.CurrentRow.Cells["situacao"].Value = "Finalizada";
                         }
                         else
@@ -1555,7 +1555,7 @@ namespace app
                         if (tabMov.CurrentRow.Cells["situacao"].Value.ToString() == "Entregue" || tabMov.CurrentRow.Cells["situacao"].Value.ToString() == "Ag.Retirada")
                         {
                             sys_locacoesBLL.AtualizarComParametroBLL("UPDATE " + dbName + ".sys_locacoes SET veic_retirada_id = " + idVeic + ", situacao = 'Finalizada', listagem_retirada = false, listagem_entrega = false, urgencia_entrega = false, urgencia_retirada = false WHERE id = " + tabMov.CurrentRow.Cells["id"].Value + ";");
-                            sys_FNCBLL.atualizaStatusConteinerBLL(sys_FNCBLL.retornaIdConteinerBLL(int.Parse(tabMov.CurrentRow.Cells["numero_conteiner"].Value.ToString()), "ENTULHO").ID, "DISPONÍVEL");
+                            sys_FNCBLL.atualizaStatusConteinerBLL(sys_FNCBLL.retornaIdConteinerBLL(int.Parse(tabMov.CurrentRow.Cells["numero_conteiner"].Value.ToString()), "ENTULHO"), "DISPONÍVEL");
                             tabMov.CurrentRow.Cells["situacao"].Value = "Finalizada";
                         }
                         else
@@ -2345,7 +2345,7 @@ namespace app
                     {
                         if (tabMov.CurrentRow.Cells["numero_conteiner"].Value.ToString() != "")
                         {
-                            sys_FNCBLL.atualizaStatusConteinerBLL(sys_FNCBLL.retornaIdConteinerBLL(int.Parse(tabMov.CurrentRow.Cells["numero_conteiner"].Value.ToString()), "ENTULHO").ID, "DISPONÍVEL");
+                            sys_FNCBLL.atualizaStatusConteinerBLL(sys_FNCBLL.retornaIdConteinerBLL(int.Parse(tabMov.CurrentRow.Cells["numero_conteiner"].Value.ToString()), "ENTULHO"), "DISPONÍVEL");
                         }
                         sys_locacoesBLL.AtualizarComParametroBLL("UPDATE " + dbName + ".sys_locacoes SET situacao = 'Anulada' WHERE id = " + tabMov.Rows[e.RowIndex].Cells["id"].Value + ";");
                         sys_pagamentosBLL.AtualizarComPatametroBLL("UPDATE " + dbName + ".sys_pagamentos SET situacao = 'ANULADO' WHERE sys_locacoes_id = " + tabMov.Rows[e.RowIndex].Cells["id"].Value + ";");
@@ -2411,7 +2411,7 @@ namespace app
                 {
                     if (tabMov.CurrentRow.Cells["numero_conteiner"].Value.ToString() != "")
                     {
-                        sys_FNCBLL.atualizaStatusConteinerBLL(sys_FNCBLL.retornaIdConteinerBLL(int.Parse(tabMov.CurrentRow.Cells["numero_conteiner"].Value.ToString()), "ENTULHO").ID, "DISPONÍVEL");
+                        sys_FNCBLL.atualizaStatusConteinerBLL(sys_FNCBLL.retornaIdConteinerBLL(int.Parse(tabMov.CurrentRow.Cells["numero_conteiner"].Value.ToString()), "ENTULHO"), "DISPONÍVEL");
                     }
                     sys_pagamentosBLL.DeletarBLL(int.Parse(tabMov.Rows[e.RowIndex].Cells["id"].Value.ToString()));
                     sys_locacoesBLL.DeletarBLL(int.Parse(tabMov.Rows[e.RowIndex].Cells["id"].Value.ToString()));
@@ -2532,7 +2532,7 @@ namespace app
             {
                 if (tabMov.Rows[e.RowIndex].Cells["numero_conteiner"].Value.ToString() != "")
                 {
-                    _nCont = sys_FNCBLL.retornaIdConteinerBLL(int.Parse(tabMov.Rows[e.RowIndex].Cells["numero_conteiner"].Value.ToString()), "ENTULHO").ID;
+                    _nCont = sys_FNCBLL.retornaIdConteinerBLL(int.Parse(tabMov.Rows[e.RowIndex].Cells["numero_conteiner"].Value.ToString()), "ENTULHO");
                 }
                 else
                 {
@@ -2597,7 +2597,7 @@ namespace app
                 tabMov.Rows[e.RowIndex].Cells["numero_conteiner"].Value.ToString() != "" &&
                 int.Parse(tabMov.Rows[e.RowIndex].Cells["numero_conteiner"].Value.ToString()) != _nCont)
             {
-                int idCont = sys_FNCBLL.retornaIdConteinerBLL(int.Parse(tabMov.CurrentRow.Cells["numero_conteiner"].Value.ToString()), "ENTULHO").ID;
+                int idCont = sys_FNCBLL.retornaIdConteinerBLL(int.Parse(tabMov.CurrentRow.Cells["numero_conteiner"].Value.ToString()), "ENTULHO");
 
                 if (idCont != 0)
                 {

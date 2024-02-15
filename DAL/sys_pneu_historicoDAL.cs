@@ -10,7 +10,7 @@ namespace DAL
         static string dbName = sys_databaseMDL.DBNAME;
         public static void InserirDAL(sys_pneu_historicoMDL mdlLocal)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             int id = sys_FNCDAL.retornaUltimoIdDAL("id", "sys_pneu_historico") + 1;
             try
@@ -35,7 +35,7 @@ namespace DAL
         }
         public static void AtualizarDAL(sys_pneu_historicoMDL mdlLocal)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             try
             {
@@ -59,7 +59,7 @@ namespace DAL
         }
         public static void DeletarDAL(int id)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             try
             {
@@ -79,7 +79,7 @@ namespace DAL
         public static sys_pneu_historicoMDL MostrarDAL(int id)
         {
             sys_pneu_historicoMDL mdlLocal = new sys_pneu_historicoMDL();
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM " + dbName + ".sys_pneu_historico WHERE id = " + id + ";", con);
             MySqlDataReader dr = null;
             try
@@ -107,7 +107,7 @@ namespace DAL
         }
         public static DataTable ListarDAL()
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             MySqlDataAdapter adt = null;
             DataTable dtb = null;
