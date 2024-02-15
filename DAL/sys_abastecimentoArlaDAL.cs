@@ -10,7 +10,7 @@ namespace DAL
         static string dbName = sys_databaseMDL.DBNAME;
         public static void InserirDAL(sys_abastecimentosMDL mdlLocal)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             int id = sys_FNCDAL.retornaUltimoIdDAL("id", "sys_abastecimentos_arla") + 1;
             try
@@ -38,7 +38,7 @@ namespace DAL
         }
         public static void AtualizarDAL(sys_abastecimentosMDL mdlLocal)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             try
             {
@@ -64,7 +64,7 @@ namespace DAL
         }
         public static void DeletarDAL(int id)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             try
             {
@@ -84,7 +84,7 @@ namespace DAL
         public static sys_abastecimentosMDL MostrarDAL(int id)
         {
             sys_abastecimentosMDL mdlLocal = new sys_abastecimentosMDL();
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM " + dbName + ".sys_abastecimentos_arla WHERE id = " + id + ";", con);
             MySqlDataReader dr = null;
             try
@@ -123,7 +123,7 @@ namespace DAL
         /// <returns></returns>
         public static DataTable ListarDAL(string tipo, string indexPlaca, DateTime data)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             MySqlDataAdapter adt = null;
             DataTable dtb = null;
@@ -167,7 +167,7 @@ namespace DAL
         /// <returns></returns>
         public static DataTable ListarRelatorioDAL(string tipo, string indexPlaca, DateTime data)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             MySqlDataAdapter adt = null;
             DataTable dtb = null;

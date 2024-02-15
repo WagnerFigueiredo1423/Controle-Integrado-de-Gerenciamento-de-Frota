@@ -10,7 +10,7 @@ namespace DAL
         static string dbName = sys_databaseMDL.DBNAME;
         public static void InserirDAL(sys_servicos_has_sys_pecasMDL mdlLocal)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             try
             {
@@ -32,7 +32,7 @@ namespace DAL
         }
         public static void AtualizarDAL(sys_servicos_has_sys_pecasMDL mdlLocal)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             try
             {
@@ -54,7 +54,7 @@ namespace DAL
         }
         public static void DeletarDAL(int idServico, int idPeca)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             try
             {
@@ -74,7 +74,7 @@ namespace DAL
         public static sys_servicos_has_sys_pecasMDL MostrarDAL(int idServico, int idPeca)
         {
             sys_servicos_has_sys_pecasMDL mdlLocal = new sys_servicos_has_sys_pecasMDL();
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM " + dbName + ".sys_servicos_has_sys_pecas WHERE sys_servicos_id = " + idServico + " AND sys_pecas_id = " + idPeca + ";", con);
             MySqlDataReader dr = null;
             try
@@ -100,7 +100,7 @@ namespace DAL
         }
         public static DataTable ListarDAL(int idServ)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             MySqlDataAdapter adt = null;
             DataTable dtb = null;

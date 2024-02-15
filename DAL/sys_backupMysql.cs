@@ -10,7 +10,7 @@ namespace DAL
         public static bool _MysqlBackup(string caminho)
         {
             //string file = @"\\Servidor\\e\\backup.sql";
-            MySqlConnection conn = StringConnDAL.connDAL();
+            MySqlConnection conn = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = new MySqlCommand();
             MySqlBackup mb = new MySqlBackup(sqlCom);
 

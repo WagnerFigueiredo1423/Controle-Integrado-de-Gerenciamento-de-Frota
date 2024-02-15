@@ -206,10 +206,9 @@ namespace BLL
             }
         }
 
-        public static bool testeConexaoBDBLL()
+        public static bool verificaConnBLL()
         {
-            bool v = (sys_FNCDAL.testeConexaoBDDAL()) ?  v=true : v=false;
-            return v;
+            return sys_FNCDAL.verificaConnDAL();
         }
     }
 }

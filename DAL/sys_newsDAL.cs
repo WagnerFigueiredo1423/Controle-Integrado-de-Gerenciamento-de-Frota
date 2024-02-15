@@ -10,7 +10,7 @@ namespace DAL
         static string dbName = sys_databaseMDL.DBNAME;
         public static void Insere(sys_newsMDL mdllocal)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sql = null;
 
             sql = new MySqlCommand("INSERT INTO " + dbName + ".sys_news (new_titulo,new_conteudo,new_data,new_mostrar) VALUES (@titulo,@conteudo,@mostrar,@data)", con);
@@ -38,7 +38,7 @@ namespace DAL
 
         public static void Atualiza(sys_newsMDL mdllocal)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sql = null;
 
             sql = new MySqlCommand("UPDATE " + dbName + ".sys_news SET new_titulo = @titulo,new_conteudo = @conteudo,new_mostrar = @mostrar WHERE id = @id", con);
@@ -66,7 +66,7 @@ namespace DAL
 
         public static void Deleta(int id)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sql = null;
 
             sql = new MySqlCommand("DELETE " + dbName + ".sys_news WHERE id = " + id, con);
@@ -88,7 +88,7 @@ namespace DAL
 
         public static DataTable Mostrar()
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sql = null;
             MySqlDataAdapter adt = null;
             DataTable dtb = null;

@@ -10,7 +10,7 @@ namespace DAL
         static string dbName = sys_databaseMDL.DBNAME;
         public static void InserirDAL(sys_veiculos_has_sys_pneusMDL mdlLocal)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             try
             {
@@ -34,7 +34,7 @@ namespace DAL
         }
         public static void AtualizarDAL(sys_veiculos_has_sys_pneusMDL mdlLocal)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             try
             {
@@ -58,7 +58,7 @@ namespace DAL
         }
         public static void DeletarDAL(int idVeiculo, int idPneu)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             try
             {
@@ -78,7 +78,7 @@ namespace DAL
         public static sys_veiculos_has_sys_pneusMDL MostrarDAL(int id)
         {
             sys_veiculos_has_sys_pneusMDL mdlLocal = new sys_veiculos_has_sys_pneusMDL();
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM " + dbName + ".sys_veiculos_has_sys_pneus WHERE sys_veiculos_id = " + id + ";", con);
             MySqlDataReader dr = null;
             try
@@ -106,7 +106,7 @@ namespace DAL
         }
         public static DataTable ListarDAL(int idVeiculo)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             MySqlDataAdapter adt = null;
             DataTable dtb = null;

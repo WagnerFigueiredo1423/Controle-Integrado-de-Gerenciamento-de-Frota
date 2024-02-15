@@ -10,7 +10,7 @@ namespace DAL
         static string dbName = sys_databaseMDL.DBNAME;
         public static void InserirDAL(sys_valoresBaseMDL mdlLocal)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             int id = sys_FNCDAL.retornaUltimoIdDAL("id", "sys_valoresBase") + 1;
             try
@@ -42,7 +42,7 @@ namespace DAL
         }
         public static void AtualizarDAL(sys_valoresBaseMDL mdlLocal)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             try
             {
@@ -73,7 +73,7 @@ namespace DAL
         }
         public static void DeletarDAL(int id)
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             try
             {
@@ -93,7 +93,7 @@ namespace DAL
         public static sys_valoresBaseMDL MostrarDAL(int id)
         {
             sys_valoresBaseMDL mdlLocal = new sys_valoresBaseMDL();
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM " + dbName + ".sys_valoresBase WHERE id = " + id + ";", con);
             MySqlDataReader dr = null;
             try
@@ -128,7 +128,7 @@ namespace DAL
         }
         public static DataTable ListarDAL()
         {
-            MySqlConnection con = StringConnDAL.connDAL();
+            MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = null;
             MySqlDataAdapter adt = null;
             DataTable dtb = null;
