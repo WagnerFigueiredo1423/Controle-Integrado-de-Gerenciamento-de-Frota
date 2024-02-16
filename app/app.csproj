@@ -54,10 +54,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>7B9F6FD123F124E0181CD0026D7E5D2B248DA48A</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>0ED4AE920D3C7BCD47D2B081FA82E318DB85F28A</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>app_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>app_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -657,6 +657,7 @@
       <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="app_1_TemporaryKey.pfx" />
     <None Include="app_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
