@@ -1,5 +1,6 @@
 ﻿using MDL;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
+using Org.BouncyCastle.Security;
 using System;
 using System.Data;
 
@@ -187,23 +188,29 @@ namespace DAL
             }
         }
 
-        public static int RetornaIdConteinerDAL(int numeroConteiner, string tipoConteiner)
+        public static sys_conteineresMDL MostrarNroConteinerDAL(int numeroConteiner, string tipoConteiner)
         {
-            int id = 0;
+            sys_conteineresMDL mdlLocal = new sys_conteineresMDL();
             try
             {
                 using (MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL()))
                 {
-                    string query = $"SELECT id FROM {dbName}.sys_conteiners WHERE {tipoConteiner} = @parametro;";
+                    string query = $"SELECT id, situacao, ativo, ultima_reforma, Observacao FROM {dbName}.sys_conteineres WHERE numero = @NUMERO; AND tipo = @TIPOCONTEINER";
                     using (MySqlCommand sqlCom = new MySqlCommand(query, con))
                     {
-                        sqlCom.Parameters.AddWithValue("@parametro", tipoConteiner);
+                        sqlCom.Parameters.AddWithValue("@NUMERO", numeroConteiner);
+                        sqlCom.Parameters.AddWithValue("@TIPOCONTEINER", tipoConteiner);
+
                         con.Open();
                         using (MySqlDataReader dr = sqlCom.ExecuteReader())
                         {
                             if (dr.Read())
                             {
-                                id = int.Parse(dr["id"].ToString());
+                                mdlLocal.ID = Convert.ToInt16(dr["id"].ToString());
+                                mdlLocal.SITUACAO = dr["situacao"].ToString();
+                                mdlLocal.ATIVO = Convert.ToBoolean(dr["ativo"].ToString());
+                                mdlLocal.ULTIMA_REFORMA = Convert.ToDateTime(dr["ultima_reforma"].ToString());
+                                mdlLocal.OBSERVACAO = dr["Observacao"].ToString();
                             }
                         }
                     }
@@ -217,7 +224,8 @@ namespace DAL
             {
                 throw new Exception("Ocorreu um erro inesperado.", ex);
             }
-            return id;
+
+            return mdlLocal;
         }
 
     }

@@ -25,7 +25,7 @@ namespace app.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("WEB")]
         public string DataBase {
             get {
                 return ((string)(this["DataBase"]));

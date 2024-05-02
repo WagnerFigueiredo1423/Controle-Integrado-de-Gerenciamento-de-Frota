@@ -1,5 +1,5 @@
 ﻿using MDL;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 using System;
 using System.Data;
 
@@ -114,11 +114,10 @@ namespace DAL
             sys_funcionariosMDL mdlLocal = new sys_funcionariosMDL();
             MySqlConnection con = new MySqlConnection(StringConnDAL.connDAL());
             MySqlCommand sqlCom = new MySqlCommand("SELECT * FROM " + dbName + ".sys_funcionarios WHERE id = " + id + ";", con);
-            MySqlDataReader dr = null;
             try
             {
                 con.Open();
-                dr = sqlCom.ExecuteReader();
+                MySqlDataReader dr = sqlCom.ExecuteReader();
                 while (dr.Read())
                 {
                     mdlLocal.ID = Convert.ToInt16(dr["id"].ToString());
@@ -133,16 +132,16 @@ namespace DAL
                     mdlLocal.CLT = dr["clt"].ToString();
                     mdlLocal.CATEGORIAHABILITACAO = dr["habilitacao_categoria"].ToString();
                     mdlLocal.NUMEROHABILITACAO = dr["habilitacao_numero"].ToString();
-                    if (dr["habilitacao_validade"].ToString() != "") mdlLocal.VALIDADEHABILITACAO = RetornaDateTimeDAL._retornaDateTimeDAL(dr["habilitacao_validade"].ToString());
-                    else mdlLocal.VALIDADEHABILITACAO = RetornaDateTimeDAL._retornaDateTimeDAL(DateTime.Now.ToString("d"));
-                    mdlLocal.ADMISSAO = RetornaDateTimeDAL._retornaDateTimeDAL(dr["admissao"].ToString());
-                    mdlLocal.VENC_FERIAS = RetornaDateTimeDAL._retornaDateTimeDAL(dr["venc_ferias"].ToString());
+                    if (dr["habilitacao_validade"].ToString() != "") mdlLocal.VALIDADEHABILITACAO = DateTime.Parse(dr["habilitacao_validade"].ToString());
+                    else mdlLocal.VALIDADEHABILITACAO = DateTime.Parse(DateTime.Now.ToString("d"));
+                    mdlLocal.ADMISSAO = DateTime.Parse(dr["admissao"].ToString());
+                    mdlLocal.VENC_FERIAS = DateTime.Parse(dr["venc_ferias"].ToString());
                     if (dr["piso_salarial"].ToString() != "") { mdlLocal.PISO_SALARIAL = double.Parse(dr["piso_salarial"].ToString()); }
                     mdlLocal.ATIVO = Convert.ToBoolean(dr["ativo"].ToString());
                     mdlLocal.ENDERECO = dr["endereco"].ToString();
                     mdlLocal.FONE = dr["fone"].ToString();
-                    mdlLocal.CRIADO = RetornaDateTimeDAL._retornaDateTimeDAL(dr["criado"].ToString());
-                    mdlLocal.MODIFICADO = RetornaDateTimeDAL._retornaDateTimeDAL(dr["modificado"].ToString());
+                    mdlLocal.CRIADO = DateTime.Parse(dr["criado"].ToString());
+                    mdlLocal.MODIFICADO = DateTime.Parse(dr["modificado"].ToString());
                     mdlLocal.OBSERVACAO = dr["observacao"].ToString();
                 }
                 return mdlLocal;

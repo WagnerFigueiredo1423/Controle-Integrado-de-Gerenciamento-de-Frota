@@ -27,16 +27,30 @@ namespace app
 
         private void formConfiguracoes_Load(object sender, EventArgs e)
         {
-            txtdbHost.Text = sys_databaseMDL.DBHOST;
-            txtdbName.Text = sys_databaseMDL.DBNAME;
-            txtdbUser.Text = sys_databaseMDL.DBUSER;
-            txtdbPass.Text = sys_databaseMDL.DBPASS;
-            if (sys_databaseMDL.DATABASE == "SERVIDOR") rdbServidor.Checked = true;
-            else if (sys_databaseMDL.DATABASE == "SERVIDOR") rdbWeb.Checked = true;
-            else
+            txtdbHost.Text = Properties.Settings.Default.dbHost;
+            txtdbName.Text = Properties.Settings.Default.dbName;
+            txtdbUser.Text = Properties.Settings.Default.dbUser;
+            txtdbPass.Text = Properties.Settings.Default.dbPass;
+            string teste = Properties.Settings.Default.DataBase;
+            switch (teste)
             {
-                rdbServidor.Checked = true;
-                rdbWeb.Checked = true;
+                case "SERVIDOR":
+                    rdbServidor.Checked = true;
+                    rdbWeb.Checked = false;
+                    rdbLocal.Checked = false;
+                    break;
+
+                case "WEB":
+                    rdbServidor.Checked = false;
+                    rdbWeb.Checked = true;
+                    rdbLocal.Checked = false;
+                    break;
+
+                case "LOCAL":
+                    rdbServidor.Checked = false;
+                    rdbWeb.Checked = false;
+                    rdbLocal.Checked = true;
+                    break;
             }
             if (Program.BACKGROUND == true)
             {
@@ -118,7 +132,8 @@ namespace app
 
         private void btn_TesteConexao_Click(object sender, EventArgs e)
         {
-            sys_FNCBLL.verificaConnBLL();
+            if (sys_FNCBLL.verificaConnBLL()) MessageBox.Show("Conexão Bem Sucedida");
+            else MessageBox.Show("Erro ao Conectar com Bando de Dados");
         }
     }
 }

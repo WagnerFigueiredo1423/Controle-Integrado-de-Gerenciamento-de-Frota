@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="DataBase" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">WEB</Value>
     </Setting>
     <Setting Name="User" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

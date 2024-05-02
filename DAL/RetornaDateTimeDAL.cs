@@ -31,15 +31,11 @@ namespace DAL
                 {
                     NewDate = DateSplit[2] + "/" + DateSplit[1] + "/" + DateSplit[0];
                 }
-                date = DateTime.Parse(NewDate, Thread.CurrentThread.CurrentCulture);
+                date = DateTime.ParseExact(NewDate, "MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-
             }
             return date;
         }

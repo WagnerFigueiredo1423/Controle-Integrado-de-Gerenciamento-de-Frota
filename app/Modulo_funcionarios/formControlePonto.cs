@@ -39,6 +39,7 @@ namespace app
             tabFuncionarios.Columns["impressao"].HeaderText = "Impressão";
             tabFuncionarios.Columns["id"].Visible = false;
             tabFuncionarios.Columns["habilitacao_validade"].Visible = false;
+            tabFuncionarios.Columns["nome_exibicao"].Visible = false;
             tabFuncionarios.Columns["habilitacao_categoria"].Visible = false;
             tabFuncionarios.Columns["habilitacao_numero"].Visible = false;
             tabFuncionarios.Columns["piso_salarial"].Visible = false;
@@ -107,7 +108,7 @@ namespace app
                             TimeSpan _totalHorasDia = TimeSpan.Zero;
                             TimeSpan _totalHorasSemanais = TimeSpan.Zero;
                             TimeSpan _totalHorasMensais = TimeSpan.Zero;
-                            DataTable dtbPonto = dtsPonto.Tables[dtbFuncionarios.Rows[i]["nome"].ToString().Replace(" ", "")];
+                            DataTable dtbPonto = dtsPonto.Tables[tabFuncionarios.Rows[i].Cells["nome"].Value.ToString().Replace(" ", "")];
                             PdfPage pdfPagePonto = pdf.AddPage();
                             double pageWidth = pdfPagePonto.Width;
                             double RectWidth = pageWidth - 20;

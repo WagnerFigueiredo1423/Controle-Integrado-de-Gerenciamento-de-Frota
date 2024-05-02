@@ -1,10 +1,7 @@
 ﻿using MDL;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 using System;
 using System.Data;
-using System.Globalization;
-using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace DAL
 {
